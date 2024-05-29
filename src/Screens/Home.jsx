@@ -21,7 +21,7 @@ const Home = () => {
   const serviceInfo = {
     "Chequeo Gratis": {
       frase: "Obtenga tranquilidad sobre su salud con nuestro servicio de chequeo gratis. Nuestro equipo médico le ofrece una evaluación completa y sin costo para detectar posibles problemas de salud y promover su bienestar a largo plazo.",
-      description: "El chequeo gratis es crucial para detectar problemas de salud en etapas tempranas, lo que permite intervenir antes de que se conviertan en afecciones graves. Proporciona a los pacientes una evaluación completa de su estado de salud sin costo, fomentando una mayor conciencia y cuidado preventivo.",
+      description:"El chequeo gratis es crucial en la actualidad para detectar problemas de salud en etapas tempranas, lo que permite intervenir antes de que se conviertan en afecciones graves. Proporciona a los pacientes una evaluación completa de su estado de salud sin costo, fomentando una mayor conciencia y cuidado preventivo.",
       items: [
         "Detección temprana de enfermedades.",
         "Prevención de complicaciones de salud.",
