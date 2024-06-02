@@ -15,7 +15,7 @@ const Servicios = () => {
         <div className="home-button-container">
           <button><Link to="/reserva" className="home-button-link">Reserva una cita</Link></button>
           <button><Link to="/staff" className="home-button-link">Ver staff médico</Link></button>
-          <button><Link to="/servicios" className="home-button-link">Farmacia</Link></button>
+          <button><Link to="/servicios" className="home-button-link">Servicios</Link></button>
         </div>
       </section>
     </div>
