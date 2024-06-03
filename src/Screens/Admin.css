@@ -35,17 +35,55 @@
   }
   
   /* Estilos para los botones */
+  button1 {
+    padding: 7px 16px; /* Ajusta el tamaño del botón */
+    margin-right: 5px;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+    background-color: #338B85;
+    color: #fff;
+  }
   button {
     padding: 8px 16px; /* Ajusta el tamaño del botón */
     margin-right: 5px;
     cursor: pointer;
     border: none;
     border-radius: 4px;
-    background-color: #007bff;
+    background-color: #CB4154;
     color: #fff;
+  }
+  
+  button1:hover {
+    background-color: #0056b3;
   }
   
   button:hover {
     background-color: #0056b3;
   }
+  
+  .admin-container table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .admin-container th,
+  .admin-container td {
+    border: 1px solid #dddddd;
+    padding: 8px;
+    text-align: left;
+    color: #000000; /* Negro */
+    text-align: center; /* Centrado */
+    
+  }
+  
+  .admin-container th {
+    background-color: #cce5ff; /* Celeste */
+    color: #000000; /* Azul */
+  }
+  
+  .admin-container tr:nth-child(even) {
+    background-color: #ffffff; /* Blanco */
+  }
+  
   

@@ -18,7 +18,9 @@ const Admin = () => {
             month: '2-digit',
             day: '2-digit',
           });
-          return { ...item, bornDate: formattedDate };
+          // Agregar lógica para mostrar "Masculino" o "Femenino" en base a la letra del género
+          const genderLabel = item.gender === 'M' ? 'Masculino' : item.gender === 'F' ? 'Femenino' : '';
+          return { ...item, bornDate: formattedDate, gender: genderLabel };
         });
         setData(modifiedData);
       } catch (error) {
@@ -64,7 +66,7 @@ const Admin = () => {
               <td>{item.phone}</td>
               <td>{item.gender}</td>
               <td>
-                <button onClick={() => handleEdit(item)}>Editar</button>
+                <button1 onClick={() => handleEdit(item)}>Editar</button1>
                 <button onClick={() => handleDelete(item.id)}>Eliminar</button>
               </td>
             </tr>
