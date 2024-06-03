@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Admin.css'; 
+import ContactNews from './ContactNews'; // Importa el componente ContactNews
 
 const Admin = () => {
   const [data, setData] = useState([]);
@@ -42,37 +43,40 @@ const Admin = () => {
   };
 
   return (
-    <div className="admin-container"> 
-      <h2>Admin Panel</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>DNI</th>
-            <th>Nombres</th>
-            <th>Apellidos</th>
-            <th>Fecha de nacimiento</th>
-            <th>Teléfono</th>
-            <th>Género</th>
-            <th>Acciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          {data.map(item => (
-            <tr key={item.id}>
-              <td>{item.dni}</td>
-              <td>{item.name}</td>
-              <td>{item.lastname}</td>
-              <td>{item.bornDate}</td>
-              <td>{item.phone}</td>
-              <td>{item.gender}</td>
-              <td>
-                <button1 onClick={() => handleEdit(item)}>Editar</button1>
-                <button onClick={() => handleDelete(item.id)}>Eliminar</button>
-              </td>
+    <div className="admin-page">
+      <div className="admin-container"> 
+        <h2>Admin Panel</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>DNI</th>
+              <th>Nombres</th>
+              <th>Apellidos</th>
+              <th>Fecha de nacimiento</th>
+              <th>Teléfono</th>
+              <th>Género</th>
+              <th>Acciones</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {data.map(item => (
+              <tr key={item.id}>
+                <td>{item.dni}</td>
+                <td>{item.name}</td>
+                <td>{item.lastname}</td>
+                <td>{item.bornDate}</td>
+                <td>{item.phone}</td>
+                <td>{item.gender}</td>
+                <td>
+                  <button onClick={() => handleEdit(item)}>Editar</button>
+                  <button onClick={() => handleDelete(item.id)}>Eliminar</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <ContactNews /> {/* Coloca ContactNews fuera del contenedor de la tabla */}
     </div>
   );
 }
