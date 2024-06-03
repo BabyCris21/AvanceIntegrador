@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import NavBar from "./components/NavBar";
-import Footer from "./components/Footer"; // Importa el Footer
+import Footer from "./components/Footer";
 import Home from "./Screens/Home";
 import Staff from './Screens/Staff';
 import Registro from "./Screens/Registro";
@@ -14,6 +14,7 @@ import Header from './components/Header';
 
 
 import Citas from "./Screens/Citas";
+import Perfil from './Screens/Perfil';
 
 
 
@@ -33,6 +34,7 @@ function App() {
           <Route path="/nosotros" element={<Nosotros/>}/>
           <Route path="/servicios" element={<Servicios/>}/>
           <Route path="/citas" element={<Citas/>}/>
+          <Route path="/perfil" element={<Perfil/>}/>
         </Routes>
         <Footer /> 
       </Router>
