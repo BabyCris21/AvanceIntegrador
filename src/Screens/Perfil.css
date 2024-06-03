@@ -1,0 +1,103 @@
+.profile-container {
+    margin: 20px auto;
+    width: 70%;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .profile-container h2 {
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .profile-content {
+    display: flex;
+  }
+  
+  .dashboard {
+    width: 200px;
+    margin-right: 20px;
+  }
+  
+  .dashboard button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #f0f0f0;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .dashboard button:hover {
+    background-color: #ddd;
+  }
+  
+  .section-content {
+    flex: 1;
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  }
+  .dashboard-button {
+    background-color: #007bff;
+    color: #a85555;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin-right: 10px;
+    cursor: pointer;
+  }
+  
+  .dashboard-button:hover {
+    background-color: #0056b3;
+  }
+  
+
+  /* Perfil.css */
+
+/* Perfil.css */
+
+.usuario-form {
+  width: 600px;
+  margin: 0 auto;
+}
+
+.usuario-form h3 {
+  text-align: center;
+}
+
+.usuario-form form {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Divide el formulario en dos columnas */
+  grid-gap: 10px; /* Espacio entre elementos del formulario */
+}
+
+.usuario-form label {
+  margin-bottom: 5px;
+}
+
+.usuario-form input {
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.usuario-form button {
+  grid-column: 1 / -1; /* Ocupa todas las columnas */
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.usuario-form button:hover {
+  background-color: #0056b3;
+}

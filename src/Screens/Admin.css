@@ -1,0 +1,51 @@
+.admin-container {
+    margin: 20px auto; /* Centro el contenedor en la página */
+    width: 70%; /* Establece el ancho del contenedor */
+    background-color: #f9f9f9; /* Color de fondo del contenedor */
+    padding: 20px; /* Añade espacio alrededor del contenido */
+    border-radius: 8px; /* Borde redondeado */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  table, th, td {
+    border: 1px solid #ddd;
+  }
+  
+  th, td {
+    padding: 12px; /* Aumenta el relleno */
+    text-align: center; /* Centra el texto en las celdas */
+  }
+  
+  th {
+    background-color: #007bff; /* Color de fondo del encabezado */
+    color: #fff; /* Color del texto del encabezado */
+  }
+  
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  tr:hover {
+    background-color: #ddd;
+  }
+  
+  /* Estilos para los botones */
+  button {
+    padding: 8px 16px; /* Ajusta el tamaño del botón */
+    margin-right: 5px;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
