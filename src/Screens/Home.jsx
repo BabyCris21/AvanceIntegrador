@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import "./Home.css";
+import Contact from './Contact';
+import ContactNews from './ContactNews';
 
 const Home = () => {
   const [selectedOption, setSelectedOption] = useState("Chequeo Gratis"); 
@@ -136,6 +138,8 @@ const Home = () => {
           </div>
         )}
       </section>
+
+      <ContactNews/>
     </div>
   );
 }

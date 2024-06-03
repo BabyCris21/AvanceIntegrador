@@ -1,5 +1,7 @@
 import React from 'react'
+import ContactNews from './ContactNews';
 import { Link } from 'react-router-dom'
+
 
 const Contact = () => {
   return (
@@ -18,6 +20,7 @@ const Contact = () => {
           <button><Link to="/servicios" className="home-button-link">Servicios</Link></button>
         </div>
       </section>
+      <ContactNews/>  
     </div>
   )
 }

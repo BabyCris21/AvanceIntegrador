@@ -1,10 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import "./Nosotros.css";
-
+import ContactNews from './ContactNews';
 
 const Nosotros = () => {
-
   return (
     <div className="home-container">
       <section className="home-top-section">
@@ -21,6 +22,7 @@ const Nosotros = () => {
           <button><Link to="/servicios" className="home-button-link">Servicios</Link></button>
         </div>
       </section>
+      <ContactNews/> 
     </div>
   )
 }
