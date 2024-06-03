@@ -94,7 +94,7 @@ body {
 
 .home-company-info button {
     padding: 12px 24px;
-    background-color: #4CAF50;
+    background-color: #84b085;
     color: white;
     border: none;
     border-radius: 5px;
@@ -141,7 +141,7 @@ body {
 }
 
 .home-service-button:hover {
-    background-color: #003366; /* Color de fondo al pasar el mouse */
+    background-color: #0b7af1; /* Color de fondo al pasar el mouse */
     color: white; /* Cambia el color del texto a blanco */
     font-weight: bold; /* Hace el texto negrita */
 }
