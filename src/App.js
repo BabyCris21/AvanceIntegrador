@@ -9,12 +9,14 @@ import Login from './Screens/Login';
 import Contact from "./Screens/Contact"; 
 import Nosotros from "./Screens/Nosotros";
 import Servicios from './Screens/Servicios';
+import Header from './components/Header';
 
 
 function App() {
   return (
     <div className="">
       <Router>
+        <Header></Header>
         <NavBar/>
         <Routes>
           <Route path="/" element={<Navigate to="/home" replace />} />

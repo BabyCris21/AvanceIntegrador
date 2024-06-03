@@ -8,13 +8,14 @@ const Registro = () => {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [formData, setFormData] = useState({
-        nombre: '',
-        apellidos: '',
-        correo: '',
-        fecha_nacimiento: '',
         dni: '',
-        celular: '',
-        genero: 'masculino'
+        name: '',
+        lastname: '',
+        bornDate: '',
+        phone: '',
+        email: '',
+        address: '',
+        gender: 'M'
     });
 
     const togglePasswordVisibility = () => {
@@ -40,8 +41,10 @@ const Registro = () => {
 
         const dataToSend = { ...formData, password };
 
+        console.log('Datos enviados:', JSON.stringify(dataToSend, null, 2));
+
         try {
-            const response = await fetch('http://localhost:3001/api/users', { 
+            const response = await fetch('http://localhost:8080/api/user/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -55,6 +58,7 @@ const Registro = () => {
                 // Aquí podrías redirigir al usuario a la página de login
             } else {
                 alert(`Error: ${result.message}`);
+                console.error('Error:', result);
             }
         } catch (error) {
             console.error('Error:', error);
@@ -69,34 +73,38 @@ const Registro = () => {
                 <h4>¿Ya tienes una cuenta? <Link to="/login">Inicia sesión</Link></h4>
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">
-                        <label htmlFor="nombre">Nombres:</label>
-                        <input type="text" id="nombre" name="nombre" value={formData.nombre} onChange={handleInputChange} />
+                        <label htmlFor="name">Nombres:</label>
+                        <input type="text" id="name" name="name" value={formData.name} onChange={handleInputChange} />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="apellidos">Apellidos:</label>
-                        <input type="text" id="apellidos" name="apellidos" value={formData.apellidos} onChange={handleInputChange} />
+                        <label htmlFor="lastname">Apellidos:</label>
+                        <input type="text" id="lastname" name="lastname" value={formData.lastname} onChange={handleInputChange} />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="correo">Correo:</label>
-                        <input type="email" id="correo" name="correo" value={formData.correo} onChange={handleInputChange} />
+                        <label htmlFor="email">Correo:</label>
+                        <input type="email" id="email" name="email" value={formData.email} onChange={handleInputChange} />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="fecha_nacimiento">Fecha de Nacimiento:</label>
-                        <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" value={formData.fecha_nacimiento} onChange={handleInputChange} />
+                        <label htmlFor="bornDate">Fecha de Nacimiento:</label>
+                        <input type="date" id="bornDate" name="bornDate" value={formData.bornDate} onChange={handleInputChange} />
                     </div>
                     <div className="form-group">
                         <label htmlFor="dni">DNI:</label>
                         <input type="text" id="dni" name="dni" value={formData.dni} onChange={handleInputChange} />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="celular">Celular:</label>
-                        <input type="text" id="celular" name="celular" value={formData.celular} onChange={handleInputChange} />
+                        <label htmlFor="phone">Celular:</label>
+                        <input type="text" id="phone" name="phone" value={formData.phone} onChange={handleInputChange} />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="genero">Género:</label>
-                        <select id="genero" name="genero" value={formData.genero} onChange={handleInputChange} className="registro-button">
-                            <option value="masculino">Masculino</option>
-                            <option value="femenino">Femenino</option>
+                        <label htmlFor="address">Dirección:</label>
+                        <input type="text" id="address" name="address" value={formData.address} onChange={handleInputChange} />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="gender">Género:</label>
+                        <select id="gender" name="gender" value={formData.gender} onChange={handleInputChange} className="registro-button">
+                            <option value="M">Masculino</option>
+                            <option value="F">Femenino</option>
                         </select>
                     </div>
                     <div className="form-group">
