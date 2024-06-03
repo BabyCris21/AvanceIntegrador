@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import ContactNews from './ContactNews';
 import "./Servicios.css"
 
 const Servicios = () => {
@@ -18,6 +19,9 @@ const Servicios = () => {
           <button><Link to="/servicios" className="home-button-link">Servicios</Link></button>
         </div>
       </section>
+
+      <ContactNews/>  
+
     </div>
   )
 }

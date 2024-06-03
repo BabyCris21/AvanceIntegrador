@@ -9,7 +9,12 @@ import Login from './Screens/Login';
 import Contact from "./Screens/Contact"; 
 import Nosotros from "./Screens/Nosotros";
 import Servicios from './Screens/Servicios';
+
 import Header from './components/Header';
+
+
+import Citas from "./Screens/Citas";
+
 
 
 function App() {
@@ -27,6 +32,7 @@ function App() {
           <Route path="/login" element={<Login/>}/>
           <Route path="/nosotros" element={<Nosotros/>}/>
           <Route path="/servicios" element={<Servicios/>}/>
+          <Route path="/citas" element={<Citas/>}/>
         </Routes>
         <Footer /> 
       </Router>
