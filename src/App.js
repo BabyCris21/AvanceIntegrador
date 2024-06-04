@@ -12,7 +12,9 @@ import Servicios from './Screens/Servicios';
 import Admin from './Screens/Admin';
 import Header from './components/Header';
 import Citas from "./Screens/Citas";
+import Doctor from "./Screens/Doctor";
 import Perfil from './Screens/Perfil';
+import PerfilDoctor from './Screens/PerfilDoctor';
 
 
 
@@ -34,6 +36,8 @@ function App() {
           <Route path="/citas" element={<Citas/>}/>
           <Route path="/perfil" element={<Perfil/>}/>
           <Route path="/admin" element={<Admin/>}/>
+          <Route path="/doctor" element={<Doctor/>}/>
+          <Route path="/perfildoctor" element={<PerfilDoctor/>}/>
         </Routes>
         <Footer /> 
       </Router>

@@ -35,7 +35,6 @@ const Login = () => {
             if (response.ok) {
                 localStorage.setItem('token', result.token); // Guardar el token en localStorage
                 alert('Inicio de sesión exitoso');
-                // Redireccionar al usuario después de un inicio de sesión exitoso
                 navigate('/home'); // Asegúrate de que esta ruta exista en tu aplicación
             } else {
                 alert(`Error: ${result.message}`);
