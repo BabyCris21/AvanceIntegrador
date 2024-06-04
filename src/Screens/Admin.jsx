@@ -76,7 +76,7 @@ const Admin = () => {
           </tbody>
         </table>
       </div>
-      <ContactNews /> {/* Coloca ContactNews fuera del contenedor de la tabla */}
+    
     </div>
   );
 }

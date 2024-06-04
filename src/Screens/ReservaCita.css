@@ -1,0 +1,119 @@
+.user-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f2f2f2;
+}
+
+.user-container {
+    width: 70%;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #fff;
+}
+
+.form-container {
+    padding: 20px;
+}
+
+.form-container label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.form-container input[type="text"],
+.form-container select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.form-container button[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.form-container button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+.form-container h3 {
+    margin-bottom: 10px;
+}
+
+/* Estilos para el calendario */
+.react-datepicker {
+    font-family: Arial, sans-serif;
+    font-size: 16px; /* Tamaño de fuente aumentado */
+}
+
+.react-datepicker__header {
+    background-color: #007bff;
+}
+
+.react-datepicker__day-names {
+    display: none; /* Ocultamos los nombres de los días */
+}
+
+.react-datepicker__day {
+    width: 50px; /* Ajustamos el ancho del día */
+    height: 50px; /* Ajustamos la altura del día */
+    margin: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 5px; /* Añadimos bordes redondeados */
+    
+}
+
+.react-datepicker__day:hover {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.react-datepicker__day--selected {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.react-datepicker__day--keyboard-selected {
+    background-color: #0056b3;
+}
+
+.react-datepicker__current-month {
+    font-size: 18px; /* Tamaño de fuente del mes aumentado */
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.react-datepicker__navigation {
+    top: 15px;
+    line-height: 1.7;
+    border: 0.45rem solid transparent;
+}
+
+.react-datepicker__navigation--previous {
+    left: 15px;
+    border-right-color: #fff;
+}
+
+.react-datepicker__navigation--next {
+    right: 15px;
+    border-left-color: #fff;
+}
+
+.react-datepicker__month {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr); /* Organizamos los días en 7 columnas */
+}
