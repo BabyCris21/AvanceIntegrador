@@ -1,8 +1,8 @@
 /* Quote Section */
 .quote-section {
-  background: url('/public/img.webp') center/cover no-repeat;
   padding: 0px;
   text-align: center;
+  height: 100px;
   color: white;
 }
 
