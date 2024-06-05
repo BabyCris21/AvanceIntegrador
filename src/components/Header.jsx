@@ -5,30 +5,30 @@ import './Header.css';
 const links = [
   {
     name: 'Clínica VitalCare',
-    imgSrc: '/clinic.png', // Ruta relativa a la carpeta public
+    imgSrc: '/clinic.png',
     href: '/clinica'
   },
   {
     name: 'Emergencia',
-    imgSrc: '/call.png', // Ruta relativa a la carpeta public
+    imgSrc: '/call.png',
     href: '/emergencia'
   },
   {
     name: 'Horarios',
-    imgSrc: '/time.png', // Ruta relativa a la carpeta public
+    imgSrc: '/time.png',
     href: '/horarios'
   },
   {
     name: 'Ubicacion',
-    imgSrc: '/ubi.png', // Ruta relativa a la carpeta public
+    imgSrc: '/ubi.png',
     href: '/ubicacion'
   },
   {
-    imgSrc: '/user.png', // Ruta relativa a la carpeta public
+    imgSrc: '/user.png',
     href: "/login"
   },
   {
-    imgSrc: '/exit.png', // Ruta relativa a la carpeta public
+    imgSrc: '/exit.png',
     href: "/logout"
   },
 ];
@@ -44,7 +44,8 @@ const Header = () => {
             className="header-link"
           >
             <img src={process.env.PUBLIC_URL + x.imgSrc} alt={x.name} className="header-img" />
-            {x.name && <span>{x.name}</span>}
+            {/* Mantenemos el texto solo para la vista normal */}
+            <span className="header-text">{x.name}</span>
           </Link>
         ))}
       </div>
@@ -52,6 +53,8 @@ const Header = () => {
         {links.slice(-2).map(x => (
           <Link to={x.href} key={x.href} className="cita-button">
             <img src={process.env.PUBLIC_URL + x.imgSrc} alt={x.name} className="header-img" />
+            {/* Mantenemos el texto solo para la vista normal */}
+            <span className="header-text">{x.name}</span>
           </Link>
         ))}
       </div>

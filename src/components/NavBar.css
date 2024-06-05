@@ -1,46 +1,75 @@
-/* En NavBar.css */
+/* NavBar.css */
+
 .navbar {
-    background-color: #003366;
-    padding: 15px 70px;
-    display: flex;
-    justify-content: space-between; /* Espacio uniforme entre los elementos */
-    align-items: center; /* Centra verticalmente los elementos */
-  }
-  
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #007bff; /* Color azul */
+  color: white;
+}
+
+.navbar-left, .navbar-right {
+  display: flex;
+}
+
+.navbar-left {
+  flex-grow: 1;
+  justify-content: space-around;
+}
+
+.navbar-link, .cita-link {
+  color: white;
+  padding: 10px;
+  text-decoration: none;
+}
+
+.navbar-link:hover, .navbar-link:focus, .navbar-link:active,
+.cita-link:hover, .cita-link:focus, .cita-link:active {
+  background-color: #0056b3; /* Color azul más oscuro en hover, focus y active */
+  transform: scale(1.1); /* Aumenta el tamaño al pasar el ratón o hacer clic */
+}
+
+.cita-button {
+  cursor: pointer;
+}
+
+.menu-icon {
+  display: none;
+  cursor: pointer;
+  font-size: 24px;
+}
+
+@media (max-width: 768px) {
   .navbar-left {
-    display: flex;
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    position: absolute;
+    top: 120px; /* Ajusta la posición para que no cubra el top */
+    right: 0;
+    background-color: #007bff; /* Color azul */
+    padding: 10px;
+    z-index: 10;
+    border-radius: 5px; /* Agrega bordes redondeados para una mejor apariencia */
   }
   
+  .navbar-left.show {
+    display: flex;
+  }
+
+  .navbar-left .navbar-link,
+  .navbar-left .cita-link {
+    padding: 15px;
+    text-align: center;
+    transition: background-color 0.3s, transform 0.3s; /* Añadimos transición para efectos */
+  }
+
   .navbar-right {
-    display: flex;
+    display: none;
   }
-  
-  .navbar-link {
-    color: white;
-    margin-left: 70px;
-    margin-right: 20px; /* Ajusta el margen entre los elementos del grupo izquierdo */
-    text-decoration: none;
-    font-size: 20px;
-    transition: color 0.3s;
+
+  .menu-icon {
+    display: block;
   }
-  
-  .navbar-link:hover {
-    color: black; /* Cambia el color al sombrear */
-  }
-  
-  
-  .cita-button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 20px;
-    margin-right: 200px;
-    font-size: 20px;
-    text-decoration: none;
-  }
-  
-  .cita-button:hover{
-    color:black
-  }
- 
+}

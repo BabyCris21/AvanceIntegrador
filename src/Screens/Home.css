@@ -3,150 +3,49 @@ body {
     background-color: white;
     margin: 0;
     padding: 0;
-}
-
+  }
+  
 .home-top-section {
-    background-image: url('/public/doctor.jpeg');
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 70%, rgba(255, 255, 255, 1) 100%), 
+                url('/public/doctor.jpeg');
     background-size: cover;
-    background-position: center bottom;
-    height: 600px;
+    background-position: center top; /* Asegura que la parte superior de la imagen esté siempre visible */
+    height: 100vh; /* Reduce la altura de la sección */
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 0 20px;
     position: relative;
+    margin-top: 0; /* Asegura que no haya margen superior */
 }
-.home-container {
+  
+  .home-container {
     padding: 0 0px;
-}
-
-.home-section-title {
+  }
+  
+  .home-section-title {
     color: #00aaff;
     font-size: 1.2rem;
     text-align: center;
     margin-top: 20px;
-}
-
-.home-main-title {
+  }
+  
+  .home-main-title {
     color: #003366;
     font-size: 2rem;
     text-align: center;
-}
-
-.home-description {
+  }
+  
+  .home-description {
     color: #666;
     font-size: 1rem;
     text-align: center;
     max-width: 800px;
     margin: 10px auto;
-}
-
-.home-learn-more-button, .home-view-all-button {
-    display: block;
-    margin: 0px auto;
-    padding: 10px 20px;
-    background-color: #00aaff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    text-decoration: none;
-}
-
-.home-button-link {
-    color: #fff;
-    text-decoration: none;
-}
-
-.home-button-container {
-    margin-top: 400px;
-    display: flex;
-    justify-content: space-around; /* Distribuir uniformemente el espacio entre los botones */
-}
-
-.home-button-container button {
-    padding: 30px 100px;
-    font-size: 24px; /* Ajustar el tamaño de la fuente */
-    background-color: #003366;
-    color: black;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    flex: 1; /* Hacer que los botones tengan el mismo tamaño */
-    margin: 0 10px; /* Añadir separación horizontal entre botones */
-}
-
-
-.home-company-info {
-    margin-left: 5%; /* Mover la sección de la compañía hacia la izquierda */
-    z-index: 1; /* Asegurarse de que esté en la parte delantera */
-    font-size: 40px;
-}
-
-
-.home-company-info h1{
-    font-size: 3rem;
-}
-
-.home-company-info p{
-    font-size:2rem;
-}
-
-.home-company-info button {
-    padding: 12px 24px;
-    background-color: #84b085;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: bold;
-}
-
-.home-button-container button:hover, .home-company-info button:hover {
-    background-color: #005bb5;
-}
-
-.home-image-banner img {
-    width: 100%;
-    max-width: 1200px;
-    display: block;
-    margin: 20px auto;
-}
-
-.home-services-section {
-    padding: 50px 20px;
-    background-color: white;
-    display: flex;
-    text-align: center;
-}
-
-.home-services-list {
-    width: 12%; /* Ocúpalo solo el 20% del ancho */
-    flex-direction: column;
-    margin-left:15% /* Centra el elemento horizontalmente */
-}
-
-
-.home-service-button {
-    width: 200px; /* Ancho fijo para los botones */
-    height: 150px; /* Alto fijo para los botones */
-    font-size: 20px;
-    color: black;
-    border: 1px solid #ccc; /* Borde gris claro */
-    border-radius: 0px;
-    margin: 0; /* Elimina los márgenes entre los botones */
-    cursor: pointer;
-    transition: background-color 0.3s ease; /* Transición suave para el color de fondo */
-}
-
-.home-service-button:hover {
-    background-color: #0b7af1; /* Color de fondo al pasar el mouse */
-    color: white; /* Cambia el color del texto a blanco */
-    font-weight: bold; /* Hace el texto negrita */
-}
-
-.home-view-all-button {
+  }
+  
+  .home-learn-more-button,
+  .home-view-all-button {
     display: block;
     margin: 0 auto;
     padding: 10px 20px;
@@ -156,9 +55,119 @@ body {
     border-radius: 5px;
     cursor: pointer;
     text-decoration: none;
-}
-
-.home-service-info {
+  }
+  
+  .home-button-link {
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  .home-button-container {
+    margin-top: 400px;
+    display: flex;
+    justify-content: space-around; /* Distribuir uniformemente el espacio entre los botones */
+  }
+  
+  .home-button-container button {
+    padding: 30px 100px;
+    font-size: 24px; /* Ajustar el tamaño de la fuente */
+    background-color: #003366;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    flex: 1; /* Hacer que los botones tengan el mismo tamaño */
+    margin: 0 10px; /* Añadir separación horizontal entre botones */
+  }
+  
+  .home-company-info {
+    margin-left: 5%; /* Mover la sección de la compañía hacia la izquierda */
+    z-index: 1; /* Asegurarse de que esté en la parte delantera */
+    font-size: 40px;
+  }
+  
+  .home-company-info h1 {
+    font-size: 3rem;
+    text-align: center;
+    border: 2px solid #00aaff; /* Borde azul */
+    padding: 10px;
+    color: whitesmoke;
+    text-shadow: 2px 2px 0 #38048c, -1px -1px 0 #38048c, 1px -1px 0 #38048c, -1px 1px 0 #38048c;
+  }
+  
+  .home-company-info p {
+    font-size: 2rem;
+    color: whitesmoke;
+    text-shadow: 2px 2px 0 #38048c, -1px -1px 0 #38048c, 1px -1px 0 #38048c, -1px 1px 0 #38048c;
+  }
+  
+  .home-company-info button {
+    padding: 12px 24px;
+    background-color: #84b085;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  .home-button-container button:hover,
+  .home-company-info button:hover {
+    background-color: #005bb5;
+  }
+  
+  .home-image-banner img {
+    width: 100%;
+    max-width: 1200px;
+    display: block;
+    margin: 20px auto;
+  }
+  
+  .home-services-section {
+    padding: 50px 20px;
+    background-color: white;
+    display: flex;
+    text-align: center;
+  }
+  
+  .home-services-list {
+    width: 12%; /* Ocúpalo solo el 20% del ancho */
+    flex-direction: column;
+    margin-left: 15%; /* Centra el elemento horizontalmente */
+  }
+  
+  .home-service-button {
+    width: 200px; /* Ancho fijo para los botones */
+    height: 150px; /* Alto fijo para los botones */
+    font-size: 20px;
+    color: rgb(255, 255, 255);
+    border: 1px solid #ccc; /* Borde gris claro */
+    border-radius: 0px;
+    margin: 0; /* Elimina los márgenes entre los botones */
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Transición suave para el color de fondo */
+  }
+  
+  .home-service-button:hover {
+    background-color: #0b7af1; /* Color de fondo al pasar el mouse */
+    color: white; /* Cambia el color del texto a blanco */
+    font-weight: bold; /* Hace el texto negrita */
+  }
+  
+  .home-view-all-button {
+    display: block;
+    margin: 0 auto;
+    padding: 10px 20px;
+    background-color: #00aaff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  
+  .home-service-info {
     flex: 1; /* El 100% del ancho restante */
     flex-direction: column;
     justify-content: center;
@@ -168,15 +177,15 @@ body {
     padding: 20px;
     text-align: justify;
   }
-
-  .home-service-info h1{
+  
+  .home-service-info h1 {
     color: #005bb5;
   }
   
-  .service-info-description{
-    font-size:18px;
+  .service-info-description {
+    font-size: 18px;
   }
-
+  
   .service-info-text {
     font-size: 24px;
     margin-bottom: 20px;
@@ -192,7 +201,6 @@ body {
     max-width: 600px;
   }
   
-
   .service-info-list li {
     font-size: 18px;
     margin-bottom: 10px;
@@ -209,37 +217,145 @@ body {
     margin-right: 10px; /* Espacio entre la viñeta y el texto */
   }
   
-  
   .service-info-description {
     font-size: 18px;
   }
-
+  
   .home-service-img {
     margin-right: 10%; /* Espacio entre las imágenes y el contenido principal */
     display: flex;
     flex-direction: column; /* Mostrar las imágenes una encima de la otra */
     max-height: 600px; /* Altura máxima para evitar que las imágenes sobrepasen la sección */
     overflow: hidden; /* Ocultar cualquier parte de las imágenes que exceda la altura máxima */
-}
-.home-service-img img {
+  }
+  
+  .home-service-img img {
     width: 405px; /* Establecer el ancho deseado */
     height: 290px; /* Establecer la altura deseada */
     margin-bottom: 10px;
     border-radius: 10px;
     object-fit: cover; /* Ajustar la imagen manteniendo la proporción y cubriendo el área designada */
-}
-
-
-.home-top-section h1,
-.home-welcome-section h1,
-.home-services-section h1 {
-  text-align: center; /* Centrar el texto */
+  }
+  
+  .home-top-section h1,
+  .home-welcome-section h1,
+  .home-services-section h1 {
+    text-align: center; 
 }
 
 .selected-section {
-    background-color: #003366;
-    font-size: 25px;
-    color: white;
-    font-weight: bold;/* Cambia el color de fondo para resaltar la sección seleccionada */
+  background-color: #003366;
+  font-size: 25px;
+  color: white;
+  font-weight: bold; /* Cambia el color de fondo para resaltar la sección seleccionada */
+}
+
+
+
+@media only screen and (max-width: 768px) {
+  .home-button-container button {
+    margin: 0 10px; /* Ajusta el espacio entre los botones */
+    padding: 10px 20px; /* Ajusta el relleno */
+    font-size: 16px; /* Reducir el tamaño del texto */
+  }
+
+  .home-button-container {
+    flex-direction: column; /* Cambia la dirección a columna */
+    align-items: center; /* Centra los botones horizontalmente */
+    margin-top: 20px; /* Reduce el margen superior */
+  }
+
+  .home-top-section {
+    height: auto;
+    padding: 80px 20px; /* Ajusta el espacio interior */
+    align-items: flex-start; /* Alínea los elementos al inicio */
+  }
+
+  .home-company-info {
+    font-size: 32px; /* Reducir el tamaño del texto */
+  }
+
+  .home-button-container {
+    flex-direction: column; /* Cambia la dirección a columna */
+    margin-top: 20px; /* Reduce el margen superior */
+  }
+
+  .home-button-container button {
+    margin: 10px auto; /* Centra los botones */
+    padding: 15px 40px; /* Ajusta el relleno */
+  }
+
+  .home-welcome-section {
+    padding: 50px 20px; /* Ajusta el espacio interior */
+  }
+
+  .home-services-section {
+    flex-direction: column; /* Cambia la dirección a columna */
+    padding: 30px 20px; /* Ajusta el espacio interior */
+  }
+
+  .home-services-list {
+    width: 100%; /* Ocupa todo el ancho disponible */
+    margin-left: 0; /* Reinicia el margen a 0 */
+  }
+
+  .home-service-button {
+    width: 100%; /* Ocupa todo el ancho disponible */
+    margin: 10px auto; /* Centra los botones */
+  }
+
+  .home-service-info {
+    font-size: 20px; /* Reducir el tamaño del texto */
+    padding: 20px 10px; /* Ajusta el espacio interior */
+  }
+
+  .home-service-img {
+    align-items: center; /* Alínea las imágenes al centro */
+    max-height: none; /* Elimina la altura máxima */
+  }
+
+  .home-service-img img {
+    width: 100%; /* Ocupa todo el ancho disponible */
+    height: auto; /* Altura automática */
+    margin-bottom: 20px; /* Aumenta el espacio entre imágenes */
+  }
+}
+@media only screen and (max-width: 768px) {
+    .home-top-section {
+      flex-direction: column; /* Cambia la dirección a columna */
+      align-items: center; /* Centra los elementos horizontalmente */
+      padding-top: 20px; /* Ajusta el espacio superior */
+    }
+  
+    .home-image-banner {
+      order: -1; /* Mueve la imagen hacia arriba */
+    }
+  
+    .home-button-container {
+      flex-direction: row; /* Cambia la dirección a fila */
+      justify-content: space-around; /* Distribuye uniformemente el espacio entre los botones */
+      width: 100%; /* Ocupa todo el ancho disponible */
+      margin-top: 20px; /* Ajusta el margen superior */
+    }
+  
+    .home-button-container button {
+        margin: 0 5px; /* Agrega un margen horizontal */
+        padding: 8px 12px; /* Ajusta el relleno */
+        font-size: 14px; /* Reducir el tamaño del texto */
+        flex: 1; /* Distribuye el espacio disponible entre los botones */
+    }  
+  }
+  @media only screen and (max-width: 768px) {
+    .home-top-section {
+      background-image: url('/public/doctor.jpeg');
+      background-size: cover;
+      background-position: right bottom; /* Ajusta la posición de la imagen */
+      height: 600px; /* Mantiene la altura original */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 90 0px;
+      position: relative;
+    }
   }
   

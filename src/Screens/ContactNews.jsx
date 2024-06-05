@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -6,7 +6,7 @@ import "./ContactNews.css";
 import newsData from './newsData'; // Importa los datos de newsData.js
 
 const ContactNews = () => {
-  const settings = {
+  const [settings, setSettings] = useState({
     dots: false,
     infinite: true,
     speed: 6000,
@@ -16,7 +16,42 @@ const ContactNews = () => {
     autoplaySpeed: 0,
     cssEase: 'linear',
     draggable: false,
-  };
+  });
+
+  useEffect(() => {
+    const updateSettings = () => {
+      if (window.innerWidth <= 768) {
+        setSettings({
+          dots: true,
+          infinite: true,
+          speed: 6000,
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          autoplay: true,
+          autoplaySpeed: 3000,
+          cssEase: 'linear',
+          draggable: true,
+        });
+      } else {
+        setSettings({
+          dots: false,
+          infinite: true,
+          speed: 6000,
+          slidesToShow: 4,
+          slidesToScroll: 1,
+          autoplay: true,
+          autoplaySpeed: 0,
+          cssEase: 'linear',
+          draggable: false,
+        });
+      }
+    };
+
+    updateSettings();
+    window.addEventListener('resize', updateSettings);
+
+    return () => window.removeEventListener('resize', updateSettings);
+  }, []);
 
   const handleLocationClick = () => {
     window.open('https://www.google.com/maps/place/Hospital+IV+Augusto+Hern%C3%A1ndez+Mendoza+EsSalud/@-14.066255,-75.7394389,17.68z/data=!4m6!3m5!1s0x9110e2c06b616717:0x63c6934f87d76da!8m2!3d-14.0655786!4d-75.7380884!16s%2Fg%2F1w0j0nx0?entry=ttu', '_blank', 'width=800,height=600');
@@ -24,16 +59,9 @@ const ContactNews = () => {
 
   return (
     <div>
-      <section className="quote-section">
-        <div className="quote-content">
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque placerat scelerisque tortor ornare ornare. Quisque placerat scelerisque felis vitae tortor augue. Velit nascetur consequat faucibus porttitor enim et.</p>
-          <h3>John Doe</h3>
-        </div>
-      </section>
-
       <section className="news-section">
-        <h2>BETTER INFORMATION, BETTER HEALTH</h2>
-        <h3>News</h3>
+        <h2>MEJOR INFORMACIÓN, MEJOR SALUD</h2>
+        <h3>Noticias</h3>
         <div className="news-wrapper">
           <Slider {...settings} className="news-container">
             {newsData.map((news, index) => (

@@ -1,6 +1,4 @@
-// En NavBar.jsx
-
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './NavBar.css';
 
@@ -27,30 +25,33 @@ const links = [
   },
   {
     name: 'Reserva una cita', // Nuevo botón "Cita"
-    href: '/cita'
+    href: '/reserva'
   },
-   
- 
 ];
 
 const NavBar = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  }
+
   return (
     <div className="navbar">
-      <div className="navbar-left">
-        {links.slice(0, links.length - 1).map(x => (
+      <div className={`navbar-left ${menuOpen ? 'show' : ''}`}>
+        {links.map(x => (
           <Link
             key={x.href}
             to={x.href}
             className="navbar-link"
+            onClick={() => setMenuOpen(false)} // Cierra el menú al hacer clic en un enlace
           >
             {x.name}
           </Link>
         ))}
       </div>
-      <div className="navbar-right">
-        <Link to={links[links.length - 1].href} className="cita-button">
-          {links[links.length - 1].name}
-        </Link>
+      <div className={`menu-icon ${menuOpen ? 'hide' : ''}`} onClick={toggleMenu}>
+        &#9776;
       </div>
     </div>
   );

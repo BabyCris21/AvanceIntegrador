@@ -121,4 +121,23 @@
   .view-profile-btn:hover {
     background-color: #0056b3;
   }
+
+  /* Estilos para dispositivos móviles */
+@media only screen and (max-width: 768px) {
+  .staff-container {
+    max-width: 90%; /* Reducir el ancho máximo del contenedor en dispositivos móviles */
+  }
+
+  .doctor-card {
+    width: calc(50% - 20px); /* Ajustar el ancho de las tarjetas de médicos en dispositivos móviles */
+  }
+}
+
+/* Estilos para dispositivos aún más pequeños, como teléfonos móviles */
+@media only screen and (max-width: 480px) {
+  .doctor-card {
+    width: calc(100% - 20px); /* Tarjetas de médicos ocupando el 100% del ancho en dispositivos muy pequeños */
+  }
+}
+
   

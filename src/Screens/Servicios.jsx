@@ -14,9 +14,9 @@ const Servicios = () => {
           <button><Link to="/servicios" className="home-button-link">Nuestros servicios</Link></button>
         </div>
         <div className="home-button-container">
-          <button><Link to="/reserva" className="home-button-link">Reserva una cita</Link></button>
-          <button><Link to="/staff" className="home-button-link">Ver staff médico</Link></button>
-          <button><Link to="/servicios" className="home-button-link">Servicios</Link></button>
+          <button><Link to="/Reserva" className="home-button-link">Reserva una cita</Link></button>
+          <button><Link to="/Staff" className="home-button-link">Ver staff médico</Link></button>
+          <button><Link to="/Nosotros" className="home-button-link">Acerca de nosotros</Link></button>
         </div>
       </section>
 

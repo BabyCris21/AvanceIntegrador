@@ -10,7 +10,7 @@
   width: 70%;
   margin: 0 auto;
   padding: 20px;
-  background-color: white;      
+  background-color: white;
 }
 
 .news-wrapper {
@@ -123,3 +123,46 @@
   box-sizing: border-box;
 }
 
+/* Media Queries */
+@media (max-width: 768px) {
+  .news-section {
+    width: 90%;
+    padding: 10px;
+  }
+
+  .news-card {
+    margin: 5px;
+    height: auto;
+  }
+
+  .contact-section {
+    padding: 10px; /* Reduce padding for the entire section */
+  }
+
+  .contact-container {
+    flex-direction: column;
+    width: 90%;
+  }
+
+  .contact-card {
+    width: 100%;
+    margin: 5px 0; /* Reduce margin between cards */
+    padding: 10px; /* Reduce padding inside each card */
+  }
+
+  .contact-card h4 {
+    font-size: 1rem; /* Reduce font size for headers */
+  }
+
+  .contact-card p {
+    margin: 5px 0; /* Reduce margin for paragraphs */
+  }
+
+  .contact-section h2 {
+    margin-bottom: 5px; /* Reduce margin below section header */
+  }
+
+  .contact-section h3 {
+    margin-bottom: 15px; /* Reduce margin below section sub-header */
+  }
+}

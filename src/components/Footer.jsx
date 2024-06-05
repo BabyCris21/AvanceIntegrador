@@ -10,7 +10,7 @@ const Footer = () => {
           <p>Liderando el camino en medicina<br></br>Excelencia, atención confiable</p>
         </div>
         <div className="footer-column">
-          <h4>Enlaces<br></br>Relevantes</h4>
+          <h4>Enlaces Relevantes</h4>
           <ul>
             <li>Cita</li>
             <li>Doctores</li>
@@ -20,9 +20,11 @@ const Footer = () => {
         </div>
         <div className="footer-column">
           <h4>Contáctanos</h4>
-          <p><br></br>Dirección: Calle Principal, Ciudad</p>
-          <p>Teléfono: +123 456 789</p>
-          <p>Email: info@tuempresa.com</p>
+          <ul>
+            <li>Dirección: Calle Principal, Ciudad</li>
+            <li>Teléfono: +123 456 789</li>
+            <li>Email: info@tuempresa.com</li>
+          </ul>
         </div>
         <div className="footer-column">
           <h4>Noticias</h4>
