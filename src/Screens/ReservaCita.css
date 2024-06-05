@@ -3,7 +3,8 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #f2f2f2;
+    background-color: #bafff981;
+
 }
 
 .user-container {
@@ -12,6 +13,7 @@
     border-radius: 10px;
     overflow: hidden;
     background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Agregamos una sombra suave */
 }
 
 .form-container {
@@ -21,6 +23,7 @@
 .form-container label {
     display: block;
     margin-bottom: 10px;
+    color: #333; /* Cambiamos el color del texto */
 }
 
 .form-container input[type="text"],
@@ -31,6 +34,12 @@
     border: 1px solid #ccc;
     border-radius: 5px;
     box-sizing: border-box;
+    transition: border-color 0.3s ease; /* Agregamos una transición suave */
+}
+
+.form-container input[type="text"]:focus,
+.form-container select:focus {
+    border-color: #007bff; /* Cambiamos el color del borde al enfocar */
 }
 
 .form-container button[type="submit"] {
@@ -41,6 +50,7 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    transition: background-color 0.3s ease; /* Agregamos una transición suave */
 }
 
 .form-container button[type="submit"]:hover {
@@ -49,32 +59,30 @@
 
 .form-container h3 {
     margin-bottom: 10px;
+    color: #007bff; /* Cambiamos el color del título */
 }
 
 /* Estilos para el calendario */
 .react-datepicker {
     font-family: Arial, sans-serif;
-    font-size: 16px; /* Tamaño de fuente aumentado */
+    font-size: 16px;
 }
 
 .react-datepicker__header {
     background-color: #007bff;
-}
-
-.react-datepicker__day-names {
-    display: none; /* Ocultamos los nombres de los días */
+    color: #fff; /* Cambiamos el color del texto del encabezado */
 }
 
 .react-datepicker__day {
-    width: 50px; /* Ajustamos el ancho del día */
-    height: 50px; /* Ajustamos la altura del día */
+    width: 50px;
+    height: 50px;
     margin: 5px;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    border-radius: 5px; /* Añadimos bordes redondeados */
-    
+    border-radius: 5px;
+    transition: background-color 0.3s ease; /* Agregamos una transición suave */
 }
 
 .react-datepicker__day:hover {
@@ -92,28 +100,8 @@
 }
 
 .react-datepicker__current-month {
-    font-size: 18px; /* Tamaño de fuente del mes aumentado */
+    font-size: 18px;
     margin-bottom: 10px;
     text-align: center;
-}
-
-.react-datepicker__navigation {
-    top: 15px;
-    line-height: 1.7;
-    border: 0.45rem solid transparent;
-}
-
-.react-datepicker__navigation--previous {
-    left: 15px;
-    border-right-color: #fff;
-}
-
-.react-datepicker__navigation--next {
-    right: 15px;
-    border-left-color: #fff;
-}
-
-.react-datepicker__month {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr); /* Organizamos los días en 7 columnas */
+    color: #333; /* Cambiamos el color del texto del mes */
 }
