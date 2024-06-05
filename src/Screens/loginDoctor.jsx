@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom"; // Importa Link y useNavigate desde react-router-dom
 import "./Login.css";
 
-const Login = () => {
+const LoginDoctor = () => {
     const [dni, setDni] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate(); // Hook para redireccionar
@@ -23,7 +23,7 @@ const Login = () => {
         console.log('Datos enviados:', JSON.stringify(dataToSend, null, 2));
 
         try {
-            const response = await fetch('http://localhost:8080/api/auth/loginUser', {
+            const response = await fetch('http://localhost:8080/api/auth/loginDoctor', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -77,4 +77,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default LoginDoctor;

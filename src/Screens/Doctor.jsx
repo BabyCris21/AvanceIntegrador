@@ -12,6 +12,7 @@ const Doctor = () => {
       try {
         const response = await fetch('http://localhost:8080/api/doctor', { method: 'GET' });
         const jsonData = await response.json();
+        console.log(jsonData);
         const modifiedData = jsonData.map(item => {
           const date = new Date(item.bornDate);
           const formattedDate = date.toLocaleDateString('es-ES', {
@@ -48,26 +49,30 @@ const Doctor = () => {
           <thead>
             <tr>
               <th>DNI</th>
+              <th>CMP</th>
               <th>Nombres</th>
               <th>Apellidos</th>
               <th>Fecha de nacimiento</th>
               <th>Teléfono</th>
-              <th>Especialidad</th>
+              <th>Especialidades</th>
               <th>Acciones</th>
             </tr>
           </thead>
           <tbody>
             {data.map(item => (
-              <tr key={item.id}>
+              <tr key={item.dni}>
                 <td>{item.dni}</td>
+                <td>{item.CMP}</td>
                 <td>{item.name}</td>
                 <td>{item.lastname}</td>
                 <td>{item.bornDate}</td>
                 <td>{item.phone}</td>
-                <td>{item.speciality}</td>
+                <td>
+                  {item.specialty.map(spec => spec.name).join(',  ')}
+                </td>
                 <td>
                   <button onClick={() => handleEdit(item)}>Editar</button>
-                  <button onClick={() => handleDelete(item.id)}>Eliminar</button>
+                  <button onClick={() => handleDelete(item.dni)}>Eliminar</button>
                 </td>
               </tr>
             ))}

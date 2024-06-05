@@ -16,6 +16,7 @@ import Doctor from "./Screens/Doctor";
 import Perfil from './Screens/Perfil';
 import PerfilDoctor from './Screens/PerfilDoctor';
 import ReservaCita from './Screens/ReservaCita';
+import LoginDoctor from './Screens/loginDoctor';
 
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
           <Route path="/admin" element={<Admin/>}/>
           <Route path="/doctor" element={<Doctor/>}/>
           <Route path="/perfildoctor" element={<PerfilDoctor/>}/>
+          <Route path="/loginDoctor" element={<LoginDoctor/>}/>
           <Route path="/reserva" element={<ReservaCita/>}/>
         </Routes>
         <Footer /> 

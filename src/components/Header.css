@@ -1,46 +1,58 @@
-/* En NavBar.css */
 .header {
-    background-color: #ffff;
-    padding: 15px 70px;
-    display: flex;
-    justify-content: space-between; /* Espacio uniforme entre los elementos */
-    align-items: center; /* Centra verticalmente los elementos */
-  }
-  
-  .header-left {
-    display: flex;
-  }
-  
-  .header-right {
-    display: flex;
-  }
-  
-  .header-link {
-    color: #1F2B6C;
-    margin-left: 70px;
-    margin-right: 20px; /* Ajusta el margen entre los elementos del grupo izquierdo */
-    text-decoration: none;
-    font-size: 20px;
-    transition: color 0.3s;
-  }
-  
-  .header-link:hover {
-    color: black; /* Cambia el color al sombrear */
-  }
-  
-  
-  .cita-button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 20px;
-    margin-right: 200px;
-    font-size: 20px;
-    text-decoration: none;
-  }
-  
-  .cita-button:hover{
-    color:black
-  }
- 
+  background-color: #ffff;
+  padding: 15px 70px;
+  display: flex;
+  justify-content: space-between; /* Espacio uniforme entre los elementos */
+  align-items: center; /* Centra verticalmente los elementos */
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+}
+
+.header-link {
+  display: flex;
+  align-items: center;
+  color: #1F2B6C;
+  margin-left: 20px;
+  margin-right: 20px; /* Ajusta el margen entre los elementos del grupo izquierdo */
+  text-decoration: none;
+  font-size: 20px;
+  transition: color 0.3s;
+}
+
+.header-link img {
+  margin-right: 10px;
+}
+
+.header-link:hover {
+  color: black; /* Cambia el color al sombrear */
+}
+
+.cita-button {
+  display: flex;
+  align-items: center;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  margin-left: 10px; /* Reduce el margen entre los botones */
+  font-size: 20px;
+  text-decoration: none;
+}
+
+.cita-button:hover {
+  color: black;
+}
+
+.header-img {
+  height: 24px; /* Ajusta el tamaño de la imagen según sea necesario */
+  width: 24px; /* Ajusta el tamaño de la imagen según sea necesario */
+}

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Perfil.css'; // Importa tus estilos CSS
+import './PerfilDoctor.css'; // Importa tus estilos CSS
 import DoctorInfo from './DoctorInfo'; // Importa el componente DoctorInfo
 import ContactNews from './ContactNews'; // Importa el componente ContactNews
 
