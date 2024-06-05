@@ -32,6 +32,10 @@ const UsuarioInfo = () => {
         e.preventDefault();
         console.log(formData);
     };
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({ ...formData, [name]: value });
+    };
 
     return (
         <div className='user-page'>
@@ -39,19 +43,14 @@ const UsuarioInfo = () => {
                 <div className='form-container'>
                     <form onSubmit={handleSubmit}>
                         <label>
-                            Nombre:
+                        <h3>Nombre:</h3>
                             <input type="text" name="nombre" value={formData.nombre} onChange={handleChange} />
                         </label>
                         {/* Agrega otros campos de entrada aquí */}
                         <div>
                             <h3>Seleccionar Fecha:</h3>
-                            <DatePicker
-                                selected={formData.fechaSeleccionada}
-                                onChange={handleDateChange}
-                                dateFormat="dd/MM/yyyy"
-                                placeholderText="Seleccionar fecha"
-                                showPopperArrow={false} 
-                            />
+                            <label htmlFor="bornDate"></label>
+                        <input type="date" id="bornDate" name="bornDate" value={formData.bornDate} onChange={handleInputChange} />
                         </div>
                         <div>
                             <h3>Seleccionar Horario:</h3>
