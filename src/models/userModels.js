@@ -1,4 +1,4 @@
-export const UserModel={
+export const UserModel = {
   dni: '',
   name: '',
   lastname: '',
@@ -9,6 +9,6 @@ export const UserModel={
   address: null,
   gender: '',
   img: null,
-}
+};
 
-export default UserModel; 
+export default UserModel;
