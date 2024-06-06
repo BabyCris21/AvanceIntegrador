@@ -4,8 +4,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px;
-  background-color: #007bff; /* Color azul */
+  padding: 5px;
+  height: 70px;
+  background-color: #003366; /* Color azul */
   color: white;
 }
 
@@ -26,7 +27,6 @@
 
 .navbar-link:hover, .navbar-link:focus, .navbar-link:active,
 .cita-link:hover, .cita-link:focus, .cita-link:active {
-  background-color: #0056b3; /* Color azul más oscuro en hover, focus y active */
   transform: scale(1.1); /* Aumenta el tamaño al pasar el ratón o hacer clic */
 }
 
@@ -48,7 +48,7 @@
     position: absolute;
     top: 120px; /* Ajusta la posición para que no cubra el top */
     right: 0;
-    background-color: #007bff; /* Color azul */
+    background-color: #003366; /* Color azul */
     padding: 10px;
     z-index: 10;
     border-radius: 5px; /* Agrega bordes redondeados para una mejor apariencia */

@@ -1,78 +1,63 @@
-import React, { useState } from 'react';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
-import './ReservaCita.css'; 
-const UsuarioInfo = () => {
-    const [formData, setFormData] = useState({
-        nombre: '',
-        apellidos: '',
-        direccion: '',
-        telefono: '',
-        correo: '',
-        dni: '',
-        numeroTelefonico: '',
-        fechaSeleccionada: null,
-        horaSeleccionada: ''
-    });
+import React, { useState, useEffect } from 'react';
+import './Perfil.css'; // Importa tus estilos CSS
+import SeleccionarCita from './SeleccionarCita'; // Importa el componente UsuarioInfo
+import ContactNews from './ContactNews'; // Importa el componente ContactNews
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
-    };
+// Componente de la sección del panel de control
+const ControlPanelSection = ({ section, onClick }) => {
+    return (
+        <button className="dashboard-button" onClick={() => onClick(section)}>
+            {section}
+        </button>
+    );
+};
 
-    const handleDateChange = (date) => {
-        setFormData({ ...formData, fechaSeleccionada: date });
-    };
+// Componente de contenido de la sección actual
+const CurrentSectionContent = ({ currentSection, setUserName }) => {
+    switch (currentSection) {
+        case 'Elige fecha y hora':
+            return <SeleccionarCita setUserName={setUserName} />
+        case 'Detalles':
+            return <div><p>Contenido de la sección Citas</p></div>;
+        case 'Finalizar':
+            return <div><p>Contenido de la sección Archivos</p></div>;
+        default:
+            return null;
+    }
+};
 
-    const handleTimeChange = (e) => {
-        setFormData({ ...formData, horaSeleccionada: e.target.value });
-    };
+const Perfil = () => {
+    const [currentSection, setCurrentSection] = useState('Elige fecha y hora');
+    const [userName, setUserName] = useState('');
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log(formData);
-    };
-    const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
+    const handleSectionChange = (section) => {
+        setCurrentSection(section);
     };
 
     return (
-        <div className='user-page'>
-            <div className='user-container'>
-                <div className='form-container'>
-                    <form onSubmit={handleSubmit}>
-                        <label>
-                        <h3>Nombre:</h3>
-                            <input type="text" name="nombre" value={formData.nombre} onChange={handleChange} />
-                        </label>
-                        {/* Agrega otros campos de entrada aquí */}
-                        <div>
-                            <h3>Seleccionar Fecha:</h3>
-                            <label htmlFor="bornDate"></label>
-                        <input type="date" id="bornDate" name="bornDate" value={formData.bornDate} onChange={handleInputChange} />
-                        </div>
-                        <div>
-                            <h3>Seleccionar Horario:</h3>
-                            <select value={formData.horaSeleccionada} onChange={handleTimeChange}>
-                                <option value="">Seleccionar horario</option>
-                                <option value="8:00-8:30">8:00-8:30</option>
-                                <option value="8:30-9:30">8:30-9:30</option>
-                                <option value="9:30-10:00">9:30-10:00</option>
-                                <option value="10:00-10:30">10:00-10:30</option>
-                                <option value="10:30-11:00">10:30-11:00</option>
-                                <option value="11:00-11:30">11:00-11:30</option>
-                                <option value="11:30-12:00">11:30-12:00</option>
-                                <option value="12:00-12:30">12:00-12:30</option>
-                                <option value="12:30-13:00">12:30-13:00</option>
-                            </select>
-                        </div>
-                        <button type="submit">Enviar</button>
-                    </form>
+        <div>
+            <div className="profile-container">
+                <div className="profile-header">
+                    <h2>Perfil de Usuario</h2>
+                    <span className="user-greeting">Hola, {userName}</span>
+                </div>
+                <div className="profile-content">
+                    {/* Dashboard */}
+                    <div className="dashboard">
+                        <ControlPanelSection section="Elige fecha y hora" onClick={handleSectionChange} />
+                        <ControlPanelSection section="Detalles" onClick={handleSectionChange} />
+                        <ControlPanelSection section="Finalizar" onClick={handleSectionChange} />
+                    </div>
+                    {/* Contenido de la sección */}
+                    <div className="section-content">
+                        <CurrentSectionContent currentSection={currentSection} setUserName={setUserName} />
+                    </div>
                 </div>
             </div>
+            {/* Componente ContactNews colocado debajo del contenedor de perfil */}
+            <ContactNews />
         </div>
     );
 };
 
-export default UsuarioInfo;
+export default Perfil;

@@ -1,24 +1,17 @@
 import React, { useState, useEffect } from "react";
-import { jwtDecode } from "jwt-decode";
-
+import { jwtDecode } from "jwt-decode"; // Importar correctamente jwtDecode
 import UserModel from "../models/userModels"; // Asegúrate de que la ruta sea correcta
 
-const UsuarioInfo = () => {
+const UsuarioInfo = ({ setUserName }) => {
   const [formData, setFormData] = useState(UserModel);
   const [dni, setDni] = useState("");
 
-  // Obtener el token desde el localStorage
-
   useEffect(() => {
-    // Obtener el token desde localStorage
     const token = localStorage.getItem("token");
     if (token) {
-      // Decodificar el token para extraer el DNI
       const decodedToken = jwtDecode(token);
       const userDni = decodedToken.uid;
       setDni(userDni);
-
-      // Fetch user data based on DNI
       fetchUserData(userDni);
     }
   }, []);
@@ -26,6 +19,9 @@ const UsuarioInfo = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
+    if (name === "name") {
+      setUserName(value);
+    }
   };
 
   const fetchUserData = async (dni) => {
@@ -45,6 +41,7 @@ const UsuarioInfo = () => {
         address: data.address,
         gender: data.gender,
       });
+      setUserName(data.name); // Actualizar el nombre del usuario
     } catch (error) {
       console.error("Error fetching user data:", error);
     }
@@ -54,7 +51,7 @@ const UsuarioInfo = () => {
     e.preventDefault();
     fetchUserData(dni);
   };
-  
+
   const formatDate = (dateString) => {
     const date = new Date(dateString);
     const year = date.getFullYear();
@@ -62,7 +59,6 @@ const UsuarioInfo = () => {
     const day = String(date.getDate()).padStart(2, '0');
     return `${year}-${month}-${day}`;
   };
-  
 
   return (
     <div className="usuario-form">

@@ -1,68 +1,84 @@
-.profile-container {
-    margin: 20px auto;
-    width: 70%;
-    background-color: #f9f9f9;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .profile-container h2 {
-    color: #333;
-    margin-bottom: 20px;
-  }
-  
-  .profile-content {
-    display: flex;
-  }
-  
-  .dashboard {
-    width: 200px;
-    margin-right: 20px;
-  }
-  
-  .dashboard button {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    background-color: #f0f0f0;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .dashboard button:hover {
-    background-color: #ddd;
-  }
-  
-  .section-content {
-    flex: 1;
-    background-color: #fff;
-    border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-  }
-  .dashboard-button {
-    background-color: #007bff;
-    color: #a85555;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    margin-right: 10px;
-    cursor: pointer;
-  }
-  
-  .dashboard-button:hover {
-    background-color: #0056b3;
-  }
-  
-
-  /* Perfil.css */
-
 /* Perfil.css */
 
+.profile-container {
+  margin: 20px auto;
+  width: 70%;
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.profile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+.profile-header h2 {
+  margin: 0;
+}
+
+.user-greeting {
+  margin-left: auto;
+  color: #005bb5;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+.profile-content {
+  display: flex;
+}
+
+.dashboard {
+  width: 200px;
+  margin-right: 20px;
+}
+
+.dashboard button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  height: 70px;
+  margin-bottom: 10px;
+  background-color: #f0f0f0;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.dashboard button:hover {
+  background-color: #ddd;
+}
+
+.section-content {
+  flex: 1;
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-button {
+  background-color: #007bff;
+  color: #003366;
+  font-weight: bold;
+  font-size: 20px;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.dashboard-button:hover {
+  background-color: #0056b3;
+}
+
+/* UsuarioInfo form styles */
 .usuario-form {
   width: 600px;
   margin: 0 auto;

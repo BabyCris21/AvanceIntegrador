@@ -13,10 +13,10 @@ const ControlPanelSection = ({ section, onClick }) => {
 };
 
 // Componente de contenido de la sección actual
-const CurrentSectionContent = ({ currentSection }) => {
+const CurrentSectionContent = ({ currentSection, setUserName }) => {
     switch (currentSection) {
         case 'Usuario':
-            return <UsuarioInfo />;
+            return <UsuarioInfo setUserName={setUserName} />;
         case 'Citas':
             return <div><p>Contenido de la sección Citas</p></div>;
         case 'Archivos':
@@ -34,6 +34,7 @@ const CurrentSectionContent = ({ currentSection }) => {
 
 const Perfil = () => {
     const [currentSection, setCurrentSection] = useState('Usuario');
+    const [userName, setUserName] = useState('');
 
     const handleSectionChange = (section) => {
         setCurrentSection(section);
@@ -42,7 +43,10 @@ const Perfil = () => {
     return (
         <div>
             <div className="profile-container">
-                <h2>Perfil de Usuario</h2>
+                <div className="profile-header">
+                    <h2>Perfil de Usuario</h2>
+                    <span className="user-greeting">Hola, {userName}</span>
+                </div>
                 <div className="profile-content">
                     {/* Dashboard */}
                     <div className="dashboard">
@@ -55,7 +59,7 @@ const Perfil = () => {
                     </div>
                     {/* Contenido de la sección */}
                     <div className="section-content">
-                        <CurrentSectionContent currentSection={currentSection} />
+                        <CurrentSectionContent currentSection={currentSection} setUserName={setUserName} />
                     </div>
                 </div>
             </div>
