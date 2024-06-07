@@ -1,6 +1,3 @@
-/* Contact.css */
-
-/* Contact.css */
 
 .login-container {
     display: flex;
@@ -126,4 +123,29 @@
     font-weight: bold;
     font-size: 20px;
     color: white;
+}
+@media screen and (max-width: 768px) {
+    .login-container {
+        width: 90%;
+        flex-direction: column;
+        height: auto;
+    }
+
+    .company-photo {
+        display: none; /* Oculta la foto en pantallas pequeñas */
+    }
+
+    .login-form {
+        border-radius: 0; /* Elimina el redondeo en la parte inferior */
+        border-top-right-radius: 10px; /* Mantiene el redondeo en la parte superior */
+    }
+
+    .form-group input,
+    .login-button {
+        width: 100%; /* Ocupa todo el ancho del contenedor */
+    }
+
+    .forgot-password a {
+        margin-top: 10px; /* Reduce el margen superior */
+    }
 }

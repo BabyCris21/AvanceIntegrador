@@ -155,3 +155,35 @@
     color: white;
 }
 
+@media only screen and (max-width: 768px) {
+    .registro-container {
+        width: 100%;
+    }
+
+    .company-photo {
+        display: none; /* Oculta la foto en pantallas pequeñas */
+    }
+
+    .registro-form {
+        width: 100%;
+    }
+
+    .form-group input,
+    .form-group select,
+    .registro-button {
+        width: 100%;
+    }
+
+    .social-login {
+        text-align: center;
+    }
+    .registro-form select.registro-button {
+        width: 100%; /* Establecer el ancho al 100% */
+    }
+
+    .google-button,
+    .facebook-button {
+        margin: 10px;
+        width: calc(50% - 20px);
+    }
+}

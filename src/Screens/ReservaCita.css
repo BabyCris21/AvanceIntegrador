@@ -46,13 +46,6 @@
 
 /* Agrega este estilo para el color de fondo al seleccionar un horario */
 
-@media screen and (max-width: 768px) {
-    .horario,
-    .horario-seleccionado {
-        width: calc(33.33% - 30px);
-    }
-}
-
 .horario-seleccionado {
     background-color: #63a77f !important; /* Color de fondo seleccionado */
   }
@@ -131,8 +124,6 @@
   align-items: center;
 }
 
-
-
 .react-datepicker__day--selected {
   background-color: #c7456c; /* Color de fondo del día seleccionado */
   color: white; /* Color del texto del día seleccionado */
@@ -141,4 +132,93 @@
 .react-datepicker__day--keyboard-selected {
   background-color: #2d61bb; /* Color de fondo del día seleccionado por teclado */
   color: white; /* Color del texto del día seleccionado por teclado */
+}
+
+
+/* Media query para dispositivos móviles */
+@media only screen and (max-width: 600px) {
+  .contenedor-80 {
+    flex-direction: column; /* Cambia la dirección del contenedor a columna */
+    padding: 10px; /* Reduce el padding en dispositivos móviles */
+    height: auto; /* Elimina la altura fija para que se ajuste al contenido */
+  }
+
+  .parte {
+    margin-bottom: 20px; /* Aumenta el margen entre las partes */
+  }
+
+  .campo {
+    margin-bottom: 10px; /* Reduce el espacio entre campos en dispositivos móviles */
+  }
+
+  .horario,
+  .horario-seleccionado {
+    width: calc(50% - 20px); /* Ajusta el ancho de los horarios para que haya dos por fila */
+  }
+
+  /* Estilos para botones */
+  .contenedor-botones {
+    display: flex;
+    flex-direction: column; /* Alinea los botones en columna */
+    align-items: center; /* Centra los botones horizontalmente */
+  }
+
+  .boton {
+    width: 100%; /* Los botones ocuparán todo el ancho disponible */
+    margin-bottom: 10px; /* Espacio entre los botones */
+  }
+
+  /* Ajuste para section-content */
+  .section-content {
+    max-width: 100%; /* Hace que la sección ocupe todo el ancho disponible */
+    padding: 0 10px; /* Añade un poco de espacio a los lados para mejorar la legibilidad */
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .profile-content {
+    flex-direction: column; /* Cambia la dirección del contenido a columna */
+    align-items: center ;
+  }
+
+  .section-container {
+    width: 100%; /* El contenedor de la sección ocupa todo el ancho */
+
+  }
+
+  .section-content {
+    max-width: 100%; /* Hace que la sección ocupe todo el ancho disponible */
+    padding: 0 10px; /* Añade un poco de espacio a los lados para mejorar la legibilidad */
+  }
+  .section-content h3 {
+    text-align: center; /* Centra el texto */
+  }
+}
+@media only screen and (max-width: 600px) {
+  .parte {
+    display: flex; /* Cambia el display a flex para alinear los elementos en fila */
+    flex-wrap: wrap; /* Permite que los elementos se envuelvan a medida que el espacio lo requiera */
+  }
+
+  .horario,
+  .horario-seleccionado {
+    width: calc(50% - 50px); /* Ajusta el ancho de los horarios para que haya dos por fila */
+    margin: 22px; /* Añade un pequeño margen entre los horarios */
+  }
+}
+
+/* Estilos para dispositivos móviles */
+@media only screen and (max-width: 600px) {
+  .profile-header {
+    flex-direction: column; /* Cambia la dirección del contenido a columna */
+    align-items: center; /* Centra los elementos horizontalmente */
+  }
+
+  .profile-header h2 {
+    margin-bottom: 0; /* Ajusta el margen inferior del título */
+  }
+
+  .user-greeting {
+    margin-top: 5px; /* Ajusta el margen superior del saludo */
+  }
 }
