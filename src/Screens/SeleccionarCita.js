@@ -46,20 +46,9 @@ const ReservaCita = () => {
     // Verificar restricciones para los días
     switch (diaSemana) {
       case 6: // Sábado
-        return (
-          horario === '07:00 AM' ||
-          horario === '08:00 AM' ||
-          horario === '09:00 AM' ||
-          horario === '10:00 AM' ||
-          horario === '11:00 AM' ||
-          horario === '12:00 PM' ||
-          horario === '01:00 PM' ||
-          horario === '02:00 PM'
-        );
+        return false;
       case 0: // Domingo
-        return (
-            horario === '07:00 AM' ||
-            horario === '08:00 AM' ); // Solo se puede seleccionar el horario de las 8:00 AM
+        return false; // Solo se puede seleccionar el horario de las 8:00 AM
       default:
         return true; // Para los demás días, todos los horarios son elegibles
     }

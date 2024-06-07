@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Admin.css'; 
-import ContactNews from './ContactNews'; // Importa el componente ContactNews
 
 const Admin = () => {
   const [data, setData] = useState([]);
@@ -19,7 +18,6 @@ const Admin = () => {
             month: '2-digit',
             day: '2-digit',
           });
-          // Agregar lógica para mostrar "Masculino" o "Femenino" en base a la letra del género
           const genderLabel = item.gender === 'M' ? 'Masculino' : item.gender === 'F' ? 'Femenino' : '';
           return { ...item, bornDate: formattedDate, gender: genderLabel };
         });
@@ -33,8 +31,8 @@ const Admin = () => {
   }, []);
 
   const handleEdit = (user) => {
-    // Redirige a la página de datos con los datos del usuario como estado
-    navigate('/datos', { state: { user } });
+    // Redirige a la página de perfil con los datos del usuario como estado
+    navigate('/perfil', { state: { user } });
   };
 
   const handleDelete = (id) => {
@@ -76,7 +74,6 @@ const Admin = () => {
           </tbody>
         </table>
       </div>
-    
     </div>
   );
 }
