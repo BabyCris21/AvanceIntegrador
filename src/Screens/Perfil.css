@@ -1,5 +1,6 @@
 /* Perfil.css */
 
+/* Estilos base */
 .profile-container {
   margin: 20px auto;
   width: 70%;
@@ -64,7 +65,7 @@
 
 .dashboard-button {
   background-color: #007bff;
-  color: #003366;
+  color: white;
   font-weight: bold;
   font-size: 20px;
   border: none;
@@ -101,7 +102,7 @@
 .usuario-form input {
   padding: 8px;
   border-radius: 5px;
-  border: 1px solid #ccc;
+  border: 1px solid #7809a4;
 }
 
 .usuario-form button {
@@ -116,4 +117,60 @@
 
 .usuario-form button:hover {
   background-color: #0056b3;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+  .profile-container {
+    width: 90%;
+    padding: 10px;
+  }
+
+  .profile-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .user-greeting {
+    margin-left: 0;
+    margin-top: 10px;
+  }
+
+  .profile-content {
+    flex-direction: column;
+  }
+
+  .dashboard {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+
+  .dashboard button {
+    padding: 15px;
+    font-size: 16px;
+  }
+
+  .section-content {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+  }
+
+  .usuario-form {
+    width: 100%;
+  }
+
+  .usuario-form form {
+    grid-template-columns: 1fr; /* Una sola columna */
+  }
+
+  .usuario-form button {
+    width: 100%;
+  }
+
+  .profile-header h2 {
+    text-align: center;
+    width: 100%;
+  }
 }

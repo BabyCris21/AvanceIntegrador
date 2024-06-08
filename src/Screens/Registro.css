@@ -1,32 +1,35 @@
+/* Estilos base */
 .registro-container {
-    display: flex; /* Activar flexbox en el contenedor principal */
-    justify-content: space-between; /* Distribuir los elementos horizontalmente */
+    display: flex;
+    justify-content: space-between;
     width: 65%;
     margin: 50px auto;
     border: 1px solid #ccc;
     border-radius: 10px;
-    overflow: hidden; /* Para asegurarnos de que la imagen no se desborde */
+    overflow: hidden;
+}
+
+.company-photo, .company-photo-doctor {
+    display: flex;
+    justify-content: center; /* Centrar horizontalmente */
+    align-items: center; /* Centrar verticalmente */
+    background-size: cover;
+    background-position: center;
 }
 
 .company-photo {
-    width: 50%;
-    height: 300px;
+    width: 100%;
+    height: 750px;
     background-image: url('/public/persona.jpg');
-    background-size: cover;
-    justify-content: center; /* Centrar horizontalmente */
-    align-items: center; /* Centrar verticalmente */
+    margin-top: 120px;
 }
 
 .company-photo-doctor {
-    width: 70%;
-    height: 800px;
+    width: 100%;
+    height: 750px;
     background-image: url('/public/doctorlog.jpg');
-    background-size: cover;
-    margin-top: 70px;
-    justify-content: center; /* Centrar horizontalmente */
-    align-items: center; /* Centrar verticalmente */
+    margin-top: 140px;
 }
-
 
 .registro-form {
     width: 50%;
@@ -37,13 +40,12 @@
     border-bottom-right-radius: 10px;
 }
 
-
 .registro-form h1 {
     color: #3b3e98;
     margin-top: 0;
 }
 
-.registro-form h4{
+.registro-form h4 {
     color: #7073d5bc;
 }
 
@@ -58,21 +60,22 @@
 
 .form-group input,
 .registro-button {
-    width: 30rem;
+    width: 100%;
     padding: 15px;
     margin-top: 5px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    font: bold;
+    font-weight: bold;
     box-sizing: border-box;
 }
+
 .registro-form select.registro-button {
-    width: calc(30rem + 2px); /* Ancho deseado */
+    width: 100%;
     padding: 15px;
     margin-top: 5px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    font: bold;
+    font-weight: bold;
     box-sizing: border-box;
     background-color: white;
     color: #3b3e98;
@@ -83,9 +86,7 @@
     background-color: #f0f0f0;
 }
 
-
 .registro-button {
-    width: calc(30rem + 2px);
     padding: 15px;
     background-color: #ffb30f;
     color: white;
@@ -107,15 +108,15 @@
 
 .social-buttons {
     margin-top: 10px;
-    text-align: left
-;}
+    text-align: left;
+}
 
 .google-button,
 .facebook-button {
     margin-right: 10px;
     padding: 15px 20px;
     height: 60px;
-    width: 238px;
+    width: 100%;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -131,7 +132,7 @@
     margin-top: 5px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    font: bold;
+    font-weight: bold;
     box-sizing: border-box;
 }
 
@@ -151,7 +152,6 @@
     outline: none;
 }
 
-
 .google-button {
     background-color: #dd4b39;
     font-weight: bold;
@@ -166,12 +166,14 @@
     color: white;
 }
 
+/* Estilos responsivos */
 @media only screen and (max-width: 768px) {
     .registro-container {
         width: 100%;
+        flex-direction: column;
     }
 
-    .company-photo {
+    .company-photo, .company-photo-doctor {
         display: none; /* Oculta la foto en pantallas pequeñas */
     }
 
@@ -188,13 +190,10 @@
     .social-login {
         text-align: center;
     }
-    .registro-form select.registro-button {
-        width: 100%; /* Establecer el ancho al 100% */
-    }
-
+    
     .google-button,
     .facebook-button {
         margin: 10px;
-        width: calc(50% - 20px);
+        width: calc(100% - 20px);
     }
 }

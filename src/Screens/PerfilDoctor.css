@@ -1,11 +1,45 @@
-  
-.doctor-form {
-  width: 600px;
+/* Estilos base */
+.profile-container {
+  width: 80%;
   margin: 0 auto;
 }
 
-.doctor-form h3{
-  text-align: center;
+.profile-content {
+  display: flex;
+  justify-content: space-between;
+}
+
+.dashboard {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.section-content {
+  flex: 3;
+  padding: 20px; /* Agregar padding para mejor separación */
+  background-color: #f9f9f9; /* Fondo claro para destacar la sección */
+  border-radius: 10px; /* Bordes redondeados */
+}
+
+.dashboard-button {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  color: white !important;  /* Asegurarse de que el texto sea blanco */
+  border: none !important;  /* Asegurarse de que no haya bordes */
+  background-color: #0056b3 !important;  /* Color de fondo azul oscuro */
+  border-radius: 5px !important;  /* Bordes redondeados */
+  cursor: pointer !important;  /* Cambio de cursor */
+}
+
+.dashboard-button:hover {
+  background-color: #003d7a !important;  /* Color de fondo al pasar el mouse */
+}
+
+/* Estilos para el formulario del doctor */
+.doctor-form {
+  width: 600px;
+  margin: 0 auto;
 }
 
 /* Título del formulario */
@@ -17,23 +51,21 @@
 
 /* Etiquetas del formulario */
 .doctor-form label {
-  
   margin-bottom: 5px;
 }
 
 /* Entradas del formulario */
 .doctor-form input {
-padding: 8px;
+  padding: 8px;
   border-radius: 5px;
-  border: 1px solid #ccc;
+  border: 1px solid #2f9b79;
 }
 
 /* Botón de envío */
 .doctor-form button {
-  grid-column: 1 / -1;
-  /* Ocupa todas las columnas */
+  grid-column: 1 / -1; /* Ocupa todas las columnas */
   padding: 10px 20px;
-  background-color: #007bff;
+  background-color: #08427f;
   color: white;
   border: none;
   border-radius: 5px;
@@ -43,4 +75,52 @@ padding: 8px;
 /* Estilo al pasar el mouse por encima del botón */
 .doctor-form button:hover {
   background-color: #0056b3;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+  .profile-container {
+      width: 100%;
+      padding: 0px;
+  }
+
+  .profile-content {
+      flex-direction: column;
+  }
+
+  .dashboard {
+      margin-right: 0;
+      margin-bottom: 20px;
+  }
+
+  .dashboard-button {
+      padding: 15px;
+      font-size: 16px;
+  }
+
+  .section-content {
+      width: 90%;
+      padding: 5px;
+      margin-bottom: 20px; /* Agrega margen inferior para separar secciones */
+      background-color: #f9f9f9;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Añade una sombra sutil */
+  }
+
+  .doctor-form {
+      width: 100%;
+      margin: 0 auto;
+  }
+
+  .doctor-form form {
+      grid-template-columns: 1fr; /* Una sola columna */
+  }
+
+  .doctor-form button {
+      width: 100%;
+  }
+  
+  .profile-container h2 {
+    text-align: center;
+  }
 }
