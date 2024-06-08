@@ -35,7 +35,7 @@ const Header = () => {
     },
     {
       imgSrc: '/exit.png',
-      href: "/home",
+      href: "/home  ",
       onClick: clearToken
     },
   ];

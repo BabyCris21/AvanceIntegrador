@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import './ReservaCita.css';
-import {jwtDecode} from 'jwt-decode'; // Asegúrate de importar jwtDecode correctamente
+import { jwtDecode } from 'jwt-decode'; // Asegúrate de importar jwtDecode correctamente
 
 const ReservaCita = () => {
   const fechaActual = new Date();
@@ -13,10 +13,12 @@ const ReservaCita = () => {
   const [doctorSeleccionado, setDoctorSeleccionado] = useState(null);
   const [horarioSeleccionado, setHorarioSeleccionado] = useState(null);
   const [infoCita, setInfoCita] = useState('');
-  const [usuarioUID, setUsuarioUID] = useState(null);
+  const [usuarioUID, setUsuarioUID] = useState('');
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+  const [showErrorMessage, setShowErrorMessage] = useState(false);
 
   useEffect(() => {
-    const jwtToken = localStorage.getItem('jwtToken');
+    const jwtToken = localStorage.getItem('token');
     if (jwtToken) {
       console.log('JWT token encontrado:', jwtToken);
       try {
@@ -94,39 +96,52 @@ const ReservaCita = () => {
   };
 
   const reservarCita = async () => {
-    console.log('infoCita:', infoCita);
-    console.log('fecha:', fecha);
-    console.log('horarioSeleccionado:', horarioSeleccionado);
-    console.log('doctorSeleccionado:', doctorSeleccionado);
-    console.log('usuarioUID:', usuarioUID);
-
-    if (!infoCita || !fecha || !horarioSeleccionado || !doctorSeleccionado || !usuarioUID) {
-      console.error('Por favor, complete todos los campos necesarios para reservar la cita.');
+    if (!doctorSeleccionado || !infoCita || !horarioSeleccionado) {
+      console.error('Por favor, complete todos los campos antes de reservar la cita.');
       return;
     }
 
+    if (!usuarioUID) {
+      console.error('No se encontró el UID del usuario');
+      return;
+    }
+
+    // Formatear la fecha seleccionada a 'YYYY-MM-DD'
+    const formattedDate = fecha.toISOString().split('T')[0];
+
     const data = {
       reason: infoCita,
-      date: fecha,
+      date: formattedDate,
       time: horarioSeleccionado,
-      doctor: doctorSeleccionado,
+      doctor: doctorSeleccionado.dni,
       user: usuarioUID
     };
+
+    console.log("Información de la cita a enviar:", data);
 
     try {
       const response = await fetch("http://localhost:8080/api/appointment/", {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json'
+        },
         body: JSON.stringify(data)
       });
 
       if (response.ok) {
-        console.log('¡La cita se ha reservado exitosamente!');
+        console.log("Cita reservada correctamente.");
+        alert("¡Cita registrada correctamente!");
+        setShowErrorMessage(false);
       } else {
-        console.error('Error al reservar la cita:', response.statusText);
+        const errorText = await response.text();
+        console.error('Error al reservar la cita:', response.statusText, errorText);
+        setShowErrorMessage(true);
+        alert("Error al registrar la cita. Inténtalo de nuevo.");
       }
     } catch (error) {
       console.error('Error al reservar la cita:', error);
+      setShowErrorMessage(true);
+      setShowSuccessMessage(false);
     }
   };
 
@@ -158,11 +173,14 @@ const ReservaCita = () => {
             <select
               name="doctor"
               id="doctor"
-              onChange={(e) => setDoctorSeleccionado(e.target.value)}
+              onChange={(e) => {
+                const selectedDoctor = doctores.find(doctor => doctor.dni === e.target.value);
+                setDoctorSeleccionado(selectedDoctor);
+              }}
             >
               <option value="">Seleccione un doctor</option>
               {doctores.map((doctor) => (
-                <option key={doctor.id} value={doctor.id}>
+                <option key={doctor.dni} value={doctor.dni}>
                   {doctor.name}
                 </option>
               ))}
