@@ -222,3 +222,10 @@
     margin-top: 5px; /* Ajusta el margen superior del saludo */
   }
 }
+
+.registrar-cita-btn {
+  font-size: 14px;
+  padding: 5px 10px;
+  margin-top: 10px;
+  text-align: center;
+}

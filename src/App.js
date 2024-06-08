@@ -17,6 +17,7 @@ import Perfil from './Screens/Perfil';
 import PerfilDoctor from './Screens/PerfilDoctor';
 import ReservaCita from './Screens/ReservaCita';
 import LoginDoctor from './Screens/loginDoctor';
+import RegistroDoctor from './Screens/RegistroDoctor';
 
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
           <Route path="/home" element={<Home/>}/>
           <Route path="/contact" element={<Contact/>}/>
           <Route path="/registro" element={<Registro/>}/>
+          <Route path="/registrodoc" element={<RegistroDoctor/>}/>
           <Route path="/staff" element={<Staff/>}/>
           <Route path="/login" element={<Login/>}/>
           <Route path="/nosotros" element={<Nosotros/>}/>

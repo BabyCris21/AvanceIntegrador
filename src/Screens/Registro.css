@@ -17,6 +17,17 @@
     align-items: center; /* Centrar verticalmente */
 }
 
+.company-photo-doctor {
+    width: 70%;
+    height: 800px;
+    background-image: url('/public/doctorlog.jpg');
+    background-size: cover;
+    margin-top: 70px;
+    justify-content: center; /* Centrar horizontalmente */
+    align-items: center; /* Centrar verticalmente */
+}
+
+
 .registro-form {
     width: 50%;
     padding: 20px;

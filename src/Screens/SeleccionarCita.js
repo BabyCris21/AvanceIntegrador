@@ -1,29 +1,68 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import './ReservaCita.css';
 
 const ReservaCita = () => {
-  // Obtener la fecha actual
   const fechaActual = new Date();
-  // Estado para almacenar la fecha seleccionada
   const [fecha, setFecha] = useState(fechaActual);
-
-  // Estado para almacenar el horario seleccionado
+  const [especialidades, setEspecialidades] = useState([]);
+  const [doctores, setDoctores] = useState([]);
+  const [especialidadSeleccionada, setEspecialidadSeleccionada] = useState(null);
+  const [doctorSeleccionado, setDoctorSeleccionado] = useState(null);
   const [horarioSeleccionado, setHorarioSeleccionado] = useState(null);
+  const [infoCita, setInfoCita] = useState('');
 
-  // Función para manejar el cambio de fecha
+  useEffect(() => {
+    const fetchSpecialties = async () => {
+      try {
+        const response = await fetch('http://localhost:8080/api/specialty/');
+        if (response.ok) {
+          const data = await response.json();
+          setEspecialidades(data);
+        } else {
+          console.error('Error al obtener las especialidades:', response.statusText);
+        }
+      } catch (error) {
+        console.error('Error al obtener las especialidades:', error);
+      }
+    };
+
+    fetchSpecialties();
+  }, []);
+
+  useEffect(() => {
+    const fetchDoctors = async () => {
+      try {
+        const response = await fetch('http://localhost:8080/api/doctor/');
+        if (response.ok) {
+          const data = await response.json();
+          const doctoresFiltrados = data.filter(doctor => 
+            doctor.specialty.some(spec => spec.uid === especialidadSeleccionada)
+          );
+          setDoctores(doctoresFiltrados);
+        } else {
+          console.error('Error al obtener los doctores:', response.statusText);
+        }
+      } catch (error) {
+        console.error('Error al obtener los doctores:', error);
+      }
+    };
+
+    if (especialidadSeleccionada) {
+      fetchDoctors();
+    }
+  }, [especialidadSeleccionada]);
+
   const handleFechaChange = (date) => {
     setFecha(date);
-    setHorarioSeleccionado(null); // Reiniciar la selección de horario al cambiar la fecha
+    setHorarioSeleccionado(null);
   };
 
-  // Función para obtener el día de la semana (0: domingo, 1: lunes, ..., 6: sábado)
   const obtenerDiaSemana = (date) => {
     return date.getDay();
   };
 
-  // Array de horarios disponibles
   const horariosDisponibles = [
     '09:00',
     '10:15',
@@ -35,65 +74,82 @@ const ReservaCita = () => {
     '17:45',
   ];
 
-  // Función para verificar si un horario es elegible
   const esHorarioElegible = (horario) => {
     const diaSemana = obtenerDiaSemana(fecha);
-
-    // Verificar restricciones para los días
     switch (diaSemana) {
-      case 6: // Sábado
+      case 6:
         return false;
-      case 0: // Domingo
-        return false; // Solo se puede seleccionar el horario de las 8:00 AM
+      case 0:
+        return false;
       default:
-        return true; // Para los demás días, todos los horarios son elegibles
+        return true;
     }
   };
 
   return (
     <div className="contenedor-80">
-      {/* Primera parte */}
       <div className="parte">
         <h3>Selecciona:</h3>
         <div className="campo">
           <label htmlFor="especialidad">Especialidad:</label>
-          <select name="especialidad" id="especialidad">
-            <option value="opcion1">Opción 1</option>
-            <option value="opcion2">Opción 2</option>
-            <option value="opcion3">Opción 3</option>
+          <select
+            name="especialidad"
+            id="especialidad"
+            onChange={(e) => {
+              setEspecialidadSeleccionada(e.target.value);
+              setDoctorSeleccionado(null); // Limpiar la selección de doctor al cambiar de especialidad
+            }}
+          >
+            <option value="">Seleccione una especialidad</option>
+            {especialidades.map((especialidad) => (
+              <option key={especialidad.id} value={especialidad.id}>
+                {especialidad.name}
+              </option>
+            ))}
           </select>
         </div>
-        <div className="campo">
-          <label htmlFor="area">Área:</label>
-          <select name="area" id="area">
-            <option value="opcion1">Opción 1</option>
-            <option value="opcion2">Opción 2</option>
-            <option value="opcion3">Opción 3</option>
-          </select>
-        </div>
-        <div className="campo">
-          <label htmlFor="profesional">Elige Profesional:</label>
-          <select name="profesional" id="profesional">
-            <option value="opcion1">Opción 1</option>
-            <option value="opcion2">Opción 2</option>
-            <option value="opcion3">Opción 3</option>
-          </select>
-        </div>
+        {especialidadSeleccionada && (
+          <div className="campo">
+            <label htmlFor="doctor">Selecciona Doctor:</label>
+            <select
+              name="doctor"
+              id="doctor"
+              onChange={(e) => setDoctorSeleccionado(e.target.value)}
+            >
+              <option value="">Seleccione un doctor</option>
+              {doctores.map((doctor) => (
+                <option key={doctor.id} value={doctor.id}>
+                  {doctor.name}
+                </option>
+              ))}
+            </select>
+          </div>
+        )}
+        {doctorSeleccionado && (
+          <div className="campo">
+            <label htmlFor="infoCita">Información de la cita:</label>
+            <textarea
+              name="infoCita"
+              id="infoCita"
+              value={infoCita}
+              onChange={(e) => setInfoCita(e.target.value)}
+              rows="4"
+              cols="50"
+            ></textarea>
+          </div>
+        )}
       </div>
 
-      {/* Segunda parte */}
       <div className="parte">
         <h3>Selecciona la fecha:</h3>
-        {/* Calendario */}
         <DatePicker
           selected={fecha}
           onChange={handleFechaChange}
           minDate={fechaActual}
-          inline // Esto hace que el calendario esté siempre visible
+          inline
         />
       </div>
 
-      {/* Tercera parte */}
       <div className="parte">
         <h3>Selecciona horario:</h3>
         <div className="horarios-container">
@@ -108,6 +164,7 @@ const ReservaCita = () => {
             </button>
           ))}
         </div>
+
         <div className="leyenda">
           <div className="leyenda-item">
             <div className="indicador disponible"></div>
