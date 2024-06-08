@@ -16,9 +16,9 @@ const ControlPanelSection = ({ section, onClick }) => {
 const CurrentSectionContent = ({ currentSection, setUserName }) => {
     switch (currentSection) {
         case 'Elige fecha y hora':
-            return <SeleccionarCita setUserName={setUserName} />
+            return <SeleccionarCita/>
         case 'Detalles':
-            return <div><p>Contenido de la sección Citas</p></div>;
+            return <div><p>Contenido de la sección Archivos</p></div>;
         case 'Finalizar':
             return <div><p>Contenido de la sección Archivos</p></div>;
         default:

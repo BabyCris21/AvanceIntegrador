@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import './ReservaCita.css';
+import {jwtDecode} from 'jwt-decode'; // Asegúrate de importar jwtDecode correctamente
 
 const ReservaCita = () => {
   const fechaActual = new Date();
@@ -12,6 +13,28 @@ const ReservaCita = () => {
   const [doctorSeleccionado, setDoctorSeleccionado] = useState(null);
   const [horarioSeleccionado, setHorarioSeleccionado] = useState(null);
   const [infoCita, setInfoCita] = useState('');
+  const [usuarioUID, setUsuarioUID] = useState(null);
+
+  useEffect(() => {
+    const jwtToken = localStorage.getItem('jwtToken');
+    if (jwtToken) {
+      console.log('JWT token encontrado:', jwtToken);
+      try {
+        const decodedToken = jwtDecode(jwtToken);
+        console.log('Token decodificado:', decodedToken);
+        if (decodedToken.uid) {
+          setUsuarioUID(decodedToken.uid);
+          console.log('UID del usuario:', decodedToken.uid);
+        } else {
+          console.error('El token decodificado no contiene el campo uid.');
+        }
+      } catch (error) {
+        console.error('Error al decodificar el token JWT:', error);
+      }
+    } else {
+      console.error('No se encontró el JWT token en el localStorage.');
+    }
+  }, []);
 
   useEffect(() => {
     const fetchSpecialties = async () => {
@@ -37,7 +60,7 @@ const ReservaCita = () => {
         const response = await fetch('http://localhost:8080/api/doctor/');
         if (response.ok) {
           const data = await response.json();
-          const doctoresFiltrados = data.filter(doctor => 
+          const doctoresFiltrados = data.filter(doctor =>
             doctor.specialty.some(spec => spec.uid === especialidadSeleccionada)
           );
           setDoctores(doctoresFiltrados);
@@ -59,30 +82,51 @@ const ReservaCita = () => {
     setHorarioSeleccionado(null);
   };
 
-  const obtenerDiaSemana = (date) => {
-    return date.getDay();
-  };
+  const obtenerDiaSemana = (date) => date.getDay();
 
   const horariosDisponibles = [
-    '09:00',
-    '10:15',
-    '11:30',
-    '12:45',
-    '14:00',
-    '15:15',
-    '16:30',
-    '17:45',
+    '09:00', '10:15', '11:30', '12:45', '14:00', '15:15', '16:30', '17:45'
   ];
 
   const esHorarioElegible = (horario) => {
     const diaSemana = obtenerDiaSemana(fecha);
-    switch (diaSemana) {
-      case 6:
-        return false;
-      case 0:
-        return false;
-      default:
-        return true;
+    return diaSemana !== 0 && diaSemana !== 6;
+  };
+
+  const reservarCita = async () => {
+    console.log('infoCita:', infoCita);
+    console.log('fecha:', fecha);
+    console.log('horarioSeleccionado:', horarioSeleccionado);
+    console.log('doctorSeleccionado:', doctorSeleccionado);
+    console.log('usuarioUID:', usuarioUID);
+
+    if (!infoCita || !fecha || !horarioSeleccionado || !doctorSeleccionado || !usuarioUID) {
+      console.error('Por favor, complete todos los campos necesarios para reservar la cita.');
+      return;
+    }
+
+    const data = {
+      reason: infoCita,
+      date: fecha,
+      time: horarioSeleccionado,
+      doctor: doctorSeleccionado,
+      user: usuarioUID
+    };
+
+    try {
+      const response = await fetch("http://localhost:8080/api/appointment/", {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+
+      if (response.ok) {
+        console.log('¡La cita se ha reservado exitosamente!');
+      } else {
+        console.error('Error al reservar la cita:', response.statusText);
+      }
+    } catch (error) {
+      console.error('Error al reservar la cita:', error);
     }
   };
 
@@ -97,7 +141,7 @@ const ReservaCita = () => {
             id="especialidad"
             onChange={(e) => {
               setEspecialidadSeleccionada(e.target.value);
-              setDoctorSeleccionado(null); // Limpiar la selección de doctor al cambiar de especialidad
+              setDoctorSeleccionado(null);
             }}
           >
             <option value="">Seleccione una especialidad</option>
@@ -178,6 +222,7 @@ const ReservaCita = () => {
             <div className="indicador seleccionado"></div>
             <div className="texto-leyenda">Seleccionado</div>
           </div>
+          <button onClick={reservarCita}>Reservar Cita</button>
         </div>
       </div>
     </div>
