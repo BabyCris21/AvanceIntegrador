@@ -38,6 +38,7 @@ const Perfil = () => {
         <div>
             <div className="profile-container">
                 <div className="profile-header">
+                    <img src="/paciente.png" alt="Paciente" className="paciente-icon" />
                     <h2>Perfil de Usuario</h2>
                     <span className="user-greeting">Hola, {userName}</span>
                 </div>

@@ -134,6 +134,21 @@
   color: white; /* Color del texto del día seleccionado por teclado */
 }
 
+
+.profile-header {
+  display: flex;
+  align-items: center;
+}
+
+.paciente-icon {
+  width: 50px; /* Ajusta el tamaño según sea necesario */
+  height: 50px; /* Ajusta el tamaño según sea necesario */
+  margin-right: 10px; /* Espacio entre el icono y el texto */
+}
+
+
+
+
 /* Media query para dispositivos móviles */
 @media only screen and (max-width: 600px) {
   .contenedor-80 {

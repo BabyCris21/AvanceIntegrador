@@ -18,6 +18,13 @@
   margin-bottom: 30px;
 }
 
+.paciente-icon {
+  width: 50x; /* Ajusta el tamaño según sea necesario */
+  height: 50px; /* Ajusta el tamaño según sea necesario */
+  margin-right: 10px; /* Espacio entre el icono y el texto */
+  margin-top: 10px;
+}
+
 .profile-header h2 {
   margin: 0;
 }

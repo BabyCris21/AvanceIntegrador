@@ -13,10 +13,10 @@ const ControlPanelSection = ({ section, onClick }) => {
 };
 
 // Componente de contenido de la sección actual
-const CurrentSectionContent = ({ currentSection }) => {
+const CurrentSectionContent = ({ currentSection, setUserName }) => {
     switch (currentSection) {
         case 'Perfil':
-            return <DoctorInfo />;
+            return <DoctorInfo setUserName= {setUserName}/>;
         case 'Citas':
             return <div><p>Contenido de la sección Citas</p></div>;
         case 'Archivos':
@@ -34,6 +34,7 @@ const CurrentSectionContent = ({ currentSection }) => {
 
 const PerfilDoctor = () => {
     const [currentSection, setCurrentSection] = useState('Perfil');
+    const [userName, setUserName] = useState('');
 
     const handleSectionChange = (section) => {
         setCurrentSection(section);
@@ -42,7 +43,11 @@ const PerfilDoctor = () => {
     return (
         <div>
             <div className="profile-container">
-                <h2>Perfil de Doctor</h2>
+                <div className="profile-header">
+                    <img src="/medico.png" alt="Medico" className="medico-icon" />
+                    <h2>Perfil de Doctor</h2>
+                    <span className="user-greeting">Hola, {userName}</span>
+                </div>
                 <div className="profile-content">
                     {/* Dashboard */}
                     <div className="dashboard">
