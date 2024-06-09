@@ -1,99 +1,97 @@
 .contenedor-80 {
-    max-width: 100%;
-    margin: 0 auto;
-    display: flex;
-    justify-content: center;
-    padding: 20px;
-    border-radius: 10px;
-    height: 400px;
+  max-width: 100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  border-radius: 10px;
+  height: 400px;
 }
 
 .parte {
-    margin: 0 10px;
-    flex: 1;
-    font-size: 25px;
+  margin: 0 10px;
+  flex: 1;
+  font-size: 25px;
 }
 
 .campo {
-    margin-bottom: 30px;
+  margin-bottom: 30px;
 }
 
 .campo select {
-    width: 100%;
-    display: block;
-    padding: 8px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
+  width: 100%;
+  display: block;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
 }
 
 .horarios-container {
-    flex: 1;
-    display: flex;
-    flex-wrap: wrap;
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .horario,
 .horario-seleccionado {
-    width: calc(25% - 30px);
-    margin: 15px;
-    padding: 10px;
-    background-color: #2d61bb;
-    cursor: pointer;
-    border-radius: 5px;
-    font-weight: bold;
-    box-sizing: border-box;
+  width: calc(25% - 30px);
+  margin: 15px;
+  padding: 10px;
+  background-color: #2d61bb;
+  cursor: pointer;
+  border-radius: 5px;
+  font-weight: bold;
+  box-sizing: border-box;
 }
 
-/* Agrega este estilo para el color de fondo al seleccionar un horario */
-
 .horario-seleccionado {
-    background-color: #63a77f !important; /* Color de fondo seleccionado */
-  }
+  background-color: #63a77f !important; /* Color de fondo seleccionado */
+}
 
 .horario[disabled],
 .horario-seleccionado[disabled] {
-    background-color: #ccc;
-    cursor: not-allowed;
+  background-color: #ccc;
+  cursor: not-allowed;
 }
 
 .leyenda {
-    margin-top: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  
-  .leyenda-item {
-    display: flex;
-    align-items: center;
-    margin-bottom: 5px;
-  }
-  
-  .texto-leyenda {
-    margin-left: 5px;
-    font-size: 18px;
-  }
-  
-  .indicador {
-    width: 15px;
-    height: 15px;
-    border-radius: 50%;
-    margin-right: 5px;
-  }
-  
-  .disponible {
-    background-color: #2d61bb;
-  }
-  
-  .no-disponible {
-    background-color: #ccc;
-  }
-  
-  .seleccionado {
-    background-color: #63a77f;
-  }
-  
-  /* Estilos personalizados para el DatePicker */
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.leyenda-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.texto-leyenda {
+  margin-left: 5px;
+  font-size: 18px;
+}
+
+.indicador {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+
+.disponible {
+  background-color: #2d61bb;
+}
+
+.no-disponible {
+  background-color: #ccc;
+}
+
+.seleccionado {
+  background-color: #17994d;
+}
+
+/* Estilos personalizados para el DatePicker */
 .react-datepicker {
   width: 100%;
 }
@@ -107,12 +105,14 @@
   color: white; /* Color del texto del encabezado */
 }
 
-.react-datepicker__day-names, .react-datepicker__week {
+.react-datepicker__day-names,
+.react-datepicker__week {
   display: flex;
   justify-content: space-around;
 }
 
-.react-datepicker__day-name, .react-datepicker__day {
+.react-datepicker__day-name,
+.react-datepicker__day {
   width: 2rem;
   height: 2rem;
   line-height: 2rem;
@@ -133,7 +133,6 @@
   background-color: #2d61bb; /* Color de fondo del día seleccionado por teclado */
   color: white; /* Color del texto del día seleccionado por teclado */
 }
-
 
 /* Media query para dispositivos móviles */
 @media only screen and (max-width: 600px) {
@@ -173,17 +172,26 @@
     max-width: 100%; /* Hace que la sección ocupe todo el ancho disponible */
     padding: 0 10px; /* Añade un poco de espacio a los lados para mejorar la legibilidad */
   }
+
+  .leyenda {
+    order: 1; /* Mueve la leyenda debajo del horario */
+    width: 100%; /* Asegura que la leyenda ocupe todo el ancho disponible */
+  }
+
+  .horarios-container {
+    order: 0; /* Mantiene el contenedor de horarios en la posición original */
+    width: 100%; /* Asegura que el contenedor de horarios ocupe todo el ancho disponible */
+  }
 }
 
 @media only screen and (max-width: 600px) {
   .profile-content {
     flex-direction: column; /* Cambia la dirección del contenido a columna */
-    align-items: center ;
+    align-items: center;
   }
 
   .section-container {
     width: 100%; /* El contenedor de la sección ocupa todo el ancho */
-
   }
 
   .section-content {
@@ -194,6 +202,7 @@
     text-align: center; /* Centra el texto */
   }
 }
+
 @media only screen and (max-width: 600px) {
   .parte {
     display: flex; /* Cambia el display a flex para alinear los elementos en fila */
