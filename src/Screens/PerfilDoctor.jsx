@@ -45,7 +45,7 @@ const PerfilDoctor = () => {
             <div className="profile-container">
                 <div className="profile-header">
                     <img src="/medico.png" alt="Medico" className="medico-icon" />
-                    <h2>Perfil de Doctor</h2>
+                    <h2>Perfil de Medico</h2>
                     <span className="user-greeting">Hola, {userName}</span>
                 </div>
                 <div className="profile-content">

@@ -3,7 +3,7 @@
   margin: 0 auto;
   display: flex;
   justify-content: center;
-  padding: 20px;
+  padding: 10px;
   border-radius: 10px;
   height: 400px;
 }
@@ -146,7 +146,9 @@
   margin-right: 10px; /* Espacio entre el icono y el texto */
 }
 
-
+.dashboard-button {
+  font-size: 14px; /* Ajusta este valor según tus necesidades */ 
+}
 
 
 /* Media query para dispositivos móviles */
