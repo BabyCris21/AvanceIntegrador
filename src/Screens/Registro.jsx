@@ -1,30 +1,16 @@
 import React, { useState } from 'react';
-import { Link } from "react-router-dom";
-import "./Registro.css";
+import axios from 'axios';
+import './Registro.css';
 
-const Registro = () => {
-    const [showPassword, setShowPassword] = useState(false);
-    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-    const [password, setPassword] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
+const RegistroPaciente = () => {
     const [formData, setFormData] = useState({
         dni: '',
         name: '',
         lastname: '',
         bornDate: '',
         phone: '',
-        email: '',
-        address: '',
         gender: 'M'
     });
-
-    const togglePasswordVisibility = () => {
-        setShowPassword(!showPassword);
-    };
-
-    const toggleConfirmPasswordVisibility = () => {
-        setShowConfirmPassword(!showConfirmPassword);
-    };
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -34,42 +20,30 @@ const Registro = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (password !== confirmPassword) {
-            alert('Las contraseñas no coinciden');
-            return;
-        }
-
-        const dataToSend = { ...formData, password };
-
-        console.log('Datos enviados:', JSON.stringify(dataToSend, null, 2));
-
         try {
-            const response = await fetch('http://localhost:8080/api/user/', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(dataToSend),
+            await axios.post('http://localhost:8080/api/patient', formData);
+
+            // Limpiar el formulario después de enviar los datos
+            setFormData({
+                dni: '',
+                name: '',
+                lastname: '',
+                bornDate: '',
+                phone: '',
+                gender: 'M'
             });
 
-            const result = await response.json();
-            if (response.ok) {
-                alert('Usuario registrado exitosamente');
-            } else {
-                alert(`Error: ${result.message}`);
-                console.error('Error:', result);
-            }
+            alert('Paciente creado exitosamente');
         } catch (error) {
-            console.error('Error:', error);
+            console.error('Error al crear paciente:', error);
+            alert('Error al crear paciente. Por favor, inténtelo de nuevo.');
         }
     };
 
     return (
         <div className="registro-container">
-            <div className="company-photo"></div>
             <div className="registro-form">
-                <h1>Registro</h1>
-                <h4>¿Ya tienes una cuenta? <Link to="/login">Inicia sesión</Link></h4>
+                <h1>Registro de Paciente</h1>
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">
                         <label htmlFor="name">Nombres:</label>
@@ -80,24 +54,16 @@ const Registro = () => {
                         <input type="text" id="lastname" name="lastname" value={formData.lastname} onChange={handleInputChange} />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="email">Correo:</label>
-                        <input type="email" id="email" name="email" value={formData.email} onChange={handleInputChange} />
+                        <label htmlFor="dni">DNI:</label>
+                        <input type="text" id="dni" name="dni" value={formData.dni} onChange={handleInputChange} />
                     </div>
                     <div className="form-group">
                         <label htmlFor="bornDate">Fecha de Nacimiento:</label>
                         <input type="date" id="bornDate" name="bornDate" value={formData.bornDate} onChange={handleInputChange} />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="dni">DNI:</label>
-                        <input type="text" id="dni" name="dni" value={formData.dni} onChange={handleInputChange} />
-                    </div>
-                    <div className="form-group">
                         <label htmlFor="phone">Celular:</label>
                         <input type="text" id="phone" name="phone" value={formData.phone} onChange={handleInputChange} />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="address">Dirección:</label>
-                        <input type="text" id="address" name="address" value={formData.address} onChange={handleInputChange} />
                     </div>
                     <div className="form-group">
                         <label htmlFor="gender">Género:</label>
@@ -106,45 +72,11 @@ const Registro = () => {
                             <option value="F">Femenino</option>
                         </select>
                     </div>
-                    <div className="form-group">
-                        <label htmlFor="password">Contraseña:</label>
-                        <input
-                            type={showPassword ? 'text' : 'password'}
-                            id="password"
-                            name="password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                        />
-                        <button
-                            type="button"
-                            onClick={togglePasswordVisibility}
-                            className="password-toggle-button"
-                        >
-                            {showPassword ? '🙈' : '👁️'}
-                        </button>
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="confirm_password">Confirmar Contraseña:</label>
-                        <input
-                            type={showConfirmPassword ? 'text' : 'password'}
-                            id="confirm_password"
-                            name="confirm_password"
-                            value={confirmPassword}
-                            onChange={(e) => setConfirmPassword(e.target.value)}
-                        />
-                        <button
-                            type="button"
-                            onClick={toggleConfirmPasswordVisibility}
-                            className="password-toggle-button"
-                        >
-                            {showConfirmPassword ? '🙈' : '👁️'}
-                        </button>
-                    </div>
-                    <button type="submit" className="registro-button">REGISTRARSE</button>
+                    <button type="submit" className="registro-button">REGISTRAR PACIENTE</button>
                 </form>
             </div>
         </div>
     );
 };
 
-export default Registro;
+export default RegistroPaciente;
