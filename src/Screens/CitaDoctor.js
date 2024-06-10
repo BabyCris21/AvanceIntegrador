@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import {jwtDecode} from 'jwt-decode'; // Importa la función jwtDecode
+import {jwtDecode} from 'jwt-decode';
 
-const ListaCita = () => {
+const CitaDoctor = () => {
   const [citas, setCitas] = useState([]);
-  const [usuarioUID, setUsuarioUID] = useState(null); // Estado para almacenar el UID del usuario
+  const [dniDoctor, setDoctorUID] = useState('null'); 
 
   useEffect(() => {
     const obtenerCitas = async (token, uid) => {
       try {
-        const response = await axios.get(`http://localhost:8080/api/appointment/${uid}`, {
+        const response = await axios.get(`http://localhost:8080/api/appointment/doctor/${uid}`, {
           headers: {
             Authorization: `Bearer ${token}`
           }
@@ -27,11 +27,11 @@ const ListaCita = () => {
         const decodedToken = jwtDecode(jwtToken);
         console.log('Token decodificado:', decodedToken);
         if (decodedToken.uid) {
-          setUsuarioUID(decodedToken.uid);
-          console.log('UID del usuario:', decodedToken.uid);
-          obtenerCitas(jwtToken, decodedToken.uid); // Llama a obtenerCitas con el token y el UID del usuario
+          setDoctorUID(decodedToken.uid); // Almacena el DNI del doctor desde el token decodificado
+          console.log('UID del doctor:', decodedToken.uid);
+          obtenerCitas(jwtToken, decodedToken.uid); // Llama a obtenerCitas con el token
         } else {
-          console.error('El token decodificado no contiene el campo uid.');
+          console.error('El token decodificado no contiene el campo dni.');
         }
       } catch (error) {
         console.error('Error al decodificar el token JWT:', error);
@@ -43,7 +43,7 @@ const ListaCita = () => {
 
   return (
     <div>
-      <h1>Lista de Citas</h1>
+      <h1>Lista de Citas del Doctor</h1>
       <table>
         <thead>
           <tr>
@@ -68,4 +68,4 @@ const ListaCita = () => {
   );
 };
 
-export default ListaCita;
+export default CitaDoctor;

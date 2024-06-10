@@ -5,14 +5,18 @@ import ContactNews from './ContactNews'; // Importa el componente ContactNews
 
 const Doctor = () => {
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await fetch('http://localhost:8080/api/doctor', { method: 'GET' });
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
         const jsonData = await response.json();
-        console.log(jsonData);
         const modifiedData = jsonData.map(item => {
           const date = new Date(item.bornDate);
           const formattedDate = date.toLocaleDateString('es-ES', {
@@ -24,7 +28,10 @@ const Doctor = () => {
         });
         setData(modifiedData);
       } catch (error) {
+        setError(error.message);
         console.error('Error fetching data:', error);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -32,14 +39,29 @@ const Doctor = () => {
   }, []);
 
   const handleEdit = (doctor) => {
-    // Redirige a la página de datos con los datos del doctor como estado
     navigate('/datos-doctor', { state: { doctor } });
   };
 
-  const handleDelete = (id) => {
-    // Lógica para eliminar el doctor con el ID proporcionado
-    console.log('Eliminando doctor con ID:', id);
+  const handleDelete = async (dni) => {
+    try {
+      const response = await fetch(`http://localhost:8080/api/doctor/${dni}`, { method: 'DELETE' });
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      setData(data.filter(item => item.dni !== dni));
+    } catch (error) {
+      console.error('Error deleting doctor:', error);
+      setError('Error deleting doctor');
+    }
   };
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
 
   return (
     <div className="admin-page">
@@ -68,7 +90,7 @@ const Doctor = () => {
                 <td>{item.bornDate}</td>
                 <td>{item.phone}</td>
                 <td>
-                  {item.specialty.map(spec => spec.name).join(',  ')}
+                  {item.specialty.map(spec => spec.name).join(', ')}
                 </td>
                 <td>
                   <button onClick={() => handleEdit(item)}>Editar</button>

@@ -55,7 +55,6 @@ const Registro = () => {
             const result = await response.json();
             if (response.ok) {
                 alert('Usuario registrado exitosamente');
-                // Aquí podrías redirigir al usuario a la página de login
             } else {
                 alert(`Error: ${result.message}`);
                 console.error('Error:', result);

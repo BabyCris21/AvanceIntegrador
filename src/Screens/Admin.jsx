@@ -4,12 +4,17 @@ import './Admin.css';
 
 const Admin = () => {
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await fetch('http://localhost:8080/api/user', { method: 'GET' });
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
         const jsonData = await response.json();
         const modifiedData = jsonData.map(item => {
           const date = new Date(item.bornDate);
@@ -23,7 +28,10 @@ const Admin = () => {
         });
         setData(modifiedData);
       } catch (error) {
+        setError(error.message);
         console.error('Error fetching data:', error);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -31,14 +39,29 @@ const Admin = () => {
   }, []);
 
   const handleEdit = (user) => {
-    // Redirige a la página de perfil con los datos del usuario como estado
     navigate('/perfil', { state: { user } });
   };
 
-  const handleDelete = (id) => {
-    // Lógica para eliminar el usuario con el ID proporcionado
-    console.log('Eliminando usuario con ID:', id);
+  const handleDelete = async (dni) => {
+    try {
+      const response = await fetch(`http://localhost:8080/api/user/${dni}`, { method: 'DELETE' });
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      setData(data.filter(item => item.dni !== dni));
+    } catch (error) {
+      console.error('Error deleting user:', error);
+      setError('Error deleting user');
+    }
   };
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
 
   return (
     <div className="admin-page">
@@ -67,7 +90,7 @@ const Admin = () => {
                 <td>{item.gender}</td>
                 <td>
                   <button onClick={() => handleEdit(item)}>Editar</button>
-                  <button onClick={() => handleDelete(item.id)}>Eliminar</button>
+                  <button onClick={() => handleDelete(item.dni)}>Eliminar</button>
                 </td>
               </tr>
             ))}
