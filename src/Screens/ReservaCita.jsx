@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './Perfil.css'; // Importa tus estilos CSS
 import SeleccionarCita from './SeleccionarCita'; // Importa el componente UsuarioInfo
 import ContactNews from './ContactNews'; // Importa el componente ContactNews

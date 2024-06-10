@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import "./Staff.css";
 import ContactNews from './ContactNews';
 
@@ -34,9 +33,9 @@ const Staff = () => {
                 <h3>{doctor.name}</h3>
                 <p>{doctor.specialization}</p>
                 <div className="social-icons">
-                  <a href="#"><i className="fab fa-linkedin"></i></a>
-                  <a href="#"><i className="fab fa-facebook"></i></a>
-                  <a href="#"><i className="fab fa-twitter"></i></a>
+                  <a href="https://www.linkedin.com/feed/"><i className="fab fa-linkedin"></i></a>
+                  <a href="https://www.facebook.com/"><i className="fab fa-facebook"></i></a>
+                  <a href="https://x.com/"><i className="fab fa-twitter"></i></a>
                 </div>
               </div>
               <button className="view-profile-btn">View Profile</button>

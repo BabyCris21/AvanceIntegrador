@@ -92,7 +92,7 @@ const UsuarioInfo = ({ setUserName }) => {
           type="text"
           id="bornDate"
           name="bornDate"
-          value={formData.bornDate}
+          value={formatDate(formData.bornDate)}
           onChange={handleChange}
           required
         />

@@ -63,7 +63,6 @@ const Login = () => {
                     <button type="submit" className="login-button">INICIAR SESION</button>
                 </form>
                 <div className="forgot-password">
-                    <a href="#">¿Olvidaste tu contraseña?</a>
                 </div>
                 {/* <div className="social-login">
                     <p>O inicia sesión con:</p>

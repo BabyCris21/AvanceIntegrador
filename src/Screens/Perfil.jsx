@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import './Perfil.css'; // Importa tus estilos CSS
-import UsuarioInfo from './UsuarioInfo'; // Importa el componente UsuarioInfo
+import UsuarioInfo from './UsuarioInfo'; 
 import ContactNews from './ContactNews'; // Importa el componente ContactNews
+import ListaCita from './ListaCita'; // Importa el componente ListaCita
+
 
 // Componente de la sección del panel de control
 const ControlPanelSection = ({ section, onClick }) => {
@@ -18,7 +20,7 @@ const CurrentSectionContent = ({ currentSection, setUserName }) => {
         case 'Usuario':
             return <UsuarioInfo setUserName={setUserName} />;
         case 'Citas':
-            return <div><p>Contenido de la sección Citas</p></div>;
+            return <ListaCita/>;
         case 'Archivos':
             return <div><p>Contenido de la sección Archivos</p></div>;
         case 'Recetas':
