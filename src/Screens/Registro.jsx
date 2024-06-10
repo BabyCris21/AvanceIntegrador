@@ -143,13 +143,6 @@ const Registro = () => {
                     </div>
                     <button type="submit" className="registro-button">REGISTRARSE</button>
                 </form>
-                <div className="social-login">
-                    <p>O regístrate con:</p>
-                    <div className="social-buttons">
-                        <button className="google-button">Google</button>
-                        <button className="facebook-button">Facebook</button>
-                    </div>
-                </div>
             </div>
         </div>
     );
