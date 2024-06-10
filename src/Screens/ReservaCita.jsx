@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Perfil.css'; // Importa tus estilos CSS
 import SeleccionarCita from './SeleccionarCita'; // Importa el componente UsuarioInfo
-import Login from './Login'; // Importa el componente
+import Paciente from './Paciente'; // Importa el componente
 import ContactNews from './ContactNews'; // Importa el componente ContactNews
 
 // Componente de la sección del panel de control
@@ -19,7 +19,7 @@ const CurrentSectionContent = ({ currentSection, setUserName }) => {
         case 'Elige fecha y hora':
             return <SeleccionarCita/>
         case 'Detalles':
-            return <Login/>;
+            return <Paciente/>;
         case 'Finalizar':
             return <div><p>Contenido de la sección Archivos</p></div>;
         default:
