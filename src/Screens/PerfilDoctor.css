@@ -1,12 +1,37 @@
 /* Estilos base */
 .profile-container {
-  width: 80%;
-  margin: 0 auto;
+  margin: 20px auto;
+  width: 70%;
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+
+.profile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+.medico-icon {
+  width: 50x; /* Ajusta el tamaño según sea necesario */
+  height: 50px; /* Ajusta el tamaño según sea necesario */
+  margin-right: 10px; /* Espacio entre el icono y el texto */
+  margin-top: 10px;
+}
+
+.profile-header h2 {
+  margin: 0;
+}
+
+
+
 
 .profile-content {
   display: flex;
-  justify-content: space-between;
 }
 
 .dashboard {
@@ -118,9 +143,5 @@
 
   .doctor-form button {
       width: 100%;
-  }
-  
-  .profile-container h2 {
-    text-align: center;
   }
 }
