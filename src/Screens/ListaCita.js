@@ -41,6 +41,34 @@ const ListaCita = () => {
     }
   }, []);
 
+  const formatFecha = (fecha) => {
+    const date = new Date(fecha);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  };
+
+  const handleEdit = (id) => {
+    // Lógica para editar la cita con el ID especificado
+    console.log('Editar cita:', id);
+  };
+
+  const handleDelete = async (id) => {
+    // Lógica para eliminar la cita con el ID especificado
+    try {
+      await axios.delete(`http://localhost:8080/api/appointment/${id}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`
+        }
+      });
+      setCitas(citas.filter(cita => cita.id !== id));
+      console.log('Cita eliminada:', id);
+    } catch (error) {
+      console.error('Error al eliminar la cita:', error);
+    }
+  };
+
   return (
     <div>
       <h1>Lista de Citas</h1>
@@ -51,15 +79,22 @@ const ListaCita = () => {
             <th>Fecha</th>
             <th>Hora</th>
             <th>Doctor</th>
+            <th>Estado</th>
+            <th>Acciones</th>
           </tr>
         </thead>
         <tbody>
           {citas.map(cita => (
             <tr key={cita.id}>
               <td>{cita.reason}</td>
-              <td>{cita.date}</td>
+              <td>{formatFecha(cita.date)}</td>
               <td>{cita.time}</td>
               <td>{cita.doctor}</td>
+              <td>{cita.status ? 'Pendiente' : 'Completada'}</td>
+              <td>
+                <button onClick={() => handleEdit(cita.id)}>Editar</button>
+                <button onClick={() => handleDelete(cita.id)}>Eliminar</button>
+              </td>
             </tr>
           ))}
         </tbody>
