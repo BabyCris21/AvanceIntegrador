@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import './Perfil.css'; // Importa tus estilos CSS
+
+import './ReservaCita.css'; // Importa tus estilos CSS
 import SeleccionarCita from './SeleccionarCita'; // Importa el componente UsuarioInfo
 import Paciente from './Paciente'; // Importa el componente
 import ContactNews from './ContactNews'; // Importa el componente ContactNews

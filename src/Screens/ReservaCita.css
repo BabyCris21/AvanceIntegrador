@@ -292,7 +292,6 @@ input[type="text"],
 input[type="number"],
 select {
   padding: 15px;
-  border: 1px solid #ccc;
   border-radius: 5px;
   box-sizing: border-box;
 }
@@ -338,5 +337,42 @@ button:hover {
 
   button {
     padding: 8px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .patient-form {
+    max-width: 300px; /* Establece un ancho máximo para el formulario */
+    margin: 0 auto; /* Centra el formulario horizontalmente */
+    padding: 5px; /* Añade un poco de espacio alrededor del formulario */
+    box-sizing: border-box; /* Incluye padding y borde en el ancho total */
+  }
+
+  .patient-form h1 {
+    font-size: 20px; /* Reduce el tamaño de fuente del título del formulario */
+    margin-bottom: 20px; /* Ajusta el margen inferior del título */
+  }
+
+  .patient-form div {
+    margin-bottom: 20px; /* Reduce el espacio entre los campos del formulario */
+  }
+
+  .patient-form label {
+    font-size: 14px; /* Reduce el tamaño de fuente de las etiquetas */
+  }
+
+  .patient-form input[type="text"],
+  .patient-form input[type="number"],
+  .patient-form select {
+    width: 100%; /* Hace que los campos del formulario ocupen todo el ancho disponible */
+    padding: 10px; /* Ajusta el padding de los campos */
+    font-size: 14px; /* Reduce el tamaño de fuente de los campos */
+    box-sizing: border-box; /* Incluye padding y borde en el ancho total */
+  }
+
+  .patient-form button {
+    width: 100%; /* Hace que el botón ocupe todo el ancho disponible */
+    padding: 10px; /* Ajusta el padding del botón */
+    font-size: 14px; /* Reduce el tamaño de fuente del botón */
   }
 }
