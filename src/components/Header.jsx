@@ -13,10 +13,6 @@ const Header = () => {
     window.open(googleMapsUrl, '_blank', 'width=800,height=600');
   };
 
-  const handleEmergencyClick = () => {
-    window.open('tel:123456789');
-  };
-
   const links = [
     {
       name: 'Clínica VitalCare',
@@ -26,7 +22,7 @@ const Header = () => {
     {
       name: 'Emergencia',
       imgSrc: '/call.png',
-      onClick: handleEmergencyClick
+      href: 'tel:123456789'
     },
     {
       name: 'Horarios',
