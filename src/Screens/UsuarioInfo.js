@@ -11,7 +11,7 @@ const UsuarioInfo = ({ setUserName }) => {
     const token = localStorage.getItem("token");
     if (token) {
       const decodedToken = jwtDecode(token);
-      const userDni = decodedToken.uid;
+      const userDni = decodedToken.dni;
       setDni(userDni);
       fetchUserData(userDni);
     }
@@ -25,13 +25,19 @@ const UsuarioInfo = ({ setUserName }) => {
     }
   };
 
+  const token = localStorage.getItem('token');
+  if (!token) {
+    throw new Error('Token not found');
+  }
+
   const fetchUserData = async (dni) => {
     try {
-      const response = await fetch(`http://localhost:8080/api/user/${dni}`);
+      const response = await fetch(`http://localhost:8080/api/user/${dni}`,{ method: 'GET',headers:{'token':token} });
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
       const data = await response.json();
+      console.log(dni);
       setFormData(data);
       setOriginalData(data);
       setUserName(data.name);
@@ -46,6 +52,7 @@ const UsuarioInfo = ({ setUserName }) => {
       const response = await fetch(`http://localhost:8080/api/user/${dni}`, {
         method: "PUT",
         headers: {
+          'token':token,
           "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),

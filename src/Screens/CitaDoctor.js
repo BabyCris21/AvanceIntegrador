@@ -1,20 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import {jwtDecode} from 'jwt-decode';
+import { jwtDecode } from 'jwt-decode';
 
 const CitaDoctor = () => {
   const [citas, setCitas] = useState([]);
-  const [dniDoctor, setDoctorUID] = useState('null'); 
+  const [dniDoctor, setDoctorUID] = useState('null');
 
   useEffect(() => {
-    const obtenerCitas = async (token, uid) => {
+    const obtenerCitas = async (token, dni) => {
       try {
-        const response = await axios.get(`http://localhost:8080/api/appointment/doctor/${uid}`, {
+        console.log('Enviando solicitud al backend con token:', token, 'y DNI:', dni);
+        const response = await axios.get(`http://localhost:8080/api/appointment/doctor/${dni}`, {
           headers: {
-            Authorization: `Bearer ${token}`
+            'token': token,
           }
         });
-        setCitas(response.data);
+        const formattedCitas = response.data.map(cita => ({
+          ...cita,
+          date: formatDate(cita.date)
+        }));
+        setCitas(formattedCitas);
       } catch (error) {
         console.error('Error al obtener citas:', error);
       }
@@ -26,10 +31,10 @@ const CitaDoctor = () => {
       try {
         const decodedToken = jwtDecode(jwtToken);
         console.log('Token decodificado:', decodedToken);
-        if (decodedToken.uid) {
-          setDoctorUID(decodedToken.uid); // Almacena el DNI del doctor desde el token decodificado
-          console.log('UID del doctor:', decodedToken.uid);
-          obtenerCitas(jwtToken, decodedToken.uid); // Llama a obtenerCitas con el token
+        if (decodedToken.dni) {
+          setDoctorUID(decodedToken.dni); // Almacena el DNI del doctor desde el token decodificado
+          console.log('UID del doctor:', decodedToken.dni);
+          obtenerCitas(jwtToken, decodedToken.dni); // Llama a obtenerCitas con el token
         } else {
           console.error('El token decodificado no contiene el campo uid.');
         }
@@ -40,6 +45,14 @@ const CitaDoctor = () => {
       console.error('No se encontró el JWT token en el localStorage.');
     }
   }, []);
+
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  };
 
   const handleDelete = async (id) => {
     try {
@@ -70,7 +83,7 @@ const CitaDoctor = () => {
             <th>Hora</th>
             <th>Doctor</th>
             <th>Estado</th>
-            <th>Acciones</th>
+            <th>¿Ya completó su cita?</th>
           </tr>
         </thead>
         <tbody>
@@ -82,8 +95,11 @@ const CitaDoctor = () => {
               <td>{cita.doctor}</td>
               <td>{cita.status ? 'Pendiente' : 'Completado'}</td>
               <td>
-                <button onClick={() => handleEdit(cita.id)}>Editar</button>
-                <button onClick={() => handleDelete(cita.id)}>Eliminar</button>
+                {!cita.status && (
+                  <button onClick={() => handleDelete(cita.id)} disabled={cita.status===false}>
+                    Aceptar
+                  </button>
+                )}
               </td>
             </tr>
           ))}

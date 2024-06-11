@@ -3,6 +3,7 @@ import './Perfil.css'; // Importa tus estilos CSS
 import UsuarioInfo from './UsuarioInfo'; 
 import ContactNews from './ContactNews'; // Importa el componente ContactNews
 import ListaCita from './ListaCita'; // Importa el componente ListaCita
+import CitaDoctor from './CitaDoctor';
 
 
 // Componente de la sección del panel de control

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {jwtDecode} from "jwt-decode";
+import { jwtDecode } from "jwt-decode";
 import UserModel from "../models/userModels";
 
 const DoctorInfo = ({ setUserName }) => {
@@ -11,7 +11,7 @@ const DoctorInfo = ({ setUserName }) => {
     const token = localStorage.getItem("token");
     if (token) {
       const decodedToken = jwtDecode(token);
-      const userDni = decodedToken.uid;
+      const userDni = decodedToken.dni;
       setDni(userDni);
       fetchUserData(userDni);
     }
@@ -29,7 +29,7 @@ const DoctorInfo = ({ setUserName }) => {
     try {
       const response = await fetch(`http://localhost:8080/api/doctor/${dni}`);
       if (!response.ok) {
-        throw new Error("Network response was not ok");
+        throw new Error("La respuesta de la red no fue correcta");
       }
       const data = await response.json();
       data.bornDate = formatDate(data.bornDate); // Formatea la fecha
@@ -37,44 +37,47 @@ const DoctorInfo = ({ setUserName }) => {
       setOriginalData(data);
       setUserName(data.name);
     } catch (error) {
-      console.error("Error fetching user data:", error);
+      console.error("Error al obtener los datos del usuario:", error);
     }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { role, ...dataToSubmit } = formData; // Excluir el campo "role"
-    // No formatear la fecha al formato ISO
-
     try {
+      const modifiedFormData = {
+        ...formData,
+        specialty: formData.specialty.map(spec => spec.uid).filter(uid => uid !== undefined) // Filtrar los uids undefined
+      };
+      console.log("Datos a enviar en la solicitud PUT:", modifiedFormData);
+      
       const response = await fetch(`http://localhost:8080/api/doctor/${dni}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(dataToSubmit),
+        body: JSON.stringify(modifiedFormData),
       });
       if (!response.ok) {
-        throw new Error("Network response was not ok");
+        throw new Error("La respuesta de la red no fue correcta");
       }
       const updatedData = await response.json();
-      updatedData.bornDate = formatDate(updatedData.bornDate); // Formatea la fecha
+      updatedData.bornDate = formatDate(updatedData.bornDate);
       setFormData(updatedData);
       setOriginalData(updatedData);
       setUserName(updatedData.name);
       window.alert("Datos actualizados correctamente.");
     } catch (error) {
-      console.error("Error updating user data:", error);
+      console.error("Error al actualizar los datos del usuario:", error);
       window.alert(`Error al actualizar los datos: ${error.message}`);
       setFormData(originalData);
     }
   };
-
+  
   const formatDate = (dateString) => {
     const date = new Date(dateString);
     const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
     return `${year}-${month}-${day}`;
   };
 

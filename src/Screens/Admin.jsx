@@ -9,10 +9,15 @@ const Admin = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
 
+  const token = localStorage.getItem('token');
+        if (!token) {
+          throw new Error('Token not found');
+        }
+
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://localhost:8080/api/user', { method: 'GET' });
+        const response = await fetch('http://localhost:8080/api/user', { method: 'GET',headers:{'token':token} });
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
@@ -45,7 +50,7 @@ const Admin = () => {
 
   const handleDelete = async (dni) => {
     try {
-      const response = await fetch(`http://localhost:8080/api/user/${dni}`, { method: 'DELETE' });
+      const response = await fetch(`http://localhost:8080/api/user/${dni}`, { method: 'DELETE',headers:{'token':token} });
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }

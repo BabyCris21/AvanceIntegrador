@@ -7,9 +7,9 @@ const ListaCita = () => {
   const [usuarioUID, setUsuarioUID] = useState(null);
 
   useEffect(() => {
-    const obtenerCitas = async (token, uid) => {
+    const obtenerCitas = async (token, dni) => {
       try {
-        const response = await axios.get(`http://localhost:8080/api/appointment/${uid}`, {
+        const response = await axios.get(`http://localhost:8080/api/appointment/${dni}`, {
           headers: {
             Authorization: `Bearer ${token}`
           }
@@ -26,10 +26,10 @@ const ListaCita = () => {
       try {
         const decodedToken = jwtDecode(jwtToken);
         console.log('Token decodificado:', decodedToken);
-        if (decodedToken.uid) {
-          setUsuarioUID(decodedToken.uid);
-          console.log('UID del usuario:', decodedToken.uid);
-          obtenerCitas(jwtToken, decodedToken.uid);
+        if (decodedToken.dni) {
+          setUsuarioUID(decodedToken.dni);
+          console.log('UID del usuario:', decodedToken.dni);
+          obtenerCitas(jwtToken, decodedToken.dni);
         } else {
           console.error('El token decodificado no contiene el campo uid.');
         }
@@ -86,7 +86,7 @@ const ListaCita = () => {
               <td>{cita.doctor}</td>
               <td>{cita.status ? 'Pendiente' : 'Completada'}</td>
               <td>
-                <button onClick={() => handleDelete(cita.id)}>Eliminar</button>
+                <button onClick={() => handleDelete(cita.id)}>Confirmar</button>
               </td>
             </tr>
           ))}

@@ -24,9 +24,9 @@ const ReservaCita = () => {
       try {
         const decodedToken = jwtDecode(jwtToken);
         console.log('Token decodificado:', decodedToken);
-        if (decodedToken.uid) {
-          setUsuarioUID(decodedToken.uid);
-          console.log('UID del usuario:', decodedToken.uid);
+        if (decodedToken.dni) {
+          setUsuarioUID(decodedToken.dni);
+          console.log('UID del usuario:', decodedToken.dni);
         } else {
           console.error('El token decodificado no contiene el campo uid.');
         }
@@ -63,7 +63,7 @@ const ReservaCita = () => {
         if (response.ok) {
           const data = await response.json();
           const doctoresFiltrados = data.filter(doctor =>
-            doctor.specialty.some(spec => spec.uid === especialidadSeleccionada)
+            doctor.specialty.some(spec => spec.dni === especialidadSeleccionada)
           );
           setDoctores(doctoresFiltrados);
         } else {
