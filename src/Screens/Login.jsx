@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom"; // Importa Link y useNavigate desde react-router-dom
+import { Link, useNavigate } from "react-router-dom";
 import "./Login.css";
 
 const Login = () => {
     const [dni, setDni] = useState('');
     const [password, setPassword] = useState('');
-    const navigate = useNavigate(); // Hook para redireccionar
+    const navigate = useNavigate();
 
     const handleDniChange = (e) => {
         setDni(e.target.value);
@@ -23,7 +23,7 @@ const Login = () => {
         console.log('Datos enviados:', JSON.stringify(dataToSend, null, 2));
 
         try {
-            const response = await fetch('http://localhost:8080/api/auth/loginUser', {
+            const response = await fetch('https://app-appointment-0eb0460a848b.herokuapp.com/api/auth/loginUser', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -33,11 +33,11 @@ const Login = () => {
 
             const result = await response.json();
             if (response.ok) {
-                localStorage.setItem('token', result.token); // Guardar el token en localStorage
+                localStorage.setItem('token', result.token);
                 alert('Inicio de sesión exitoso');
-                navigate('/home'); // Asegúrate de que esta ruta exista en tu aplicación
+                navigate('/home');
             } else {
-                alert(`Error: ${result.message}`);
+                alert('Error: ${result.message}');
                 console.error('Error:', result);
             }
         } catch (error) {
@@ -64,13 +64,6 @@ const Login = () => {
                 </form>
                 <div className="forgot-password">
                 </div>
-                {/* <div className="social-login">
-                    <p>O inicia sesión con:</p>
-                    <div className="social-buttons">
-                        <button className="google-button">Google</button>
-                        <button className="facebook-button">Facebook</button>
-                    </div>
-                </div> */}
             </div>
         </div>
     );

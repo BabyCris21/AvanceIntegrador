@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { jwtDecode } from "jwt-decode"; // Importar correctamente jwtDecode
-import UserModel from "../models/userModels"; // Asegúrate de que la ruta sea correcta
+import { jwtDecode } from "jwt-decode";
+import UserModel from "../models/userModels";
 
 const UsuarioInfo = ({ setUserName }) => {
   const [formData, setFormData] = useState(UserModel);
@@ -31,33 +31,34 @@ const UsuarioInfo = ({ setUserName }) => {
         throw new Error("Network response was not ok");
       }
       const data = await response.json();
-      setFormData({
-        dni: data.dni,
-        name: data.name,
-        lastname: data.lastname,
-        bornDate: data.bornDate,
-        phone: data.phone,
-        email: data.email,
-        address: data.address,
-        gender: data.gender,
-      });
-      setUserName(data.name); // Actualizar el nombre del usuario
+      setFormData(data);
+      setUserName(data.name);
     } catch (error) {
       console.error("Error fetching user data:", error);
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    fetchUserData(dni);
-  };
-
-  const formatDate = (dateString) => {
-    const date = new Date(dateString);
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const day = String(date.getDate()).padStart(2, '0');
-    return `${year}-${month}-${day}`;
+    try {
+      const response = await fetch(`http://localhost:8080/api/user/${dni}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      const updatedData = await response.json();
+      setFormData(updatedData);
+      setUserName(updatedData.name);
+      window.alert("Datos actualizados correctamente.");
+    } catch (error) {
+      console.error("Error updating user data:", error);
+      window.alert(`Error al actualizar los datos: ${error.message}`);
+    }
   };
 
   return (
@@ -65,7 +66,7 @@ const UsuarioInfo = ({ setUserName }) => {
       <h3>Información de Usuario</h3>
       <form onSubmit={handleSubmit}>
         <label htmlFor="dni">DNI:</label>
-        <input type="text" id="dni" name="dni" value={formData.dni} readOnly />
+        <input type="text" id="dni" name="dni" value={formData.dni} disabled />
 
         <label htmlFor="name">Nombre:</label>
         <input
@@ -92,7 +93,7 @@ const UsuarioInfo = ({ setUserName }) => {
           type="text"
           id="bornDate"
           name="bornDate"
-          value={formatDate(formData.bornDate)}
+          value={formData.bornDate}
           onChange={handleChange}
           required
         />
@@ -113,8 +114,7 @@ const UsuarioInfo = ({ setUserName }) => {
           id="email"
           name="email"
           value={formData.email}
-          onChange={handleChange}
-          required
+          disabled
         />
 
         <label htmlFor="address">Dirección:</label>
