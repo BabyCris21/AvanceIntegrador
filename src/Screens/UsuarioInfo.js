@@ -4,6 +4,7 @@ import UserModel from "../models/userModels";
 
 const UsuarioInfo = ({ setUserName }) => {
   const [formData, setFormData] = useState(UserModel);
+  const [originalData, setOriginalData] = useState(UserModel); // Nuevo estado para mantener una copia de respaldo
   const [dni, setDni] = useState("");
 
   useEffect(() => {
@@ -32,6 +33,7 @@ const UsuarioInfo = ({ setUserName }) => {
       }
       const data = await response.json();
       setFormData(data);
+      setOriginalData(data); // Actualizar la copia de respaldo
       setUserName(data.name);
     } catch (error) {
       console.error("Error fetching user data:", error);
@@ -53,14 +55,18 @@ const UsuarioInfo = ({ setUserName }) => {
       }
       const updatedData = await response.json();
       setFormData(updatedData);
+      setOriginalData(updatedData); // Actualizar la copia de respaldo
       setUserName(updatedData.name);
       window.alert("Datos actualizados correctamente.");
+      window.location.reload(); // Recargar la página después de que se muestre la alerta
     } catch (error) {
       console.error("Error updating user data:", error);
       window.alert(`Error al actualizar los datos: ${error.message}`);
+      setFormData(originalData);
     }
   };
-
+  
+  
   return (
     <div className="usuario-form">
       <h3>Información de Usuario</h3>
