@@ -50,7 +50,7 @@ const LoginDoctor = () => {
             <div className="company-photo"></div>
             <div className="login-form">
                 <h1>Iniciar Sesión</h1>
-                <h4>¿No tienes una cuenta? <Link to="/registro">Crea una</Link></h4>
+                <h4>¿No tienes una cuenta? <Link to="/registrodoc">Crea una</Link></h4>
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">
                         <label htmlFor="dni">DNI:</label>

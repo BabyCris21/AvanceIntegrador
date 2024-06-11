@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { jwtDecode } from "jwt-decode"; // Importar correctamente jwtDecode
-import UserModel from "../models/userModels"; // Asegúrate de que la ruta sea correcta
+import { jwtDecode } from "jwt-decode";
+import UserModel from "../models/userModels";
 
 const DoctorInfo = ({ setUserName }) => {
   const [formData, setFormData] = useState(UserModel);
+  const [originalData, setOriginalData] = useState(UserModel); 
   const [dni, setDni] = useState("");
 
   useEffect(() => {
@@ -31,27 +32,39 @@ const DoctorInfo = ({ setUserName }) => {
         throw new Error("Network response was not ok");
       }
       const data = await response.json();
-      setFormData({
-        dni: data.dni,
-        name: data.name,
-        lastname: data.lastname,
-        bornDate: data.bornDate,
-        phone: data.phone,
-        email: data.email,
-        address: data.address,
-        CMP: data.CMP, 
-      });
-      setUserName(data.name); // Actualizar el nombre del usuario
+      setFormData(data);
+      setOriginalData(data); 
+      setUserName(data.name);
     } catch (error) {
       console.error("Error fetching user data:", error);
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    fetchUserData(dni);
+    try {
+      const response = await fetch(`http://localhost:8080/api/doctor/${dni}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      const updatedData = await response.json();
+      setFormData(updatedData);
+      setOriginalData(updatedData); 
+      setUserName(updatedData.name);
+      window.alert("Datos actualizados correctamente.");
+    } catch (error) {
+      console.error("Error updating user data:", error);
+      window.alert(`Error al actualizar los datos: ${error.message}`);
+      setFormData(originalData);
+    }
   };
-
+  
   const formatDate = (dateString) => {
     const date = new Date(dateString);
     const year = date.getFullYear();
@@ -61,11 +74,11 @@ const DoctorInfo = ({ setUserName }) => {
   };
 
   return (
-    <div className="usuario-form">
-      <h3>Información de Usuario</h3>
+    <div className="doctor-form">
+      <h3>Información de Doctor</h3>
       <form onSubmit={handleSubmit}>
         <label htmlFor="dni">DNI:</label>
-        <input type="text" id="dni" name="dni" value={formData.dni} readOnly />
+        <input type="text" id="dni" name="dni" value={formData.dni} disabled />
 
         <label htmlFor="name">Nombre:</label>
         <input
@@ -89,7 +102,7 @@ const DoctorInfo = ({ setUserName }) => {
 
         <label htmlFor="bornDate">Fecha de Nacimiento:</label>
         <input
-          type="text"
+          type="date"
           id="bornDate"
           name="bornDate"
           value={formatDate(formData.bornDate)}
@@ -113,8 +126,7 @@ const DoctorInfo = ({ setUserName }) => {
           id="email"
           name="email"
           value={formData.email}
-          onChange={handleChange}
-          required
+          disabled
         />
 
         <label htmlFor="address">Dirección:</label>

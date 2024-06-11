@@ -17,9 +17,9 @@ const ControlPanelSection = ({ section, onClick }) => {
 const CurrentSectionContent = ({ currentSection, setUserName }) => {
     switch (currentSection) {
         case 'Perfil':
-            return <DoctorInfo setUserName= {setUserName}/>;
+            return <DoctorInfo setUserName={setUserName} />;
         case 'Citas':
-            return <ListaCita/>;
+            return <ListaCita />;
         case 'Archivos':
             return <div><p>Contenido de la sección Archivos</p></div>;
         case 'Recetas':
@@ -61,7 +61,7 @@ const PerfilDoctor = () => {
                     </div>
                     {/* Contenido de la sección */}
                     <div className="section-content">
-                        <CurrentSectionContent currentSection={currentSection} />
+                        <CurrentSectionContent currentSection={currentSection} setUserName={setUserName} />
                     </div>
                 </div>
             </div>
