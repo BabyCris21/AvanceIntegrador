@@ -96,7 +96,11 @@ const CitaDoctor = () => {
               <td>{cita.status ? 'Pendiente' : 'Completado'}</td>
               <td>
                 {!cita.status && (
-                  <button onClick={() => handleDelete(cita.id)} disabled={cita.status===false}>
+                  <button
+                    onClick={() => handleDelete(cita.id)}
+                    disabled={cita.status === false}
+                    className={cita.status === false ? 'disabledButton' : ''}
+                  >
                     Aceptar
                   </button>
                 )}
