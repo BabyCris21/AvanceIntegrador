@@ -1,89 +1,128 @@
 .admin-container {
-    margin: 20px auto; /* Centro el contenedor en la página */
-    width: 70%; /* Establece el ancho del contenedor */
-    background-color: #f9f9f9; /* Color de fondo del contenedor */
-    padding: 20px; /* Añade espacio alrededor del contenido */
-    border-radius: 8px; /* Borde redondeado */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  margin: 20px auto;
+  width: 70%;
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Tabla y celdas */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  margin-bottom: 20px; /* Separación entre tablas */
+}
+
+table, th, td {
+  border: 1px solid #ddd;
+}
+
+th, td {
+  padding: 12px;
+  text-align: center;
+}
+
+th {
+  background-color: #007bff;
+  color: #fff;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+tr:hover {
+  background-color: #ddd;
+}
+
+/* Estilos para los botones */
+button {
+  padding: 8px 16px;
+  margin-right: 5px;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+  background-color: #003366;
+  color: #fff;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.search-input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .search-input {
+      width: 100%;
+      margin-bottom: 10px;
+      font-size: 14px;
   }
-  
-  table {
-    width: 100%;
-    border-collapse: collapse;
+}
+/* Responsivo */
+@media (max-width: 768px) {
+  .admin-container {
+      width: 90%;
+      padding: 10px;
+      text-align: center; /* Centra todo el contenido */
+      align-items: center;
+      display: grid;
   }
-  
+
   table, th, td {
-    border: 1px solid #ddd;
+      width: 100%;
+      align-items: center;
   }
-  
-  th, td {
-    padding: 12px; /* Aumenta el relleno */
-    text-align: center; /* Centra el texto en las celdas */
-  }
-  
+
   th {
-    background-color: #007bff; /* Color de fondo del encabezado */
-    color: #fff; /* Color del texto del encabezado */
+      display: none;
   }
-  
-  tr:nth-child(even) {
-    background-color: #f2f2f2;
+
+  tr {
+      margin-bottom: 10px; /* Añade espacio entre filas */
+      display: flex;
+      flex-direction: column;
+      align-items: center; /* Centra las filas */
+      text-align: center; /* Centra el texto en las filas */
   }
-  
-  tr:hover {
-    background-color: #ddd;
+
+  td {
+      justify-content: center;
+      align-items: center;
+      text-align: center; /* Centra el contenido en las celdas */
+      padding: 10px;
+      width: 100%;
+      box-sizing: border-box;
+      border: none;
+      border-bottom: 1px solid #ddd;
   }
-  
-  /* Estilos para los botones */
-  button1 {
-    padding: 7px 16px; /* Ajusta el tamaño del botón */
-    margin-right: 5px;
-    cursor: pointer;
-    border: none;
-    border-radius: 4px;
-    background-color: #003366;
-    color: #fff;
+
+  td:before {
+      content: attr(data-label);
+      flex: 1;
+      font-weight: bold;
+      text-align: left; /* Alinea el texto del label a la izquierda */
+      padding-right: 10px;
   }
-  button {
-    padding: 8px 16px; /* Ajusta el tamaño del botón */
-    margin-right: 5px;
-    cursor: pointer;
-    border: none;
-    border-radius: 4px;
-    background-color: #003366;
-    color: #fff;
+
+  td:last-child {
+      justify-content: center;
+      gap: 10px;
+      border-bottom: none;
   }
-  
-  button1:hover {
-    background-color: #0056b3;
+
+  td:last-child:before {
+      content: ''; /* Elimina el label de las acciones */
   }
-  
-  button:hover {
-    background-color: #0056b3;
-  }
-  
-  .admin-container table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-  .admin-container th,
-  .admin-container td {
-    border: 1px solid #dddddd;
-    padding: 8px;
-    text-align: left;
-    color: #000000; /* Negro */
-    text-align: center; /* Centrado */
-    
-  }
-  
-  .admin-container th {
-    background-color: #cce5ff; /* Celeste */
-    color: #000000; /* Azul */
-  }
-  
-  .admin-container tr:nth-child(even) {
-    background-color: #ffffff; /* Blanco */
-  }
-  
-  
+}
