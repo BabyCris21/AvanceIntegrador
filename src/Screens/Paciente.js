@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import './Perfil.css';
 
 const RegistroPaciente = () => {
     const [formData, setFormData] = useState({
@@ -41,8 +40,8 @@ const RegistroPaciente = () => {
     };
 
     return (
-        <div className="registro-container">
-            <div className="registro-form">
+        <div className="patient-registration-container">
+            <div className="patient-registration-form">
                 <h1>Registro de Paciente</h1>
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">
@@ -67,12 +66,12 @@ const RegistroPaciente = () => {
                     </div>
                     <div className="form-group">
                         <label htmlFor="gender">Género:</label>
-                        <select id="gender" name="gender" value={formData.gender} onChange={handleInputChange} className="registro-button">
+                        <select id="gender" name="gender" value={formData.gender} onChange={handleInputChange} className="patient-registration-button">
                             <option value="M">Masculino</option>
                             <option value="F">Femenino</option>
                         </select>
                     </div>
-                    <button type="submit" className="registro-button">REGISTRAR PACIENTE</button>
+                    <button type="submit" className="patient-registration-button">REGISTRAR PACIENTE</button>
                 </form>
             </div>
         </div>
