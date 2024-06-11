@@ -1,8 +1,8 @@
 /* Estilos base */
 .registro-container {
-    display: flex;
-    justify-content: space-between;
-    width: 65%;
+    display:grid;
+    justify-content:center;
+    width: 100%;
     margin: 50px auto;
     border: 1px solid #ccc;
     border-radius: 10px;
@@ -32,7 +32,7 @@
 }
 
 .registro-form {
-    width: 50%;
+    width: 100%;
     padding: 20px;
     background-color: white;
     box-sizing: border-box;
@@ -51,6 +51,7 @@
 
 .form-group {
     margin-bottom: 20px;
+    width: 100%;
 }
 
 .form-group label {
@@ -60,7 +61,7 @@
 
 .form-group input,
 .registro-button {
-    width: 100%;
+    width: 30rem; /* Ancho deseado */
     padding: 15px;
     margin-top: 5px;
     border: 1px solid #ccc;
@@ -70,7 +71,7 @@
 }
 
 .registro-form select.registro-button {
-    width: 100%;
+    width: 30rem; /* Ancho deseado */
     padding: 15px;
     margin-top: 5px;
     border: 1px solid #ccc;
