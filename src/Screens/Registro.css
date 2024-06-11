@@ -1,7 +1,7 @@
 /* Estilos base */
 .registro-container {
-    display:grid;
-    justify-content:center;
+    display: grid;
+    justify-content: center;
     width: 100%;
     margin: 50px auto;
     border: 1px solid #ccc;
@@ -11,8 +11,8 @@
 
 .company-photo, .company-photo-doctor {
     display: flex;
-    justify-content: center; /* Centrar horizontalmente */
-    align-items: center; /* Centrar verticalmente */
+    justify-content: center;
+    align-items: center;
     background-size: cover;
     background-position: center;
 }
@@ -61,7 +61,7 @@
 
 .form-group input,
 .registro-button {
-    width: 30rem; /* Ancho deseado */
+    width: 100%; /* Ajustado para pantallas pequeñas */
     padding: 15px;
     margin-top: 5px;
     border: 1px solid #ccc;
@@ -71,7 +71,7 @@
 }
 
 .registro-form select.registro-button {
-    width: 30rem; /* Ancho deseado */
+    width: 100%; /* Ajustado para pantallas pequeñas */
     padding: 15px;
     margin-top: 5px;
     border: 1px solid #ccc;
@@ -88,6 +88,7 @@
 }
 
 .registro-button {
+    width: 100%; /* Ajustado para pantallas pequeñas */
     padding: 15px;
     background-color: #ffb30f;
     color: white;
@@ -128,7 +129,7 @@
 }
 
 .password-input input {
-    width: calc(100% - 100px); /* Ancho del input menos el botón */
+    width: calc(100% - 100px);
     padding: 15px;
     margin-top: 5px;
     border: 1px solid #ccc;
@@ -141,7 +142,7 @@
     position: absolute;
     top: 0;
     right: 0;
-    width: 100px; /* Ancho del botón */
+    width: 100px;
     height: 100%;
     padding: 15px;
     border: none;
@@ -158,6 +159,7 @@
     .registro-container {
         width: 100%;
         flex-direction: column;
+        padding: 0px; /* Reduce padding para pantallas pequeñas */
     }
 
     .company-photo, .company-photo-doctor {
@@ -166,6 +168,7 @@
 
     .registro-form {
         width: 100%;
+        padding: 10px; /* Reduce padding para pantallas pequeñas */
     }
 
     .form-group input,
