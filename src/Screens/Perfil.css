@@ -56,7 +56,7 @@
 
 .dashboard-reserva button {
   display: block;
-  width: 100px;
+  width: 90%;
   padding: 10px;
   height: 70px;
   margin-bottom: 10px;
@@ -139,6 +139,50 @@
 .usuario-form button:hover {
   background-color: #0056b3;
 }
+
+
+/*Estilos de registro de Paciente*/
+
+/* UsuarioInfo form styles */
+.patient-form {
+  width: 600px;
+  margin: 0 auto;
+}
+
+.patient-form h3 {
+  text-align: center;
+}
+
+.patient-form form {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Divide el formulario en dos columnas */
+  grid-gap: 10px; /* Espacio entre elementos del formulario */
+}
+
+.patient-form label {
+  margin-bottom: 5px;
+}
+
+.patient-form input {
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #7809a4;
+}
+
+.patient-form button {
+  grid-column: 1 / -1; /* Ocupa todas las columnas */
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.patient-form button:hover {
+  background-color: #0056b3;
+}
+
 
 /* Estilos responsivos */
 @media (max-width: 768px) {

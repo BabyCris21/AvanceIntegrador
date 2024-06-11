@@ -3,6 +3,7 @@ import './Perfil.css'; // Importa tus estilos CSS
 import SeleccionarCita from './SeleccionarCita'; // Importa el componente UsuarioInfo
 import Paciente from './Paciente'; // Importa el componente
 import ContactNews from './ContactNews'; // Importa el componente ContactNews
+import ListaPaciente from './ListaPaciente';
 
 // Componente de la sección del panel de control
 const ControlPanelSection = ({ section, onClick }) => {
@@ -21,7 +22,7 @@ const CurrentSectionContent = ({ currentSection, setUserName }) => {
         case 'Detalles':
             return <Paciente/>;
         case 'Finalizar':
-            return <div><p>Contenido de la sección Archivos</p></div>;
+            return <ListaPaciente/>;
         default:
             return null;
     }
@@ -44,13 +45,13 @@ const Perfil = () => {
                     <span className="user-greeting">Hola, {userName}</span>
                 </div>
                 <div className="profile-content">
-                    {/* Dashboard */}
+
                     <div className="dashboard-reserva">
                         <ControlPanelSection section="Elige fecha y hora" onClick={handleSectionChange} />
                         <ControlPanelSection section="Detalles" onClick={handleSectionChange} />
                         <ControlPanelSection section="Finalizar" onClick={handleSectionChange} />
                     </div>
-                    {/* Contenido de la sección */}
+
                     <div className="section-container">
                         <div className="section-content">
                             <CurrentSectionContent currentSection={currentSection} setUserName={setUserName} />
