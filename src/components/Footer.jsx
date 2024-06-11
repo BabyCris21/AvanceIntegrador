@@ -6,7 +6,7 @@ const Footer = () => {
     <footer className="footer">
       <div className="footer-columns">
         <div className="footer-column">
-          <h4>------------------------------------</h4>
+          <h4>VITAL CARE</h4>
           <p>Liderando el camino en medicina<br></br>Excelencia, atención confiable</p>
         </div>
         <div className="footer-column">
