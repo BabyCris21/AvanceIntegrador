@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import {jwtDecode} from 'jwt-decode'; // Importa la función jwtDecode
+import { jwtDecode } from 'jwt-decode';
 
 const ListaCita = () => {
   const [citas, setCitas] = useState([]);
-  const [usuarioUID, setUsuarioUID] = useState(null); // Estado para almacenar el UID del usuario
+  const [usuarioUID, setUsuarioUID] = useState(null);
 
   useEffect(() => {
     const obtenerCitas = async (token, uid) => {
@@ -29,7 +29,7 @@ const ListaCita = () => {
         if (decodedToken.uid) {
           setUsuarioUID(decodedToken.uid);
           console.log('UID del usuario:', decodedToken.uid);
-          obtenerCitas(jwtToken, decodedToken.uid); // Llama a obtenerCitas con el token y el UID del usuario
+          obtenerCitas(jwtToken, decodedToken.uid);
         } else {
           console.error('El token decodificado no contiene el campo uid.');
         }
@@ -49,13 +49,7 @@ const ListaCita = () => {
     return `${year}-${month}-${day}`;
   };
 
-  const handleEdit = (id) => {
-    // Lógica para editar la cita con el ID especificado
-    console.log('Editar cita:', id);
-  };
-
   const handleDelete = async (id) => {
-    // Lógica para eliminar la cita con el ID especificado
     try {
       await axios.delete(`http://localhost:8080/api/appointment/${id}`, {
         headers: {
@@ -92,7 +86,6 @@ const ListaCita = () => {
               <td>{cita.doctor}</td>
               <td>{cita.status ? 'Pendiente' : 'Completada'}</td>
               <td>
-                <button onClick={() => handleEdit(cita.id)}>Editar</button>
                 <button onClick={() => handleDelete(cita.id)}>Eliminar</button>
               </td>
             </tr>

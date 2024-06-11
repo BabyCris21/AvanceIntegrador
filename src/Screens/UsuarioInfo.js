@@ -4,7 +4,7 @@ import UserModel from "../models/userModels";
 
 const UsuarioInfo = ({ setUserName }) => {
   const [formData, setFormData] = useState(UserModel);
-  const [originalData, setOriginalData] = useState(UserModel); // Nuevo estado para mantener una copia de respaldo
+  const [originalData, setOriginalData] = useState(UserModel);
   const [dni, setDni] = useState("");
 
   useEffect(() => {
@@ -33,7 +33,7 @@ const UsuarioInfo = ({ setUserName }) => {
       }
       const data = await response.json();
       setFormData(data);
-      setOriginalData(data); // Actualizar la copia de respaldo
+      setOriginalData(data);
       setUserName(data.name);
     } catch (error) {
       console.error("Error fetching user data:", error);
@@ -55,18 +55,25 @@ const UsuarioInfo = ({ setUserName }) => {
       }
       const updatedData = await response.json();
       setFormData(updatedData);
-      setOriginalData(updatedData); // Actualizar la copia de respaldo
+      setOriginalData(updatedData);
       setUserName(updatedData.name);
       window.alert("Datos actualizados correctamente.");
-      window.location.reload(); // Recargar la página después de que se muestre la alerta
+      window.location.reload();
     } catch (error) {
       console.error("Error updating user data:", error);
       window.alert(`Error al actualizar los datos: ${error.message}`);
       setFormData(originalData);
     }
   };
-  
-  
+
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+    return `${year}-${month}-${day}`;
+  };
+
   return (
     <div className="usuario-form">
       <h3>Información de Usuario</h3>
@@ -96,10 +103,10 @@ const UsuarioInfo = ({ setUserName }) => {
 
         <label htmlFor="bornDate">Fecha de Nacimiento:</label>
         <input
-          type="text"
+          type="date"
           id="bornDate"
           name="bornDate"
-          value={formData.bornDate}
+          value={formatDate(formData.bornDate)}
           onChange={handleChange}
           required
         />

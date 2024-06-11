@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { jwtDecode } from "jwt-decode";
+import {jwtDecode} from "jwt-decode";
 import UserModel from "../models/userModels";
 
 const DoctorInfo = ({ setUserName }) => {
   const [formData, setFormData] = useState(UserModel);
-  const [originalData, setOriginalData] = useState(UserModel); 
+  const [originalData, setOriginalData] = useState(UserModel);
   const [dni, setDni] = useState("");
 
   useEffect(() => {
@@ -32,8 +32,9 @@ const DoctorInfo = ({ setUserName }) => {
         throw new Error("Network response was not ok");
       }
       const data = await response.json();
+      data.bornDate = formatDate(data.bornDate); // Formatea la fecha
       setFormData(data);
-      setOriginalData(data); 
+      setOriginalData(data);
       setUserName(data.name);
     } catch (error) {
       console.error("Error fetching user data:", error);
@@ -42,20 +43,24 @@ const DoctorInfo = ({ setUserName }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const { role, ...dataToSubmit } = formData; // Excluir el campo "role"
+    // No formatear la fecha al formato ISO
+
     try {
       const response = await fetch(`http://localhost:8080/api/doctor/${dni}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(dataToSubmit),
       });
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
       const updatedData = await response.json();
+      updatedData.bornDate = formatDate(updatedData.bornDate); // Formatea la fecha
       setFormData(updatedData);
-      setOriginalData(updatedData); 
+      setOriginalData(updatedData);
       setUserName(updatedData.name);
       window.alert("Datos actualizados correctamente.");
     } catch (error) {
@@ -64,7 +69,7 @@ const DoctorInfo = ({ setUserName }) => {
       setFormData(originalData);
     }
   };
-  
+
   const formatDate = (dateString) => {
     const date = new Date(dateString);
     const year = date.getFullYear();
@@ -105,7 +110,7 @@ const DoctorInfo = ({ setUserName }) => {
           type="date"
           id="bornDate"
           name="bornDate"
-          value={formatDate(formData.bornDate)}
+          value={formData.bornDate}
           onChange={handleChange}
           required
         />

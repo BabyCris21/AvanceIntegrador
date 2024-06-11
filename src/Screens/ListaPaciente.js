@@ -80,7 +80,6 @@ const ListaPaciente = () => {
               <td>{paciente.phone}</td>
               <td>{paciente.gender === 'M' ? 'Masculino' : 'Femenino'}</td>
               <td>
-                <button onClick={() => handleEdit(paciente.dni)}>Editar</button>
                 <button onClick={() => handleDelete(paciente.dni)}>Eliminar</button>
               </td>
             </tr>
