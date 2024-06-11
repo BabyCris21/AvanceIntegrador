@@ -1,42 +1,59 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f9f9f9;
-    margin: 0;
-    padding: 0;
-}
-
-.home-top-section {
-    background-image: url('/public/doctor.jpeg');
-    background-size: cover;
-    background-position: center bottom;
-    height: 600px;
+.contacto-section {
     display: flex;
-    align-items: center;
+    flex-wrap: wrap;
     justify-content: center;
-    padding: 0 20px;
-    position: relative;
-}
-.home-container {
-    padding: 0 0px;
+    align-items: center;
+    padding: 20px;
 }
 
-.home-section-title {
-    color: #00aaff;
-    font-size: 1.2rem;
-    text-align: center;
-    margin-top: 20px;
+.contact-map {
+    flex: 1 1 600px;
+    margin: 10px;
 }
 
-.home-main-title {
-    color: #003366;
-    font-size: 2rem;
-    text-align: center;
-}
-
-.home-description {
-    color: #666;
-    font-size: 1rem;
-    text-align: center;
-    max-width: 800px;
+.contacto-info {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Dos columnas */
+    grid-auto-rows: auto;
+    justify-content: center;
+    align-items: center;
+    max-width: 1200px;
     margin: 10px auto;
+    gap: 20px; /* Espacio entre tarjetas */
 }
+
+.contacto-card {
+    background-color: #e8f0fe;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.contacto-card h3 {
+    margin-top: 0;
+    color: #003366;
+}
+
+.contacto-card p {
+    margin: 5px 0;
+    color: #666;
+}
+@media screen and (max-width: 768px) {
+    .contacto-section {
+      grid-template-columns: 1fr;
+    }
+  
+    .contact-map {
+      grid-column: 1;
+    }
+    .contact-map iframe {
+        width: 100%; /* Utilizar el ancho completo del contenedor */
+        height: 200px; /* Altura personalizable */
+    }
+  
+    .contacto-info {
+      grid-template-columns: 1fr;
+    }
+  }
