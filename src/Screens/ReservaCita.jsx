@@ -45,7 +45,7 @@ const Perfil = () => {
                 </div>
                 <div className="profile-content">
                     {/* Dashboard */}
-                    <div className="dashboard">
+                    <div className="dashboard-reserva">
                         <ControlPanelSection section="Elige fecha y hora" onClick={handleSectionChange} />
                         <ControlPanelSection section="Detalles" onClick={handleSectionChange} />
                         <ControlPanelSection section="Finalizar" onClick={handleSectionChange} />

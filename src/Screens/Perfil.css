@@ -40,14 +40,23 @@
   display: flex;
 }
 
-.dashboard {
-  width: 200px;
-  margin-right: 20px;
-}
 
 .dashboard button {
   display: block;
   width: 100%;
+  padding: 10px;
+  height: 70px;
+  margin-bottom: 10px;
+  background-color: #f0f0f0;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.dashboard-reserva button {
+  display: block;
+  width: 100px;
   padding: 10px;
   height: 70px;
   margin-bottom: 10px;
@@ -69,6 +78,11 @@
   padding: 20px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
+
+.section-container {
+  width: 100%;
+}
+
 
 .dashboard-button {
   background-color: #007bff;
