@@ -9,15 +9,7 @@ const Footer = () => {
           <h4>VITAL CARE</h4>
           <p>Liderando el camino en medicina<br></br>Excelencia, atención confiable</p>
         </div>
-        <div className="footer-column">
-          <h4>Enlaces Relevantes</h4>
-          <ul>
-            <li>Cita</li>
-            <li>Doctores</li>
-            <li>Servicios</li>
-            <li>Nosotros</li>
-          </ul>
-        </div>
+
         <div className="footer-column">
           <h4>Contáctanos</h4>
           <ul>

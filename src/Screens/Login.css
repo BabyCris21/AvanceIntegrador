@@ -25,7 +25,15 @@
     justify-content: center; /* Centrar horizontalmente */
     align-items: center; /* Centrar verticalmente */
 }
-
+.compan-photo {
+    width: 25px;
+    height: 25px;
+    padding: 300px;
+    background-image: url('/public/logindoc.jpg');
+    background-size: cover;
+    justify-content: center; /* Centrar horizontalmente */
+    align-items: center; /* Centrar verticalmente */
+}
 .login-form {
     flex: 1; /* Toma el 50% restante del ancho del container */
     padding: 20px;
@@ -133,6 +141,9 @@
     }
 
     .company-photo {
+        display: none; /* Oculta la foto en pantallas pequeñas */
+    }
+    .compan-photo {
         display: none; /* Oculta la foto en pantallas pequeñas */
     }
 

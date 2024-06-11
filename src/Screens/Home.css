@@ -120,6 +120,7 @@ body {
   .home-image-banner img {
     width: 100%;
     max-width: 1200px;
+    height: 300px;
     display: block;
     margin: 20px auto;
   }
