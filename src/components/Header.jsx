@@ -17,7 +17,7 @@ const Header = () => {
     {
       name: 'Clínica VitalCare',
       imgSrc: '/clinic.png',
-      href: '/clinica'
+      href: '/home'
     },
     {
       name: 'Emergencia',
@@ -27,7 +27,7 @@ const Header = () => {
     {
       name: 'Horarios',
       imgSrc: '/time.png',
-      href: '/horarios'
+      href: '/contact'
     },
     {
       imgSrc: '/user.png',

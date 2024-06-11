@@ -101,7 +101,6 @@ const Home = () => {
         <h2 className="home-section-title">BIENVENIDO A</h2>
         <h1 className="home-main-title">Un gran lugar para recibir atención</h1>
         <p className="home-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque placerat scelerisque tortor ornare ornare. Convallis felis vitae tortor augue. Velit nascetur proin massa in. Consequat faucibus porttitor enim et.</p>
-        <button className="home-learn-more-button">Leer más</button>
         <div className="home-image-banner">
           <img src="Captura.jpg" alt="Equipo de médicos" />
         </div>
@@ -114,7 +113,7 @@ const Home = () => {
           <button className={`home-service-button ${selectedOption === "Test de ADN" ? "selected-section" : ""}`} onClick={() => handleOptionClick("Test de ADN")}>Test de ADN</button>
           <button className={`home-service-button ${selectedOption === "Banco de Sangre" ? "selected-section" : ""}`} onClick={() => handleOptionClick("Banco de Sangre")}>Banco de Sangre</button>
 
-          <button className="home-view-all-button">Ver todo</button>
+          
         </div>
 
         {selectedOption && (
