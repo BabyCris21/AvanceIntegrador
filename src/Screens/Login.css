@@ -37,6 +37,7 @@
 .login-form h1 {
     color: black;
     margin-top: 0;
+    text-align: left; /* Alinea el texto hacia la izquierda */
 }
 
 .login-form h4{

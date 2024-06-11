@@ -6,6 +6,7 @@ const Admin = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -55,6 +56,16 @@ const Admin = () => {
     }
   };
 
+  const handleSearch = (event) => {
+    setSearchTerm(event.target.value);
+  };
+
+  const filteredData = data.filter(item => 
+    item.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
+    item.lastname.toLowerCase().includes(searchTerm.toLowerCase()) || 
+    item.dni.toString().includes(searchTerm)
+  );
+
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -65,8 +76,15 @@ const Admin = () => {
 
   return (
     <div className="admin-page">
-      <div className="admin-container"> 
+      <div className="admin-container">
         <h2>Admin Panel</h2>
+        <input 
+          type="text" 
+          placeholder="Buscar por nombre, apellido o DNI" 
+          value={searchTerm} 
+          onChange={handleSearch} 
+          className="search-input"
+        />
         <table>
           <thead>
             <tr>
@@ -80,15 +98,15 @@ const Admin = () => {
             </tr>
           </thead>
           <tbody>
-            {data.map(item => (
+            {filteredData.map(item => (
               <tr key={item.id}>
-                <td>{item.dni}</td>
-                <td>{item.name}</td>
-                <td>{item.lastname}</td>
-                <td>{item.bornDate}</td>
-                <td>{item.phone}</td>
-                <td>{item.gender}</td>
-                <td>
+                <td data-label="DNI">{item.dni}</td>
+                <td data-label="Nombres">{item.name}</td>
+                <td data-label="Apellidos">{item.lastname}</td>
+                <td data-label="Fecha de nacimiento">{item.bornDate}</td>
+                <td data-label="Teléfono">{item.phone}</td>
+                <td data-label="Género">{item.gender}</td>
+                <td data-label="Acciones">
                   <button onClick={() => handleEdit(item)}>Editar</button>
                   <button onClick={() => handleDelete(item.dni)}>Eliminar</button>
                 </td>
