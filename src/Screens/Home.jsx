@@ -100,9 +100,9 @@ const Home = () => {
       <section className="home-welcome-section">
         <h2 className="home-section-title">BIENVENIDO A</h2>
         <h1 className="home-main-title">Un gran lugar para recibir atención</h1>
-        <p className="home-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque placerat scelerisque tortor ornare ornare. Convallis felis vitae tortor augue. Velit nascetur proin massa in. Consequat faucibus porttitor enim et.</p>
+        <p className="home-description">En la Clínica VITAL CARE, tú eres nuestra prioridad número uno. Nos esforzamos por brindarte una experiencia de atención centrada en el paciente en cada visita.</p>
         <div className="home-image-banner">
-          <img src="Captura.jpg" alt="Equipo de médicos" />
+          <img src="Captura1.jpeg" alt="Equipo de médicos" />
         </div>
       </section>
 

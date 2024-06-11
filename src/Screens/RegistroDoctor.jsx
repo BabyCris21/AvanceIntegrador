@@ -88,7 +88,6 @@ const Registro = () => {
 
     return (
         <div className="registro-container">
-            <div className="company-photo-doctor"></div>
             <div className="registro-form">
                 <h1>Registro</h1>
                 <h4>¿Ya tienes una cuenta? <Link to="/login">Inicia sesión</Link></h4>

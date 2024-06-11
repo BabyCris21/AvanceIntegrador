@@ -47,7 +47,7 @@ const LoginDoctor = () => {
 
     return (
         <div className="login-container">
-            <div className="company-photo"></div>
+            <div className="compan-photo"></div>
             <div className="login-form">
                 <h1>Iniciar Sesión</h1>
                 <h4>¿No tienes una cuenta? <Link to="/registrodoc">Crea una</Link></h4>
@@ -62,9 +62,7 @@ const LoginDoctor = () => {
                     </div>
                     <button type="submit" className="login-button">INICIAR SESION</button>
                 </form>
-                <div className="forgot-password">
-                    <a>¿Olvidaste tu contraseña?</a>
-                </div>
+             
             </div>
         </div>
     );
