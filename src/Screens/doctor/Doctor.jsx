@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './Admin.css';
-import ContactNews from './ContactNews'; // Importa el componente ContactNews
+import '../admin/Admin.css';
+import ContactNews from '../sliders/ContactNews'; // Importa el componente ContactNews
 
 const Doctor = () => {
   const [data, setData] = useState([]);

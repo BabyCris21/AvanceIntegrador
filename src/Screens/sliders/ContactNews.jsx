@@ -3,7 +3,7 @@ import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./ContactNews.css";
-import newsData from './newsData'; // Importa los datos de newsData.js
+import newsData from '../newsData'; // Importa los datos de newsData.js
 
 const ContactNews = () => {
   const [settings, setSettings] = useState({

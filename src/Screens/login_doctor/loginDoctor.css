@@ -1,0 +1,163 @@
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh; /* Reducimos la altura para centrarlo mejor */
+    width: 65%; /* Ancho del container */
+    margin: 0 auto; /* Centrar el container */
+    margin-top: 50px; /* Distancia del navbar */
+    margin-bottom: 50px; /* Distancia del footer */
+    border: 1px solid #ccc; /* Borde */
+    border-radius: 10px; /* Ajusta el border-radius */
+    color: black; /*
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+/* Resto del CSS... */
+
+.company-photo {
+    width: 25px;
+    height: 25px;
+    padding: 300px;
+    background-image: url('/public/persona.jpg');
+    background-size: cover;
+    justify-content: center; /* Centrar horizontalmente */
+    align-items: center; /* Centrar verticalmente */
+}
+.compan-photo {
+    width: 25px;
+    height: 25px;
+    padding: 300px;
+    background-image: url('/public/logindoc.jpg');
+    background-size: cover;
+    justify-content: center; /* Centrar horizontalmente */
+    align-items: center; /* Centrar verticalmente */
+}
+.login-form {
+    flex: 1; /* Toma el 50% restante del ancho del container */
+    padding: 20px;
+    border-top-right-radius: 10px; /* Ajusta el border-radius */
+    border-bottom-right-radius: 10px; /* Ajusta el border-radius */
+    background-color: white;
+}
+
+.login-form h1 {
+    color: black;
+    margin-top: 0;
+    text-align: left; /* Alinea el texto hacia la izquierda */
+}
+
+.login-form h4{
+    color: #7073d5bc;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block; /* Convertir etiquetas en bloques para alinear debajo */
+    font-weight: bold;
+}
+
+.form-group input,
+.login-button {
+    width: 30rem; /* Ancho deseado */
+    padding: 15px;
+    margin-top: 5px; /* Espacio entre cada campo */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font: bold;
+    box-sizing: border-box; /* Incluye el padding y el borde en el ancho total */
+}
+
+.login-button {
+    width: calc(30rem + 2px); /* Suma 2px para compensar el borde */
+    padding: 15px;
+    background-color: #3b5998;
+    color: white;
+    font-size: 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+
+.login-button:hover {
+    background-color: orange;
+}
+
+.forgot-password {
+    text-align: left;
+    margin-bottom: 10px;
+    text-decoration: none;
+}
+
+.forgot-password a {
+    margin-top: 50px;
+    text-decoration: none; /* Quita el subrayado del enlace */
+    color: inherit; /* Utiliza el color heredado del contenedor */
+}
+
+
+.social-login {
+    text-align: left;
+}
+
+.social-buttons {
+    margin-top: 10px;
+}
+
+.google-button,
+.facebook-button {
+    margin-right: 10px;
+    padding: 15px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.google-button {
+    background-color: #dd4b39;
+    font-weight: bold;
+    font-size: 20px;
+    color: white;
+}
+
+.facebook-button {
+    background-color: #3b5998;
+    font-weight: bold;
+    font-size: 20px;
+    color: white;
+}
+@media screen and (max-width: 768px) {
+    .login-container {
+        width: 90%;
+        flex-direction: column;
+        height: auto;
+    }
+
+    .company-photo {
+        display: none; /* Oculta la foto en pantallas pequeñas */
+    }
+    .compan-photo {
+        display: none; /* Oculta la foto en pantallas pequeñas */
+    }
+
+    .login-form {
+        border-radius: 0; /* Elimina el redondeo en la parte inferior */
+        border-top-right-radius: 10px; /* Mantiene el redondeo en la parte superior */
+    }
+
+    .form-group input,
+    .login-button {
+        width: 100%; /* Ocupa todo el ancho del contenedor */
+    }
+
+    .forgot-password a {
+        margin-top: 10px; /* Reduce el margen superior */
+    }
+}

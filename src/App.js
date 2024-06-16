@@ -1,22 +1,22 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
-import NavBar from "./components/NavBar";
-import Footer from "./components/Footer";
-import Home from "./Screens/Home";
-import Staff from './Screens/Staff';
-import Registro from "./Screens/Registro";
-import Login from './Screens/Login';
-import Contact from "./Screens/Contact"; 
-import Nosotros from "./Screens/Nosotros";
-import Servicios from './Screens/Servicios';
-import Admin from './Screens/Admin';
-import Header from './components/Header';
+import NavBar from "./components/navbar/NavBar";
+import Footer from "./components/footer/Footer";
+import Header from './components/header/Header';
+import Home from "./Screens/home/Home";
+import Staff from './Screens/staff/Staff';
+import Registro from "./Screens/registro/Registro";
+import Login from './Screens/login_usuario/Login';
+import Contact from "./Screens/contacto/Contact"; 
+import Nosotros from "./Screens/nosotros/Nosotros";
+import Servicios from './Screens/servicios/Servicios';
+import Admin from './Screens/admin/Admin';
 import Citas from "./Screens/Citas";
-import Doctor from "./Screens/Doctor";
-import Perfil from './Screens/Perfil';
-import PerfilDoctor from './Screens/PerfilDoctor';
+import Doctor from "./Screens/doctor/Doctor";
+import Perfil from './Screens/perfil/Perfil';
+import PerfilDoctor from './Screens/perfilDoctor/PerfilDoctor';
 import ReservaCita from './Screens/ReservaCita';
-import LoginDoctor from './Screens/loginDoctor';
+import LoginDoctor from './Screens/login_doctor/loginDoctor';
 import RegistroDoctor from './Screens/RegistroDoctor';
 
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import ContactNews from './ContactNews';
+import ContactNews from './sliders/ContactNews';
 import { Link } from 'react-router-dom'
     
 const Citas = () => {

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import "./Home.css";
-import ContactNews from './ContactNews';
+import ContactNews from '../sliders/ContactNews';
 
 const Home = () => {
   const [selectedOption, setSelectedOption] = useState("Chequeo Gratis"); 

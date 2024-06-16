@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import './PerfilDoctor.css'; // Importa tus estilos CSS
-import DoctorInfo from './DoctorInfo'; // Importa el componente DoctorInfo
-import ContactNews from './ContactNews'; // Importa el componente ContactNews
-import ListaCita from './CitaDoctor';
-import CitaDoctor from './CitaDoctor';
+import DoctorInfo from '../DoctorInfo'; // Importa el componente DoctorInfo
+import ContactNews from '../sliders/ContactNews'; // Importa el componente ContactNews
+import ListaCita from '../CitaDoctor';
+import CitaDoctor from '../CitaDoctor';
 
 // Componente de la sección del panel de control
 const ControlPanelSection = ({ section, onClick }) => {

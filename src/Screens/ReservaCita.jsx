@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import './ReservaCita.css'; // Importa tus estilos CSS
 import SeleccionarCita from './SeleccionarCita'; // Importa el componente UsuarioInfo
 import Paciente from './Paciente'; // Importa el componente
-import ContactNews from './ContactNews'; // Importa el componente ContactNews
+import ContactNews from './sliders/ContactNews'; // Importa el componente ContactNews
 import ListaPaciente from './ListaPaciente';
 
 // Componente de la sección del panel de control

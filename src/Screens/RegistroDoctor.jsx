@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
-import "./Registro.css";
+import "./registro/Registro.css";
 
 const Registro = () => {
     const [showPassword, setShowPassword] = useState(false);

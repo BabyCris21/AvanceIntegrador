@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom"; // Importa Link y useNavigate desde react-router-dom
-import "./Login.css";
+import "../login_doctor/loginDoctor.css";
 
 const LoginDoctor = () => {
     const [dni, setDni] = useState('');
@@ -49,7 +49,7 @@ const LoginDoctor = () => {
         <div className="login-container">
             <div className="compan-photo"></div>
             <div className="login-form">
-                <h1>Iniciar Sesión</h1>
+                <h1>Iniciar Sesión </h1>
                 <h4>¿No tienes una cuenta? <Link to="/registrodoc">Crea una</Link></h4>
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">

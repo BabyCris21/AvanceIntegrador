@@ -1,6 +1,6 @@
 import React from 'react';
 import "./Staff.css";
-import ContactNews from './ContactNews';
+import ContactNews from '../sliders/ContactNews';
 
 const Staff = () => {
   const medicalStaff = [
