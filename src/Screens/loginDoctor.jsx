@@ -35,7 +35,7 @@ const LoginDoctor = () => {
             if (response.ok) {
                 localStorage.setItem('token', result.token); // Guardar el token en localStorage
                 alert('Inicio de sesión exitoso');
-                navigate('/home'); // Asegúrate de que esta ruta exista en tu aplicación
+                navigate('/perfilDoctor'); // Asegúrate de que esta ruta exista en tu aplicación
             } else {
                 alert(`Error: ${result.message}`);
                 console.error('Error:', result);

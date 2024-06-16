@@ -59,11 +59,11 @@ const ReservaCita = () => {
   useEffect(() => {
     const fetchDoctors = async () => {
       try {
-        const response = await fetch('http://localhost:8080/api/doctor/');
+        const response = await fetch('http://localhost:8080/api/doctor/', );
         if (response.ok) {
           const data = await response.json();
           const doctoresFiltrados = data.filter(doctor =>
-            doctor.specialty.some(spec => spec.dni === especialidadSeleccionada)
+            doctor.specialty.some(spec => spec.uid === especialidadSeleccionada)
           );
           setDoctores(doctoresFiltrados);
         } else {
