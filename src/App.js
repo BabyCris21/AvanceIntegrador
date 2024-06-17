@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate, Outlet } from 'react-router-dom'; // Asegúrate de importar Outlet
 import NavBar from "./components/navbar/NavBar";
 import Footer from "./components/footer/Footer";
 import Header from './components/header/Header';
@@ -24,30 +24,42 @@ function App() {
   return (
     <div className="">
       <Router>
-        <Header></Header>
-        <NavBar/>
         <Routes>
-          <Route path="/" element={<Navigate to="/home" replace />} />
-          <Route path="/home" element={<Home/>}/>
-          <Route path="/contact" element={<Contact/>}/>
-          <Route path="/registro" element={<Registro/>}/>
-          <Route path="/registrodoc" element={<RegistroDoctor/>}/>
-          <Route path="/staff" element={<Staff/>}/>
-          <Route path="/login" element={<Login/>}/>
-          <Route path="/nosotros" element={<Nosotros/>}/>
-          <Route path="/servicios" element={<Servicios/>}/>
-          <Route path="/citas" element={<Citas/>}/>
-          <Route path="/perfil" element={<Perfil/>}/>
-          <Route path="/admin" element={<Admin/>}/>
-          <Route path="/doctor" element={<Doctor/>}/>
-          <Route path="/perfildoctor" element={<PerfilDoctor/>}/>
-          <Route path="/loginDoctor" element={<LoginDoctor/>}/>
-          <Route path="/reserva" element={<ReservaCita/>}/>
+          {/* Rutas con header, navbar y footer */}
+          <Route
+            path="/"
+            element={
+              <>
+                <Header />
+                <NavBar />
+                <Outlet />
+                <Footer />
+              </>
+            }
+          >
+            <Route path="/" element={<Navigate to="/home" replace />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/registro" element={<Registro />} />
+            <Route path="/registrodoc" element={<RegistroDoctor />} />
+            <Route path="/staff" element={<Staff />} />
+            <Route path="/nosotros" element={<Nosotros />} />
+            <Route path="/servicios" element={<Servicios />} />
+            <Route path="/citas" element={<Citas />} />
+            <Route path="/perfil" element={<Perfil />} />
+            <Route path="/admin" element={<Admin />} />
+            <Route path="/doctor" element={<Doctor />} />
+            <Route path="/perfildoctor" element={<PerfilDoctor />} />
+            <Route path="/reserva" element={<ReservaCita />} />
+            <Route path="/login" element={<Login />} />
+          </Route>
+
+          {/* Rutas para login y loginDoctor sin header, navbar ni footer */}
+   
+          <Route path="/loginDoctor" element={<LoginDoctor />} />
         </Routes>
-        <Footer /> 
       </Router>
     </div>
   );
 }
-
 export default App;

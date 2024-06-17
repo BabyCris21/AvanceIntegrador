@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import "./Login.css";
+import "../login_usuario/Login.css";
 
 const Login = () => {
     const [dni, setDni] = useState('');
@@ -23,7 +23,7 @@ const Login = () => {
         console.log('Datos enviados:', JSON.stringify(dataToSend, null, 2));
 
         try {
-            const response = await fetch('https://app-appointment-0eb0460a848b.herokuapp.com/api/auth/loginUser', {
+            const response = await fetch('http://localhost:8080/api/auth/loginUser', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
