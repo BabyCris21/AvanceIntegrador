@@ -11,7 +11,7 @@ const ListaCita = () => {
       try {
         const response = await axios.get(`http://localhost:8080/api/appointment/${dni}`, {
           headers: {
-            Authorization: `Bearer ${token}`
+            'token': token
           }
         });
         setCitas(response.data);

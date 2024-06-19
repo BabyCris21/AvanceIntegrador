@@ -41,7 +41,18 @@ const ReservaCita = () => {
   useEffect(() => {
     const fetchSpecialties = async () => {
       try {
-        const response = await fetch('http://localhost:8080/api/specialty/');
+        // Paso 1: Obtener el token. Asumiendo que está almacenado en localStorage
+        const token = localStorage.getItem('token');
+        if (!token) {
+          console.error('Token no encontrado');
+          return;
+        }
+  
+        // Paso 2: Usar el token en la petición
+        const response = await fetch('http://localhost:8080/api/specialty/', {
+          method: 'GET',
+          headers: {'token': token}
+        });
         if (response.ok) {
           const data = await response.json();
           setEspecialidades(data);
@@ -52,14 +63,23 @@ const ReservaCita = () => {
         console.error('Error al obtener las especialidades:', error);
       }
     };
-
+  
     fetchSpecialties();
   }, []);
 
   useEffect(() => {
     const fetchDoctors = async () => {
       try {
-        const response = await fetch('http://localhost:8080/api/doctor/', );
+        // Obtener el token del almacenamiento local
+        const token = localStorage.getItem('token');
+        if (!token) {
+          console.error('Token no encontrado');
+          return;
+        }
+  
+        const response = await fetch('http://localhost:8080/api/doctor/', {
+          headers: {'token': token}
+        });
         if (response.ok) {
           const data = await response.json();
           const doctoresFiltrados = data.filter(doctor =>
@@ -73,7 +93,7 @@ const ReservaCita = () => {
         console.error('Error al obtener los doctores:', error);
       }
     };
-
+  
     if (especialidadSeleccionada) {
       fetchDoctors();
     }
@@ -100,15 +120,22 @@ const ReservaCita = () => {
       console.error('Por favor, complete todos los campos antes de reservar la cita.');
       return;
     }
-
+  
     if (!usuarioUID) {
       console.error('No se encontró el UID del usuario');
       return;
     }
-
+  
+    // Obtener el token del almacenamiento local
+    const token = localStorage.getItem('token');
+    if (!token) {
+      console.error('Token no encontrado');
+      return;
+    }
+  
     // Formatear la fecha seleccionada a 'YYYY-MM-DD'
     const formattedDate = fecha.toISOString().split('T')[0];
-
+  
     const data = {
       reason: infoCita,
       date: formattedDate,
@@ -116,14 +143,15 @@ const ReservaCita = () => {
       doctor: doctorSeleccionado.dni,
       user: usuarioUID
     };
-
+  
     console.log("Información de la cita a enviar:", data);
-
+  
     try {
       const response = await fetch("http://localhost:8080/api/appointment/", {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json'
+          "Content-Type": "application/json",
+          "token": token
         },
         body: JSON.stringify(data)
       });

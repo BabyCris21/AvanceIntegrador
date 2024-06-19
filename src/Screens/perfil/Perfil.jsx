@@ -49,7 +49,7 @@ const Perfil = () => {
                 <div className="profile-header">
                     <img src="/paciente.png" alt="Paciente" className="paciente-icon" />
                     <h2>Perfil de Usuario</h2>
-                    <span className="user-greeting">Hola, {userName}</span>
+                    <span className="user-greeting">Hola, {userName.name}</span>
                 </div>
                 <div className="profile-content">
                     {/* Dashboard */}
