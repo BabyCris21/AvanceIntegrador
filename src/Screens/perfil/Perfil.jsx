@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import './Perfil.css'; // Importa tus estilos CSS
-import UsuarioInfo from '../UsuarioInfo'; 
+import UsuarioInfo from '../UsuarioInfo';
 import ContactNews from '../sliders/ContactNews'; // Importa el componente ContactNews
 import ListaCita from '../ListaCita'; // Importa el componente ListaCita
 import CitaDoctor from '../CitaDoctor';
+import SeleccionarCita from '../SeleccionarCita'; // Importa el component
 
 
 // Componente de la sección del panel de control
@@ -20,16 +21,10 @@ const CurrentSectionContent = ({ currentSection, setUserName }) => {
     switch (currentSection) {
         case 'Usuario':
             return <UsuarioInfo setUserName={setUserName} />;
+        case 'Reserva':
+            return <SeleccionarCita />;
         case 'Citas':
-            return <ListaCita/>;
-        case 'Archivos':
-            return <div><p>Contenido de la sección Archivos</p></div>;
-        case 'Recetas':
-            return <div><p>Contenido de la sección Recetas</p></div>;
-        case 'Resultados':
-            return <div><p>Contenido de la sección Resultados</p></div>;
-        case 'Historial Medico':
-            return <div><p>Contenido de la sección Historial Medico</p></div>;
+            return <ListaCita />;
         default:
             return null;
     }
@@ -55,11 +50,8 @@ const Perfil = () => {
                     {/* Dashboard */}
                     <div className="dashboard">
                         <ControlPanelSection section="Usuario" onClick={handleSectionChange} />
+                        <ControlPanelSection section="Reserva" onClick={handleSectionChange} />
                         <ControlPanelSection section="Citas" onClick={handleSectionChange} />
-                        <ControlPanelSection section="Archivos" onClick={handleSectionChange} />
-                        <ControlPanelSection section="Recetas" onClick={handleSectionChange} />
-                        <ControlPanelSection section="Resultados" onClick={handleSectionChange} />
-                        <ControlPanelSection section="Historial Medico" onClick={handleSectionChange} />
                     </div>
                     {/* Contenido de la sección */}
                     <div className="section-content">

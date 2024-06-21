@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './PerfilDoctor.css'; // Importa tus estilos CSS
+import '../ReservaCita.css';
 import DoctorInfo from '../DoctorInfo'; // Importa el componente DoctorInfo
 import ContactNews from '../sliders/ContactNews'; // Importa el componente ContactNews
 import ListaCita from '../CitaDoctor';
@@ -20,15 +21,7 @@ const CurrentSectionContent = ({ currentSection, setUserName }) => {
         case 'Perfil':
             return <DoctorInfo setUserName={setUserName} />;
         case 'Citas':
-            return <CitaDoctor />;
-        case 'Archivos':
-            return <div><p>Contenido de la sección Archivos</p></div>;
-        case 'Recetas':
-            return <div><p>Contenido de la sección Recetas</p></div>;
-        case 'Resultados':
-            return <div><p>Contenido de la sección Resultados</p></div>;
-        case 'Historial Medico':
-            return <div><p>Contenido de la sección Historial Medico</p></div>;
+            return <CitaDoctor/>;
         default:
             return null;
     }
@@ -55,10 +48,6 @@ const PerfilDoctor = () => {
                     <div className="dashboard">
                         <ControlPanelSection section="Perfil" onClick={handleSectionChange} />
                         <ControlPanelSection section="Citas" onClick={handleSectionChange} />
-                        <ControlPanelSection section="Archivos" onClick={handleSectionChange} />
-                        <ControlPanelSection section="Recetas" onClick={handleSectionChange} />
-                        <ControlPanelSection section="Resultados" onClick={handleSectionChange} />
-                        <ControlPanelSection section="Historial Medico" onClick={handleSectionChange} />
                     </div>
                     {/* Contenido de la sección */}
                     <div className="section-content">

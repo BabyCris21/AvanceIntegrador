@@ -18,7 +18,7 @@ import Perfil from './Screens/perfil/Perfil';
 import PerfilDoctor from './Screens/perfilDoctor/PerfilDoctor';
 import ReservaCita from './Screens/ReservaCita';
 import LoginDoctor from './Screens/login_doctor/loginDoctor';
-import RegistroDoctor from './Screens/RegistroDoctor';
+import RegistroDoctor from './Screens/registro/RegistroDoctor';
 
 // Componente RutaProtegida
 const RutaProtegida = ({ rolesPermitidos }) => {
@@ -80,7 +80,7 @@ const App = () => {
           <Route path="/home" element={<Home />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/registro" element={<Registro />} />
-          {/* <Route path="/registrodoc" element={<RegistroDoctor />} /> */}
+          <Route path="/registrodoc" element={<RegistroDoctor />} />
           <Route path="/staff" element={<Staff />} />
           <Route path="/nosotros" element={<Nosotros />} />
           <Route path="/servicios" element={<Servicios />} />
