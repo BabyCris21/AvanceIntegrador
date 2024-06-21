@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { jwtDecode } from 'jwt-decode';
+import {jwtDecode} from 'jwt-decode';
 
 const ListaCita = () => {
   const [citas, setCitas] = useState([]);
+  const [doctores, setDoctores] = useState({});
   const [usuarioUID, setUsuarioUID] = useState(null);
 
   useEffect(() => {
@@ -15,8 +16,32 @@ const ListaCita = () => {
           }
         });
         setCitas(response.data);
+
+        // Obtener los detalles de los doctores
+        const doctorDnis = response.data.map(cita => cita.doctor);
+        const uniqueDoctorDnis = [...new Set(doctorDnis)];
+        const doctorDetails = await obtenerDetallesDoctores(token, uniqueDoctorDnis);
+        setDoctores(doctorDetails);
       } catch (error) {
         console.error('Error al obtener citas:', error);
+      }
+    };
+
+    const obtenerDetallesDoctores = async (token, doctorDnis) => {
+      try {
+        const details = {};
+        for (let dni of doctorDnis) {
+          const response = await axios.get(`http://localhost:8080/api/doctor/${dni}`, {
+            headers: {
+              'token': token
+            }
+          });
+          details[dni] = response.data.name; // Asegúrate de que el nombre del doctor esté en la propiedad `name`
+        }
+        return details;
+      } catch (error) {
+        console.error('Error al obtener detalles del doctor:', error);
+        return {};
       }
     };
 
@@ -49,20 +74,6 @@ const ListaCita = () => {
     return `${year}-${month}-${day}`;
   };
 
-  const handleDelete = async (id) => {
-    try {
-      await axios.delete(`http://localhost:8080/api/appointment/${id}`, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`
-        }
-      });
-      setCitas(citas.filter(cita => cita.id !== id));
-      console.log('Cita eliminada:', id);
-    } catch (error) {
-      console.error('Error al eliminar la cita:', error);
-    }
-  };
-
   return (
     <div>
       <h1>Lista de Citas</h1>
@@ -73,8 +84,6 @@ const ListaCita = () => {
             <th>Fecha</th>
             <th>Hora</th>
             <th>Doctor</th>
-            <th>Estado</th>
-            <th>Acciones</th>
           </tr>
         </thead>
         <tbody>
@@ -83,11 +92,7 @@ const ListaCita = () => {
               <td>{cita.reason}</td>
               <td>{formatFecha(cita.date)}</td>
               <td>{cita.time}</td>
-              <td>{cita.doctor}</td>
-              <td>{cita.status ? 'Pendiente' : 'Completada'}</td>
-              <td>
-                <button onClick={() => handleDelete(cita.id)}>Confirmar</button>
-              </td>
+              <td>{doctores[cita.doctor] || 'Desconocido'}</td> {/* Muestra el nombre del doctor o 'Desconocido' si no se encuentra */}
             </tr>
           ))}
         </tbody>

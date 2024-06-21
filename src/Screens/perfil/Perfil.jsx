@@ -54,8 +54,10 @@ const Perfil = () => {
                         <ControlPanelSection section="Citas" onClick={handleSectionChange} />
                     </div>
                     {/* Contenido de la sección */}
-                    <div className="section-content">
-                        <CurrentSectionContent currentSection={currentSection} setUserName={setUserName} />
+                    <div className="section-container">
+                        <div className="section-content">
+                            <CurrentSectionContent currentSection={currentSection} setUserName={setUserName} />
+                        </div>
                     </div>
                 </div>
             </div>
