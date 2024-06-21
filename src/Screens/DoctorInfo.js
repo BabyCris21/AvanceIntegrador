@@ -25,9 +25,11 @@ const DoctorInfo = ({ setUserName }) => {
     }
   };
 
+  const token = localStorage.getItem("token");
+  
   const fetchUserData = async (dni) => {
     try {
-      const response = await fetch(`http://localhost:8080/api/doctor/${dni}`);
+      const response = await fetch(`http://localhost:8080/api/doctor/${dni}`, {headers: {'token':token}});
       if (!response.ok) {
         throw new Error("La respuesta de la red no fue correcta");
       }
