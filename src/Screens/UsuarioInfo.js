@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { jwtDecode } from "jwt-decode";
-import UserModel from "../models/userModels";
+import {jwtDecode} from "jwt-decode";
+import UserModel from "../models/userModels"; // Asegúrate de que este modelo esté correctamente definido
 
 const UsuarioInfo = ({ setUserName }) => {
   const [formData, setFormData] = useState(UserModel);
@@ -25,22 +25,28 @@ const UsuarioInfo = ({ setUserName }) => {
     }
   };
 
-  const token = localStorage.getItem('token');
-  if (!token) {
-    throw new Error('Token not found');
-  }
-
   const fetchUserData = async (dni) => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      console.error('Token not found');
+      return;
+    }
+
     try {
-      const response = await fetch(`http://localhost:8080/api/user/${dni}`,{ method: 'GET',headers:{'token':token} });
+      const response = await fetch(`http://localhost:8080/api/user/${dni}`, { 
+        method: 'GET',
+        headers: { 'token': token } 
+      });
+
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
+
       const data = await response.json();
-      console.log(dni);
-      setFormData(data);
-      setOriginalData(data);
-      setUserName(data.name);
+      console.log("Fetched user data:", data);
+      setFormData(data || UserModel); // Asegurarse de que formData no sea undefined
+      setOriginalData(data || UserModel); // Asegurarse de que originalData no sea undefined
+      setUserName(data?.name || '');
     } catch (error) {
       console.error("Error fetching user data:", error);
     }
@@ -48,23 +54,34 @@ const UsuarioInfo = ({ setUserName }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const token = localStorage.getItem('token');
+    if (!token) {
+      console.error('Token not found');
+      return;
+    }
+
     try {
       const response = await fetch(`http://localhost:8080/api/user/${dni}`, {
         method: "PUT",
         headers: {
-          'token':token,
+          'token': token,
           "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
       });
+
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
+
       const updatedData = await response.json();
-      setFormData(updatedData);
-      setOriginalData(updatedData);
-      setUserName(updatedData.name);
+      console.log("Updated user data:", updatedData);
+      setFormData(updatedData || UserModel); // Asegurarse de que formData no sea undefined
+      setOriginalData(updatedData || UserModel); // Asegurarse de que originalData no sea undefined
+      setUserName(updatedData?.name || '');
       window.alert("Datos actualizados correctamente.");
+      
+      // Recargar la página para reflejar los cambios
       window.location.reload();
     } catch (error) {
       console.error("Error updating user data:", error);
@@ -86,14 +103,14 @@ const UsuarioInfo = ({ setUserName }) => {
       <h3>Información de Usuario</h3>
       <form onSubmit={handleSubmit}>
         <label htmlFor="dni">DNI:</label>
-        <input type="text" id="dni" name="dni" value={formData.dni} disabled />
+        <input type="text" id="dni" name="dni" value={formData?.dni || ''} disabled />
 
         <label htmlFor="name">Nombre:</label>
         <input
           type="text"
           id="name"
           name="name"
-          value={formData.name}
+          value={formData?.name || ''}
           onChange={handleChange}
           required
         />
@@ -103,7 +120,7 @@ const UsuarioInfo = ({ setUserName }) => {
           type="text"
           id="lastname"
           name="lastname"
-          value={formData.lastname}
+          value={formData?.lastname || ''}
           onChange={handleChange}
           required
         />
@@ -113,7 +130,7 @@ const UsuarioInfo = ({ setUserName }) => {
           type="date"
           id="bornDate"
           name="bornDate"
-          value={formatDate(formData.bornDate)}
+          value={formData?.bornDate ? formatDate(formData.bornDate) : ''}
           onChange={handleChange}
           required
         />
@@ -123,7 +140,7 @@ const UsuarioInfo = ({ setUserName }) => {
           type="tel"
           id="phone"
           name="phone"
-          value={formData.phone}
+          value={formData?.phone || ''}
           onChange={handleChange}
           required
         />
@@ -133,7 +150,7 @@ const UsuarioInfo = ({ setUserName }) => {
           type="email"
           id="email"
           name="email"
-          value={formData.email}
+          value={formData?.email || ''}
           disabled
         />
 
@@ -142,7 +159,7 @@ const UsuarioInfo = ({ setUserName }) => {
           type="text"
           id="address"
           name="address"
-          value={formData.address || ""}
+          value={formData?.address || ''}
           onChange={handleChange}
         />
 
@@ -151,7 +168,7 @@ const UsuarioInfo = ({ setUserName }) => {
           type="text"
           id="gender"
           name="gender"
-          value={formData.gender}
+          value={formData?.gender || ''}
           onChange={handleChange}
           required
         />
