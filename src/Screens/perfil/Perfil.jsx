@@ -3,9 +3,7 @@ import './Perfil.css'; // Importa tus estilos CSS
 import UsuarioInfo from '../UsuarioInfo';
 import ContactNews from '../sliders/ContactNews'; // Importa el componente ContactNews
 import ListaCita from '../ListaCita'; // Importa el componente ListaCita
-import CitaDoctor from '../CitaDoctor';
 import SeleccionarCita from '../SeleccionarCita'; // Importa el component
-
 
 // Componente de la sección del panel de control
 const ControlPanelSection = ({ section, onClick }) => {
@@ -44,7 +42,7 @@ const Perfil = () => {
                 <div className="profile-header">
                     <img src="/paciente.png" alt="Paciente" className="paciente-icon" />
                     <h2>Perfil de Usuario</h2>
-                    <span className="user-greeting">Hola, {userName.name}</span>
+                    <span className="user-greeting">Hola, {userName ? userName : 'Usuario'}</span>
                 </div>
                 <div className="profile-content">
                     {/* Dashboard */}
