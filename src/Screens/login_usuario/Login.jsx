@@ -35,7 +35,7 @@ const Login = () => {
             if (response.ok) {
                 localStorage.setItem('token', result.token);
                 alert('Inicio de sesión exitoso');
-                navigate('/home');
+                navigate('/perfil');
             } else {
                 alert('Error: ${result.message}');
                 console.error('Error:', result);
