@@ -63,7 +63,7 @@
 
 .form-group input,
 .login-button {
-    width: 30rem; /* Ancho deseado */
+    /*width: 30rem; /* Ancho deseado */
     padding: 15px;
     margin-top: 5px; /* Espacio entre cada campo */
     border: 1px solid #ccc;
