@@ -5,6 +5,7 @@ import DoctorInfo from '../DoctorInfo'; // Importa el componente DoctorInfo
 import ContactNews from '../sliders/ContactNews'; // Importa el componente ContactNews
 import ListaCita from '../CitaDoctor';
 import CitaDoctor from '../CitaDoctor';
+import RecetaDoctor from '../RecetaDoctor';
 
 // Componente de la sección del panel de control
 const ControlPanelSection = ({ section, onClick }) => {
@@ -22,6 +23,8 @@ const CurrentSectionContent = ({ currentSection, setUserName }) => {
             return <DoctorInfo setUserName={setUserName} />;
         case 'Citas':
             return <CitaDoctor/>;
+        case 'Recetas':
+            return <RecetaDoctor/>
         default:
             return null;
     }
@@ -48,6 +51,7 @@ const PerfilDoctor = () => {
                     <div className="dashboard">
                         <ControlPanelSection section="Perfil" onClick={handleSectionChange} />
                         <ControlPanelSection section="Citas" onClick={handleSectionChange} />
+                        <ControlPanelSection section="Recetas" onClick={handleSectionChange} />
                     </div>
                     {/* Contenido de la sección */}
                     <div className="section-content">

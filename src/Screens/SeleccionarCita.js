@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import './ReservaCita.css';
-import { jwtDecode } from 'jwt-decode'; // Asegúrate de importar jwtDecode correctamente
+import {jwtDecode} from 'jwt-decode'; // Asegúrate de importar jwtDecode correctamente
 
 const ReservaCita = () => {
   const fechaActual = new Date();
@@ -41,14 +41,12 @@ const ReservaCita = () => {
   useEffect(() => {
     const fetchSpecialties = async () => {
       try {
-        // Paso 1: Obtener el token. Asumiendo que está almacenado en localStorage
         const token = localStorage.getItem('token');
         if (!token) {
           console.error('Token no encontrado');
           return;
         }
   
-        // Paso 2: Usar el token en la petición
         const response = await fetch('http://localhost:8080/api/specialty/', {
           method: 'GET',
           headers: {'token': token}
@@ -70,21 +68,25 @@ const ReservaCita = () => {
   useEffect(() => {
     const fetchDoctors = async () => {
       try {
-        // Obtener el token del almacenamiento local
         const token = localStorage.getItem('token');
         if (!token) {
           console.error('Token no encontrado');
           return;
         }
-  
+    
         const response = await fetch('http://localhost:8080/api/doctor/', {
-          headers: {'token': token}
+          headers: { 'token': token }
         });
         if (response.ok) {
           const data = await response.json();
+          console.log('Datos de doctores:', data);
+          
+          // Filtrar doctores por especialidad seleccionada
           const doctoresFiltrados = data.filter(doctor =>
             doctor.specialty.some(spec => spec.uid === especialidadSeleccionada)
           );
+          console.log('Doctores filtrados:', doctoresFiltrados);
+          
           setDoctores(doctoresFiltrados);
         } else {
           console.error('Error al obtener los doctores:', response.statusText);
@@ -93,10 +95,13 @@ const ReservaCita = () => {
         console.error('Error al obtener los doctores:', error);
       }
     };
-  
-    if (especialidadSeleccionada) {
-      fetchDoctors();
-    }
+    
+
+if (especialidadSeleccionada) {
+  console.log('Especialidad seleccionada:', especialidadSeleccionada);
+  fetchDoctors();
+}
+
   }, [especialidadSeleccionada]);
 
   const handleFechaChange = (date) => {
@@ -126,14 +131,12 @@ const ReservaCita = () => {
       return;
     }
   
-    // Obtener el token del almacenamiento local
     const token = localStorage.getItem('token');
     if (!token) {
       console.error('Token no encontrado');
       return;
     }
   
-    // Formatear la fecha seleccionada a 'YYYY-MM-DD'
     const formattedDate = fecha.toISOString().split('T')[0];
   
     const data = {

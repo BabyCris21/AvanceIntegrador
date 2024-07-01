@@ -5,20 +5,37 @@ import { jwtDecode } from 'jwt-decode';
 const CitaDoctor = () => {
   const [citas, setCitas] = useState([]);
   const [dniDoctor, setDoctorUID] = useState('null');
+  const [editingCitaId, setEditingCitaId] = useState(null);
+  const [recetaTexto, setRecetaTexto] = useState('');
 
   useEffect(() => {
     const obtenerCitas = async (token, dni) => {
       try {
-        console.log('Enviando solicitud al backend con token:', token, 'y DNI:', dni);
         const response = await axios.get(`http://localhost:8080/api/appointment/doctor/${dni}`, {
           headers: {
             'token': token,
           }
         });
         const formattedCitas = response.data.map(cita => ({
-          ...cita,
-          date: formatDate(cita.date)
+          id: cita.id,
+          reason: cita.reason,
+          date: formatDate(cita.date),
+          time: cita.time,
+          doctor: cita.doctor,
+          patientDNI: cita.user,
+          status: cita.status,
         }));
+        // Obtener nombres de pacientes
+        await Promise.all(
+          formattedCitas.map(async (cita) => {
+            const response = await axios.get(`http://localhost:8080/api/user/${cita.patientDNI}`, {
+              headers: {
+                'token': token,
+              }
+            });
+            cita.patientName = response.data.name; // Asignar nombre del paciente
+          })
+        );
         setCitas(formattedCitas);
       } catch (error) {
         console.error('Error al obtener citas:', error);
@@ -27,16 +44,13 @@ const CitaDoctor = () => {
 
     const jwtToken = localStorage.getItem('token');
     if (jwtToken) {
-      console.log('JWT token encontrado:', jwtToken);
       try {
         const decodedToken = jwtDecode(jwtToken);
-        console.log('Token decodificado:', decodedToken);
         if (decodedToken.dni) {
-          setDoctorUID(decodedToken.dni); // Almacena el DNI del doctor desde el token decodificado
-          console.log('UID del doctor:', decodedToken.dni);
-          obtenerCitas(jwtToken, decodedToken.dni); // Llama a obtenerCitas con el token
+          setDoctorUID(decodedToken.dni);
+          obtenerCitas(jwtToken, decodedToken.dni);
         } else {
-          console.error('El token decodificado no contiene el campo uid.');
+          console.error('El token decodificado no contiene el campo dni.');
         }
       } catch (error) {
         console.error('Error al decodificar el token JWT:', error);
@@ -68,8 +82,21 @@ const CitaDoctor = () => {
   };
 
   const handleEdit = (id) => {
-    // Implementa la lógica para editar la cita aquí.
-    console.log('Editar cita con id:', id);
+    setEditingCitaId(id);
+    // Aquí podrías implementar lógica adicional para cargar la receta existente si la hay
+  };
+
+  const handleSaveReceta = async () => {
+    try {
+      // Implementa la lógica para guardar la receta
+      console.log('Guardando receta:', recetaTexto);
+      // Aquí deberías hacer la llamada axios para guardar la receta actualizada en el backend
+      // Luego podrías actualizar localmente las citas si es necesario
+      setEditingCitaId(null);
+      setRecetaTexto('');
+    } catch (error) {
+      console.error('Error al guardar receta:', error);
+    }
   };
 
   return (
@@ -82,8 +109,9 @@ const CitaDoctor = () => {
             <th>Fecha</th>
             <th>Hora</th>
             <th>Doctor</th>
-            <th>Estado</th>
-            <th>¿Ya completó su cita?</th>
+            <th>Paciente</th>
+            <th>DNI Paciente</th>
+            <th>Receta</th>
           </tr>
         </thead>
         <tbody>
@@ -93,16 +121,22 @@ const CitaDoctor = () => {
               <td>{cita.date}</td>
               <td>{cita.time}</td>
               <td>{cita.doctor}</td>
-              <td>{cita.status ? 'Pendiente' : 'Completado'}</td>
+              <td>{cita.patientName}</td>
+              <td>{cita.patientDNI}</td>
               <td>
-                {!cita.status && (
-                  <button
-                    onClick={() => handleDelete(cita.id)}
-                    disabled={cita.status === false}
-                    className={cita.status === false ? 'disabledButton' : ''}
-                  >
-                    Aceptar
-                  </button>
+                {editingCitaId === cita.id ? (
+                  <div className="popup">
+                    <textarea
+                      value={recetaTexto}
+                      onChange={(e) => setRecetaTexto(e.target.value)}
+                      maxLength={100}
+                      placeholder="Detalles de la receta (máximo 100 caracteres)"
+                    />
+                    <br />
+                    <button onClick={handleSaveReceta}>Guardar</button>
+                  </div>
+                ) : (
+                  <button onClick={() => handleEdit(cita.id)}>Editar</button>
                 )}
               </td>
             </tr>
