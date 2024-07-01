@@ -1,12 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { jwtDecode } from 'jwt-decode';
+import RecetaForm from './RecetaForm'; // Importa el componente de formulario de receta
 
 const CitaDoctor = () => {
   const [citas, setCitas] = useState([]);
   const [dniDoctor, setDoctorUID] = useState('null');
   const [editingCitaId, setEditingCitaId] = useState(null);
-  const [recetaTexto, setRecetaTexto] = useState('');
+  const [receta, setReceta] = useState({
+    medicamentos: [],
+    medicamento: '',
+    dosis: '',
+    frecuencia: '',
+    duracion: ''
+  });
+  const [showRecetaForm, setShowRecetaForm] = useState(false); // Estado para controlar la visibilidad del formulario
+
+  // Función para generar un ID único (solo como ejemplo, puedes implementar según tus necesidades)
+  const generateId = () => {
+    return '_' + Math.random().toString(36).substr(2, 9);
+  };
 
   useEffect(() => {
     const obtenerCitas = async (token, dni) => {
@@ -25,7 +38,6 @@ const CitaDoctor = () => {
           patientDNI: cita.user,
           status: cita.status,
         }));
-        // Obtener nombres de pacientes
         await Promise.all(
           formattedCitas.map(async (cita) => {
             const response = await axios.get(`http://localhost:8080/api/user/${cita.patientDNI}`, {
@@ -33,7 +45,7 @@ const CitaDoctor = () => {
                 'token': token,
               }
             });
-            cita.patientName = response.data.name; // Asignar nombre del paciente
+            cita.patientName = response.data.name;
           })
         );
         setCitas(formattedCitas);
@@ -81,68 +93,115 @@ const CitaDoctor = () => {
     }
   };
 
-  const handleEdit = (id) => {
+  const handleEdit = async (id) => {
     setEditingCitaId(id);
+    setShowRecetaForm(true); // Mostrar el formulario al editar
     // Aquí podrías implementar lógica adicional para cargar la receta existente si la hay
   };
 
   const handleSaveReceta = async () => {
     try {
-      // Implementa la lógica para guardar la receta
-      console.log('Guardando receta:', recetaTexto);
-      // Aquí deberías hacer la llamada axios para guardar la receta actualizada en el backend
-      // Luego podrías actualizar localmente las citas si es necesario
+      console.log('Receta a guardar:', receta);
+  
+      // Construir prescriptionDetails con el formato requerido
+      const prescriptionDetails = receta.medicamentos.map(med => ({
+        medicine: med.medicamento,
+        dosage: med.dosis,
+        frequency: med.frecuencia,
+        duration: med.duracion
+      }));
+  
+      const newReceta = {
+        id: generateId(),
+        date: new Date().toISOString(),
+        doctor: dniDoctor,
+        appointment: editingCitaId,
+        prescriptionDetails: prescriptionDetails
+      };
+  
+      // Enviar la receta al backend
+      await axios.post(`http://localhost:8080/api/prescription`, newReceta, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`
+        }
+      });
+  
       setEditingCitaId(null);
-      setRecetaTexto('');
+      setShowRecetaForm(false); // Ocultar el formulario después de guardar
+      setReceta({
+        medicamentos: [],
+        medicamento: '',
+        dosis: '',
+        frecuencia: '',
+        duracion: ''
+      });
     } catch (error) {
       console.error('Error al guardar receta:', error);
     }
   };
 
+  const handleCancelEdit = () => {
+    setEditingCitaId(null);
+    setShowRecetaForm(false); // Ocultar el formulario al cancelar
+    setReceta({
+      medicamentos: [],
+      medicamento: '',
+      dosis: '',
+      frecuencia: '',
+      duracion: ''
+    });
+  };
+
+  const handleAddMedicamento = () => {
+    const newMedicamento = { medicamento: '', dosis: '', frecuencia: '', duracion: '' };
+    setReceta(prevState => ({
+      ...prevState,
+      medicamentos: [...prevState.medicamentos, newMedicamento]
+    }));
+  };
+
   return (
     <div>
-      <h1>Lista de Citas del Doctor</h1>
+      <h1>Listado de Citas</h1>
       <table>
         <thead>
           <tr>
-            <th>Razón</th>
             <th>Fecha</th>
             <th>Hora</th>
-            <th>Doctor</th>
+            <th>Motivo</th>
             <th>Paciente</th>
-            <th>DNI Paciente</th>
-            <th>Receta</th>
+            <th>Acciones</th>
           </tr>
         </thead>
         <tbody>
-          {citas.map(cita => (
+          {citas.map((cita) => (
             <tr key={cita.id}>
-              <td>{cita.reason}</td>
               <td>{cita.date}</td>
               <td>{cita.time}</td>
-              <td>{cita.doctor}</td>
+              <td>{cita.reason}</td>
               <td>{cita.patientName}</td>
-              <td>{cita.patientDNI}</td>
               <td>
-                {editingCitaId === cita.id ? (
-                  <div className="popup">
-                    <textarea
-                      value={recetaTexto}
-                      onChange={(e) => setRecetaTexto(e.target.value)}
-                      maxLength={100}
-                      placeholder="Detalles de la receta (máximo 100 caracteres)"
-                    />
-                    <br />
-                    <button onClick={handleSaveReceta}>Guardar</button>
-                  </div>
-                ) : (
-                  <button onClick={() => handleEdit(cita.id)}>Editar</button>
+                {cita.status !== 'done' && (
+                  <>
+                    <button onClick={() => handleEdit(cita.id)}>Editar Receta</button>
+                  </>
                 )}
               </td>
             </tr>
           ))}
         </tbody>
       </table>
+
+      {/* Mostrar el formulario de receta si showRecetaForm es true */}
+      {showRecetaForm && (
+        <RecetaForm
+          receta={receta}
+          setReceta={setReceta}
+          handleAddMedicamento={handleAddMedicamento}
+          handleSaveReceta={handleSaveReceta}
+          handleCancelEdit={handleCancelEdit}
+        />
+      )}
     </div>
   );
 };
