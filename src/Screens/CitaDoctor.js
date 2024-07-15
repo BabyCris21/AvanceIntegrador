@@ -29,6 +29,7 @@ const CitaDoctor = () => {
             'token': token,
           }
         });
+        console.log(token);
         const formattedCitas = response.data.map(cita => ({
           id: cita.id,
           reason: cita.reason,
@@ -122,7 +123,7 @@ const CitaDoctor = () => {
       // Enviar la receta al backend
       await axios.post(`http://localhost:8080/api/prescription`, newReceta, {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`
+          'token': `${localStorage.getItem('token')}`
         }
       });
   

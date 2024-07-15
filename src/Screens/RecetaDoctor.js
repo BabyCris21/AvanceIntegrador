@@ -9,7 +9,8 @@ const RecetaDoctor = () => {
       try {
         const response = await axios.get('http://localhost:8080/api/prescription', {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`
+            'token': `${localStorage.getItem('token')}`
+            
           }
         });
         console.log('Response from API:', response.data); // Log the response to inspect data structure
