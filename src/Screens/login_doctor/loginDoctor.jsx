@@ -5,7 +5,7 @@ import "../login_doctor/loginDoctor.css";
 const LoginDoctor = () => {
     const [dni, setDni] = useState('');
     const [password, setPassword] = useState('');
-    const navigate = useNavigate(); // Hook para redireccionar
+    const navigate = useNavigate(); 
 
     const handleDniChange = (e) => {
         setDni(e.target.value);
@@ -33,9 +33,9 @@ const LoginDoctor = () => {
 
             const result = await response.json();
             if (response.ok) {
-                localStorage.setItem('token', result.token); // Guardar el token en localStorage
+                localStorage.setItem('token', result.token); 
                 alert('Inicio de sesión exitoso');
-                navigate('/perfilDoctor'); // Asegúrate de que esta ruta exista en tu aplicación
+                navigate('/perfilDoctor'); 
             } else {
                 alert(`Error: ${result.message}`);
                 console.error('Error:', result);
